@@ -301,6 +301,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     'BRANDED YOUTUBE SPECIAL 04',
   ];
 
+  const desktopYtUrls = [
+    'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM',
+    'https://www.youtube.com/watch?v=A-OdwRbfPNA',
+    'https://www.youtube.com/watch?v=3JZ_D3ELwOQ',
+    'https://www.youtube.com/@Kidwithcrayons',
+  ];
+
   const handleCarouselScroll = (sectionId: string, e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
     const scrollLeft = target.scrollLeft;
@@ -789,8 +796,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           </div>
 
           {/* ACTIVE YOUTUBE SHOWCASE (WIDESCREEN 16:9) */}
-          <div 
-            onClick={() => setSelectedCard(CATEGORY_CARDS[1])}
+          <a 
+            href={desktopYtUrls[desktopYtIndex]}
+            target="_blank"
+            rel="noopener noreferrer"
             className="relative w-full flex-1 rounded-[16px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/yt flex items-center justify-center my-1.5 min-h-[130px]"
           >
             <AnimatePresence mode="wait">
@@ -820,7 +829,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 Watch ↗
               </span>
             </div>
-          </div>
+          </a>
 
         </motion.div>
 
