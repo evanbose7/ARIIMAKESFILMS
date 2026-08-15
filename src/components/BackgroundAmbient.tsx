@@ -48,7 +48,7 @@ export const BackgroundAmbient: React.FC<BackgroundAmbientProps> = ({ scrollYPro
       {/* 2. Soft Pink Aurora-like Glow (Responsively sized for 375px/390px/428px up to desktop) */}
       <motion.div 
         style={{ 
-          y: bgGlowY,
+          y: isMobile ? 0 : bgGlowY,
           background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #FFB6E6 40%, rgba(179, 136, 255, 0.3) 70%, transparent 90%)',
         }}
         className="

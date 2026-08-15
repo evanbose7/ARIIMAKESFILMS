@@ -97,8 +97,13 @@ html, body {
   }
 }
 
-/* Mobile Performance Glass Fallbacks (Max-width 767px) */
+/* Mobile Performance Glass Fallbacks & Native Touch Momentum (Max-width 767px) */
 @media (max-width: 767px) {
+  html, body {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .backdrop-blur-3xl,
   .backdrop-blur-2xl,
   .backdrop-blur-xl,

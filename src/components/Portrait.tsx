@@ -21,13 +21,13 @@ export const Portrait: React.FC<PortraitProps> = ({
   onImageClick,
   scrollYProgress,
 }) => {
-  // Scroll dynamics: portrait moves up by 8%, halo expands slightly
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const scrollY = useTransform(scrollYProgress || new MotionValue(0), [0, 0.3], ['0%', '-8%']);
   const haloScale = useTransform(scrollYProgress || new MotionValue(0), [0, 0.3], [1, 1.05]);
 
   return (
     <motion.div
-      style={{ y: scrollY }}
+      style={{ y: isMobile ? 0 : scrollY }}
       initial={{ opacity: 0, scale: 0.94, y: 24 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{

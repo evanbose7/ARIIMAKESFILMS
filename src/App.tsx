@@ -26,17 +26,17 @@ export function App() {
   // Framer Motion scroll hook
   const { scrollYProgress } = useScroll();
 
-  // Initialize Lenis 60 FPS Momentum Inertia Smooth Scroll for both Mobile & Desktop
+  // Initialize Lenis 60 FPS Momentum Inertia Smooth Scroll (Desktop Only - Mobile uses Native GPU Touch)
   useEffect(() => {
-    const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
 
     const lenis = new Lenis({
-      duration: isMobileDevice ? 1.2 : 2.5,
+      duration: 2.5,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
       wheelMultiplier: 0.65,
-      touchMultiplier: 1.6,
-      lerp: isMobileDevice ? 0.1 : 0.05,
+      touchMultiplier: 1.0,
+      lerp: 0.05,
     });
 
     let animationFrameId: number;
