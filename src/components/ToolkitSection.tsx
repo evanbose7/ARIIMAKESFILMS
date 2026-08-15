@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Play, Wand2, Film, Video, Lightbulb, Compass, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Sparkles, Play, Wand2, Film, Video, Lightbulb, Compass, ArrowRight } from 'lucide-react';
 
 export interface ServiceTool {
   id: string;
@@ -339,28 +339,27 @@ export const ToolkitSection: React.FC = () => {
                   ease: 'easeInOut',
                   delay: idx * 0.2,
                 }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => setActiveServiceId(s.id)}
                 aria-label={`Select ${s.name}`}
                 className={`
                   px-4 py-3 sm:px-5 sm:py-3.5 rounded-full
-                  backdrop-blur-[16px] transition-all duration-300 cursor-pointer
+                  backdrop-blur-[16px] transition-colors duration-300 cursor-pointer
                   flex items-center gap-2 select-none gpu-layer min-h-[48px]
                   ${
                     isActive
-                      ? 'bg-white/[0.14] border-[#FFB6E6] text-[#FFF7FF] shadow-[0_0_25px_rgba(255,155,210,0.5)] scale-[1.03] z-20'
-                      : 'bg-white/[0.055] border-white/[0.14] text-[#FFF3FC]/75 hover:border-[#FFB6E6] hover:bg-white/[0.10] shadow-[0_4px_20px_rgba(179,136,255,0.15)] z-10'
+                      ? 'bg-white/[0.16] border border-[#FF9BD2] text-[#FFF7FF] shadow-[0_0_25px_rgba(255,155,210,0.5)]'
+                      : 'bg-white/[0.055] border border-white/[0.14] text-[#FFF3FC]/75 hover:border-[#FFB6E6] hover:bg-white/[0.10] shadow-[0_4px_20px_rgba(179,136,255,0.15)]'
                   }
                 `}
               >
-                <div className={`p-1 rounded-full ${isActive ? 'bg-[#FF9BD2] text-[#140A22]' : 'bg-white/10 text-[#FF9BD2]'}`}>
+                <div className={`p-1 rounded-full transition-colors duration-300 ${isActive ? 'bg-[#FF9BD2] text-[#140A22]' : 'bg-white/10 text-[#FF9BD2]'}`}>
                   <Icon className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-[12px] sm:text-[13px] font-bold tracking-[0.08em] uppercase">
                   {s.name}
                 </span>
-                {isActive && <CheckCircle2 className="w-3.5 h-3.5 text-[#FF9BD2] ml-0.5" />}
               </motion.button>
             );
           })}
