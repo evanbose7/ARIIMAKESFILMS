@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #0F0718;
+    --purple-deep: #2A1247;
+    --lavender: #B388FF;
+    --soft-pink: #FF9BD2;
+    --rose-glow: #FFB6E6;
+    --text-pink-white: #FFF7FF;
+    --accent-shimmer: #FFD6F5;
+  }
+
+  /* Lenis Smooth Scroll Engine Styles */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-pink-white);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+/* Hide scrollbars for chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dreamy Pink & Lavender Glows */
+.pink-lavender-glow {
+  box-shadow: 0 0 30px rgba(255, 155, 210, 0.5), 0 0 50px rgba(179, 136, 255, 0.3);
+}
+
+.halo-ring {
+  background: linear-gradient(135deg, #FF9BD2 0%, #B388FF 100%);
+  padding: 2px;
+  border-radius: 9999px;
+  box-shadow: 0 0 35px rgba(255, 155, 210, 0.6), inset 0 0 15px rgba(179, 136, 255, 0.4);
+}
+
+.chip-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 0 15px rgba(255, 155, 210, 0.25);
+}
+
+/* Film Grain Texture */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Selective GPU Hardware Acceleration */
+.gpu-layer {
+  transform: translateZ(0);
+}
+
+/* Touch & Desktop Scrolling Enhancements */
+html, body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Desktop 60 FPS / High-Refresh-Rate Scroll Performance */
+@media (min-width: 768px) {
+  main section {
+    contain: layout style;
+  }
+}
+
+/* Mobile Performance Glass Fallbacks (Max-width 767px) */
+@media (max-width: 767px) {
+  .backdrop-blur-3xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-xl,
+  .backdrop-blur-lg,
+  .backdrop-blur-md,
+  .backdrop-blur,
+  .chip-glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(26, 12, 46, 0.92) !important;
+  }
+}
