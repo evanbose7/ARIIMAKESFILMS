@@ -592,14 +592,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   </p>
                 </div>
 
-                {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP - HORIZONTAL ROW ONLY) */}
+                {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP - CENTER SNAP ALIGNMENT) */}
                 <div
                   onScroll={(e) => handleCarouselScroll(section.id, e)}
-                  className="
+                  className={`
                     w-full flex flex-row flex-nowrap items-stretch gap-4
                     overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar
-                    px-5 py-3 gpu-layer
-                  "
+                    py-3 gpu-layer
+                    ${section.aspectRatio === '16/9' ? 'px-[6vw]' : 'px-[12vw]'}
+                  `}
                   style={{
                     scrollSnapType: 'x mandatory',
                     WebkitOverflowScrolling: 'touch',
@@ -615,11 +616,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         key={proj.id}
                         className={`
                           shrink-0 flex flex-col justify-between space-y-3
-                          scroll-snap-align-start transition-all duration-500
+                          scroll-snap-align-center transition-all duration-500
                           ${section.mobileCardWidth}
-                          ${isActive ? 'scale-100 opacity-100' : 'scale-[0.96] opacity-75'}
+                          ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
                         `}
-                        style={{ scrollSnapAlign: 'start' }}
+                        style={{ scrollSnapAlign: 'center' }}
                       >
                         {/* VIDEO FRAME CONTAINER */}
                         <div
