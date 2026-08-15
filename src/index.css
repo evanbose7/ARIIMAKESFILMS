@@ -28,6 +28,11 @@
     overflow: hidden;
   }
 
+  html {
+    scroll-behavior: auto !important;
+    overscroll-behavior-y: none;
+  }
+
   body {
     background-color: var(--bg-dark);
     color: var(--text-pink-white);
@@ -38,6 +43,8 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   h1, h2, h3, .font-display {
@@ -52,6 +59,12 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Prevent image dragging during touch scroll */
+img, svg {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Dreamy Pink & Lavender Glows */

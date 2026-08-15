@@ -31,12 +31,12 @@ export function App() {
     if (typeof window !== 'undefined' && window.innerWidth < 768) return;
 
     const lenis = new Lenis({
-      duration: 2.5,
+      duration: 2.2,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
-      wheelMultiplier: 0.65,
+      wheelMultiplier: 0.7,
       touchMultiplier: 1.0,
-      lerp: 0.05,
+      lerp: 0.055,
     });
 
     let animationFrameId: number;
