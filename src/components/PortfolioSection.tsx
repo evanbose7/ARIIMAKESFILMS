@@ -47,10 +47,10 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30',
     icon: Film,
     projects: [
-      { id: 'sc-1', title: 'POV: Found the best side hustle (Paid per reel) 💰', description: 'Hook design and luxury audio timing for feed retention.', previewGradient: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/reel/DTS2wbWk2Nk/?igsh=bTNtN2xvZXh2cTRq' },
-      { id: 'sc-2', title: 'Earn Money Via Reels 💵', description: 'Creator-led video bringing aesthetic visual rhythm and high audience engagement.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/reel/DTDD_1rDKQP/?igsh=MXYya3dvaTFydGtrZw==' },
-      { id: 'sc-3', title: 'To anyone who is scared to create content 📸', description: 'Platform-native hook design and dynamic editing structure for organic reach.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/reel/DS4qmEQjJLn/?igsh=MTl3aHI1c2g1OTE=' },
-      { id: 'sc-4', title: 'Ep 2 Indie Filmmaker Berozgar:( Making My Film 🎥', description: 'Aesthetic visual sequence with crisp audio timing and elevated pacing.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/reel/DSCoQNZjCH7/?igsh=Y3ZjbDA5eDBmdmtt' },
+      { id: 'sc-1', title: 'VIRAL REEL CAMPAIGN 01', description: 'Pacing, hook design, and luxury audio integration designed for feed retention.', previewGradient: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30', aspectRatio: '9/16' },
+      { id: 'sc-2', title: 'SHORT-FORM BRAND EDIT 02', description: 'Creator-led video bringing aesthetic visual rhythm and audience engagement.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'sc-3', title: 'TIKTOK CREATOR CUT 03', description: 'Platform-native hook design and dynamic editing structure for organic reach.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
+      { id: 'sc-4', title: 'INSTAGRAM BRAND STORY 04', description: 'Aesthetic visual sequence with crisp audio timing and elevated pacing.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
     ],
   },
   // 2. YOUTUBE VIDEOS (CARD 02: WIDESCREEN LANDSCAPE - TOP CENTER)
@@ -65,9 +65,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30',
     icon: Tv,
     projects: [
-      { id: 'yt-1', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks', description: 'Complete YouTube production: strategy, hook design, and narrative flow.', previewGradient: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM' },
-      { id: 'yt-2', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA' },
-      { id: 'yt-3', title: 'Day in the Life of a 21-Year-Old Personal Branding Strategist', description: 'Deep-dive visual essay exploring branding and digital culture.', previewGradient: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' },
+      { id: 'yt-1', title: 'FEATURED YOUTUBE FILM 01', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', previewGradient: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', aspectRatio: '16/9' },
+      { id: 'yt-2', title: 'CREATIVE PROCESS EPISODE 02', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', aspectRatio: '16/9' },
+      { id: 'yt-3', title: 'DOCUMENTARY YOUTUBE ESSAY 03', description: 'Deep-dive visual essay exploring branding, digital culture, and cinematic storytelling.', previewGradient: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', aspectRatio: '16/9' },
     ],
   },
   // 3. AI VIDEO (CARD 03: SQUARE / VERTICAL - TOP RIGHT)
@@ -82,9 +82,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#C084FC]/35 via-[#1E0938] to-[#FF9BD2]/30',
     icon: Wand2,
     projects: [
-      { id: 'ai-1', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg' },
-      { id: 'ai-2', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg' },
-      { id: 'ai-3', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg' },
+      { id: 'ai-1', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'ai-2', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16' },
+      { id: 'ai-3', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
     ],
   },
   // 4. LONG-FORM (CARD 04: WIDESCREEN LANDSCAPE - BOTTOM CENTER)
@@ -99,9 +99,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#6D4AFF]/35 via-[#120822] to-[#FF9BD2]/30',
     icon: Video,
     projects: [
-      { id: 'lf-1', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', previewGradient: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg' },
-      { id: 'lf-2', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', previewGradient: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg' },
-      { id: 'lf-3', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', previewGradient: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg' },
+      { id: 'lf-1', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', previewGradient: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', aspectRatio: '16/9' },
+      { id: 'lf-2', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', previewGradient: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', aspectRatio: '16/9' },
+      { id: 'lf-3', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', previewGradient: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', aspectRatio: '16/9' },
     ],
   },
   // 5. UGC (CARD 05: SQUARE / COMPACT - BOTTOM RIGHT)
@@ -116,9 +116,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#FF9BD2]/35 via-[#1D0A33] to-[#FFB6E6]/30',
     icon: Heart,
     projects: [
-      { id: 'ugc-1', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg' },
-      { id: 'ugc-2', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg' },
-      { id: 'ugc-3', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg' },
+      { id: 'ugc-1', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16' },
+      { id: 'ugc-2', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16' },
+      { id: 'ugc-3', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16' },
     ],
   },
   // 6. VIDEO EDITING (CARD 06: COMPACT BOTTOM)
@@ -133,9 +133,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#B388FF]/35 via-[#1A0A2E] to-[#6D4AFF]/30',
     icon: Compass,
     projects: [
-      { id: 've-1', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks, sound design, and color grading.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg' },
-      { id: 've-2', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and editorial cuts.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg' },
-      { id: 've-3', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg' },
+      { id: 've-1', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks, sound design, and color grading.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
+      { id: 've-2', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and editorial cuts.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '16/9' },
+      { id: 've-3', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
     ],
   },
 ];
