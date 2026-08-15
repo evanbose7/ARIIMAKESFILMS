@@ -619,34 +619,34 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       {/* ========================================================================= */}
       {/* B. DESKTOP LAYOUT (LARGE SCREEN SCOPED >= 1024px): ASYMMETRIC BENTO GRID */}
       {/* ========================================================================= */}
-      <div className="hidden lg:grid w-full max-w-[1440px] mx-auto grid-cols-12 gap-6 relative z-20">
+      <div className="hidden lg:grid w-full max-w-[1200px] mx-auto grid-cols-12 gap-5 relative z-20">
         
         {/* ----------------------------------------------------------------------- */}
         {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL VERTICAL - LEFT SIDE) */}
-        {/* col-span-4, row-span-2 (~4:7 ratio, 580-640px height) */}
+        {/* col-span-4, row-span-2 (~4:7 ratio, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-4 row-span-2 min-h-[580px] rounded-[32px] overflow-hidden p-6 sm:p-7
+            col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden p-5 sm:p-6
             border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#190930] to-[#B388FF]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
-            hover:border-[#FF9BD2]/70 hover:shadow-[0_0_40px_rgba(255,155,210,0.35)]
+            hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between relative group gpu-layer
           "
         >
           {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-3">
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
-              <Film className="w-4 h-4 text-[#FF9BD2]" />
-              <span className="text-[11px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
+          <div className="flex items-center justify-between z-30 mb-2">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
+              <Film className="w-3.5 h-3.5 text-[#FF9BD2]" />
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 SOCIAL CONTENT
               </span>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold text-[#FF9BD2]">
+              <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
                 0{desktopReelIndex + 1} / 04
               </span>
               <div className="flex items-center gap-1">
@@ -657,9 +657,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopReelIndex((prev) => (prev === 0 ? 3 : prev - 1));
                   }}
                   aria-label="Previous Reel"
-                  className="w-7 h-7 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <ChevronLeft className="w-3 h-3" />
                 </button>
                 <button
                   type="button"
@@ -668,9 +668,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopReelIndex((prev) => (prev === 3 ? 0 : prev + 1));
                   }}
                   aria-label="Next Reel"
-                  className="w-7 h-7 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
                 >
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
@@ -679,7 +679,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16) */}
           <div 
             onClick={() => setSelectedCard(CATEGORY_CARDS[0])}
-            className="relative w-full flex-1 rounded-[24px] overflow-hidden border border-white/20 bg-[#121212] shadow-2xl cursor-pointer group/reel my-2"
+            className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/20 bg-[#121212] shadow-xl cursor-pointer group/reel my-1.5 min-h-[280px]"
           >
             <AnimatePresence mode="wait">
               <motion.img
@@ -694,60 +694,60 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               />
             </AnimatePresence>
 
-            <div className="absolute top-4 right-4 z-20">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
-                <InstagramIcon className="w-4 h-4 text-white" />
+            <div className="absolute top-3 right-3 z-20">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
+                <InstagramIcon className="w-3.5 h-3.5 text-white" />
               </div>
             </div>
 
-            <div className="absolute inset-0 m-auto w-11 h-11 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 group-hover/reel:scale-110 transition-transform">
-              <Play className="w-4.5 h-4.5 fill-white ml-0.5" />
+            <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 group-hover/reel:scale-110 transition-transform">
+              <Play className="w-4 h-4 fill-white ml-0.5" />
             </div>
 
-            <div className="absolute bottom-4 left-4 right-4 z-20 p-3 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
+            <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                 {desktopReelTitles[desktopReelIndex]}
               </span>
-              <ExternalLink className="w-4 h-4 text-[#FFB3CB] shrink-0 ml-2" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#FFB3CB] shrink-0 ml-1.5" />
             </div>
           </div>
 
           {/* FOOTER LABEL */}
-          <div className="flex items-center justify-between pt-2">
-            <span className="text-xs font-mono font-bold text-[#FF9BD2]">
+          <div className="flex items-center justify-between pt-1.5">
+            <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
               SHORT-FORM VIRAL REELS
             </span>
-            <span className="text-xs font-mono text-white/50">4 REELS SHOWCASE</span>
+            <span className="text-[11px] font-mono text-white/50">4 REELS SHOWCASE</span>
           </div>
 
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
         {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE HORIZONTAL - TOP RIGHT) */}
-        {/* col-span-8, row-span-1 (Aspect ~16:7, streaming platform feel) */}
+        {/* col-span-8, row-span-1 (Aspect ~16:7, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-8 row-span-1 min-h-[290px] rounded-[32px] overflow-hidden p-6 sm:p-7
+            col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden p-5 sm:p-6
             border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#120822] to-[#FFB6E6]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
-            hover:border-[#B388FF]/70 hover:shadow-[0_0_40px_rgba(179,136,255,0.35)]
+            hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
             flex flex-col justify-between relative group gpu-layer
           "
         >
           {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-3">
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
-              <Tv className="w-4 h-4 text-red-500" />
-              <span className="text-[11px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
+          <div className="flex items-center justify-between z-30 mb-2">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
+              <Tv className="w-3.5 h-3.5 text-red-500" />
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 YOUTUBE VIDEOS
               </span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-mono font-bold text-red-400">
+            <div className="flex items-center gap-2.5">
+              <span className="text-[11px] font-mono font-bold text-red-400">
                 0{desktopYtIndex + 1} / 04
               </span>
               <div className="flex items-center gap-1.5">
@@ -756,7 +756,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     key={dotIdx}
                     onClick={() => setDesktopYtIndex(dotIdx)}
                     className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                      desktopYtIndex === dotIdx ? 'w-5 bg-red-500 shadow-[0_0_8px_#EF4444]' : 'w-1.5 bg-white/20'
+                      desktopYtIndex === dotIdx ? 'w-4 bg-red-500 shadow-[0_0_6px_#EF4444]' : 'w-1.5 bg-white/20'
                     }`}
                   />
                 ))}
@@ -769,9 +769,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopYtIndex((prev) => (prev === 0 ? 3 : prev - 1));
                   }}
                   aria-label="Previous YouTube Video"
-                  className="w-7 h-7 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <ChevronLeft className="w-3 h-3" />
                 </button>
                 <button
                   type="button"
@@ -780,9 +780,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopYtIndex((prev) => (prev === 3 ? 0 : prev + 1));
                   }}
                   aria-label="Next YouTube Video"
-                  className="w-7 h-7 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
                 >
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
@@ -791,7 +791,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           {/* ACTIVE YOUTUBE SHOWCASE (WIDESCREEN 16:9) */}
           <div 
             onClick={() => setSelectedCard(CATEGORY_CARDS[1])}
-            className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/15 bg-black shadow-xl cursor-pointer group/yt flex items-center justify-center my-2 min-h-[170px]"
+            className="relative w-full flex-1 rounded-[16px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/yt flex items-center justify-center my-1.5 min-h-[130px]"
           >
             <AnimatePresence mode="wait">
               <motion.img
@@ -807,16 +807,16 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </AnimatePresence>
 
             <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/25">
-              <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl group-hover/yt:scale-110 transition-transform">
-                <Play className="w-5 h-5 fill-white ml-0.5" />
+              <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl group-hover/yt:scale-110 transition-transform">
+                <Play className="w-4 h-4 fill-white ml-0.5" />
               </div>
             </div>
 
-            <div className="absolute bottom-3 left-3 right-3 z-20 p-3 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
-              <span className="font-bold text-xs sm:text-sm text-white leading-snug line-clamp-1">
+            <div className="absolute bottom-2.5 left-2.5 right-2.5 z-20 p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
+              <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                 {desktopYtTitles[desktopYtIndex]}
               </span>
-              <span className="flex items-center gap-1 text-[11px] font-bold text-red-400 shrink-0 ml-3">
+              <span className="flex items-center gap-1 text-[11px] font-bold text-red-400 shrink-0 ml-2.5">
                 Watch ↗
               </span>
             </div>
@@ -826,14 +826,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
         {/* ----------------------------------------------------------------------- */}
         {/* CARD 03 — AI VIDEO (MIDDLE LEFT UNDER YOUTUBE) */}
-        {/* col-span-4, row-span-1 (~1.25:1 ratio) */}
+        {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => setSelectedCard(CATEGORY_CARDS[2])}
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-4 row-span-1 min-h-[260px] rounded-[32px] overflow-hidden p-6
+            col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
             border border-white/15 bg-gradient-to-br from-[#C084FC]/25 via-[#1E0938] to-[#FF9BD2]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#C084FC]/70 hover:shadow-[0_0_35px_rgba(192,132,252,0.35)]
@@ -841,22 +841,22 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           "
         >
           <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/15">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
               <Wand2 className="w-3.5 h-3.5 text-[#C084FC]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 SYNTHETIC MOTION
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C084FC] group-hover:text-[#100719] flex items-center justify-center transition-colors">
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C084FC] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-1 z-30 pt-6">
-            <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C084FC] transition-colors">
+          <div className="space-y-0.5 z-30 pt-4">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C084FC] transition-colors">
               AI VIDEO
             </h3>
-            <p className="text-xs text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
               Surreal visual poetry & synthetic motion concepts.
             </p>
           </div>
@@ -864,14 +864,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
         {/* ----------------------------------------------------------------------- */}
         {/* CARD 04 — LONG-FORM VIDEOS (MIDDLE RIGHT BESIDE AI VIDEO) */}
-        {/* col-span-4, row-span-1 (Aspect 16:9 widescreen) */}
+        {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => setSelectedCard(CATEGORY_CARDS[3])}
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-4 row-span-1 min-h-[260px] rounded-[32px] overflow-hidden p-6
+            col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
             border border-white/15 bg-gradient-to-br from-[#6D4AFF]/25 via-[#120822] to-[#FF9BD2]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#6D4AFF]/70 hover:shadow-[0_0_35px_rgba(109,74,255,0.35)]
@@ -879,37 +879,37 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           "
         >
           <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/15">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
               <Video className="w-3.5 h-3.5 text-[#C4A1FF]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 DOCUMENTARY & ESSAYS
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C4A1FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C4A1FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-1 z-30 pt-6">
-            <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C4A1FF] transition-colors">
+          <div className="space-y-0.5 z-30 pt-4">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C4A1FF] transition-colors">
               LONG-FORM VIDEOS
             </h3>
-            <p className="text-xs text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
               Cinematic brand films & editorial narrative essays.
             </p>
           </div>
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 05 — UGC (BOTTOM LEFT WIDE CINEMATIC STRIP) */}
-        {/* col-span-6, row-span-1 (~2:1 aspect ratio) */}
+        {/* CARD 05 — UGC (BOTTOM LEFT WIDE STRIP) */}
+        {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => setSelectedCard(CATEGORY_CARDS[4])}
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-6 row-span-1 min-h-[220px] rounded-[32px] overflow-hidden p-6
+            col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
             border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#1D0A33] to-[#FFB6E6]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
@@ -917,37 +917,37 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           "
         >
           <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/15">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
               <Heart className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 CREATOR-LED STORIES
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-1 z-30 pt-6">
-            <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
+          <div className="space-y-0.5 z-30 pt-3">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
               UGC
             </h3>
-            <p className="text-xs text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
               Relatable, human-centric short-form stories designed for organic reach.
             </p>
           </div>
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 06 — VIDEO EDITING (BOTTOM RIGHT WIDE CINEMATIC STRIP) */}
-        {/* col-span-6, row-span-1 (~2:1 aspect ratio) */}
+        {/* CARD 06 — VIDEO EDITING (BOTTOM RIGHT WIDE STRIP) */}
+        {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => setSelectedCard(CATEGORY_CARDS[5])}
-          whileHover={{ y: -5, scale: 1.01 }}
+          whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-6 row-span-1 min-h-[220px] rounded-[32px] overflow-hidden p-6
+            col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
             border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#1A0A2E] to-[#6D4AFF]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
@@ -955,22 +955,22 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           "
         >
           <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/15">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
               <Compass className="w-3.5 h-3.5 text-[#B388FF]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 RETENTION & RHYTHM
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#B388FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#B388FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-1 z-30 pt-6">
-            <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#B388FF] transition-colors">
+          <div className="space-y-0.5 z-30 pt-3">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#B388FF] transition-colors">
               VIDEO EDITING
             </h3>
-            <p className="text-xs text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
               Mastering rhythm, audio hooks, color grading, and retention cuts.
             </p>
           </div>
