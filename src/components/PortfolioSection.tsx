@@ -592,17 +592,19 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   </p>
                 </div>
 
-                {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP) */}
+                {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP - HORIZONTAL ROW ONLY) */}
                 <div
                   onScroll={(e) => handleCarouselScroll(section.id, e)}
                   className="
-                    w-full flex items-stretch gap-4
+                    w-full flex flex-row flex-nowrap items-stretch gap-4
                     overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar
-                    px-5 py-3 touch-pan-x gpu-layer
+                    px-5 py-3 gpu-layer
                   "
                   style={{
                     scrollSnapType: 'x mandatory',
                     WebkitOverflowScrolling: 'touch',
+                    touchAction: 'pan-x pan-y',
+                    overscrollBehaviorX: 'contain',
                   }}
                 >
                   {section.projects.map((proj, pIdx) => {
