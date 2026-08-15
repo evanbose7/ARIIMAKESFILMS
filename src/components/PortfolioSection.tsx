@@ -366,6 +366,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
               {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP) */}
               <div
+                data-lenis-prevent
                 onScroll={(e) => handleCarouselScroll(section.id, e)}
                 className={`
                   w-full flex flex-row flex-nowrap items-stretch gap-4
