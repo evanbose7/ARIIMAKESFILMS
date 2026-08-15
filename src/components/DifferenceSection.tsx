@@ -3,27 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
 
 export const DifferenceSection: React.FC = () => {
-  const [interactiveState, setInteractiveState] = useState<'idle' | 'pulsing' | 'floating' | 'organizing' | 'final'>('idle');
+  const [isOrganized, setIsOrganized] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
 
   const handleOrbClick = () => {
-    if (interactiveState !== 'idle') return;
+    if (isOrganized || isPulsing) return;
 
-    // Step 01: Pulse (250ms)
-    setInteractiveState('pulsing');
+    // Step 1 & 2: Button pulse & glow expansion (200ms)
+    setIsPulsing(true);
 
-    // Step 02: Floating Ideas Emerge (after 250ms)
     setTimeout(() => {
-      setInteractiveState('floating');
-
-      // Step 03: Reorganize into One Horizontal Line (after 650ms)
-      setTimeout(() => {
-        setInteractiveState('organizing');
-
-        // Step 04: Final Calm State (after 900ms)
-        setTimeout(() => {
-          setInteractiveState('final');
-        }, 900);
-      }, 650);
+      // Step 3-6: Button disappears & words travel to single horizontal line
+      setIsOrganized(true);
+      setIsPulsing(false);
     }, 250);
   };
 
@@ -36,7 +28,7 @@ export const DifferenceSection: React.FC = () => {
           absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
           w-[90vw] max-w-[1000px] h-[600px] blur-[140px] pointer-events-none rounded-full
           transition-all duration-1000
-          ${interactiveState !== 'idle' ? 'opacity-45 scale-110' : 'opacity-25 scale-100'}
+          ${isOrganized ? 'opacity-45 scale-110' : 'opacity-25 scale-100'}
         `}
         style={{
           background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #B388FF 40%, #0F0718 80%, transparent 100%)',
@@ -47,7 +39,7 @@ export const DifferenceSection: React.FC = () => {
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center space-y-12 sm:space-y-16 relative z-20">
 
         {/* ========================================================================= */}
-        {/* 1. SECTION EYEBROW & TITLE */}
+        {/* 1. SECTION EYEBROW & MAIN STATEMENT */}
         {/* ========================================================================= */}
         <div className="w-full space-y-5">
           
@@ -98,139 +90,198 @@ export const DifferenceSection: React.FC = () => {
         </div>
 
         {/* ========================================================================= */}
-        {/* 2. SIGNATURE INTERACTIVE MOMENT — YOUR IDEAS ✦ ORB TO STORY SEQUENCE */}
+        {/* 2. SIGNATURE INTERACTIVE MOMENT: FLOATING IDEAS → CLICK → STRUCTURED LINE */}
         {/* ========================================================================= */}
-        <div className="w-full min-h-[160px] sm:min-h-[220px] flex items-center justify-center relative py-6 my-4">
+        <div className="w-full min-h-[220px] sm:min-h-[260px] flex items-center justify-center relative py-6 my-4 overflow-visible">
           
-          {/* STATE A: GLOWING CIRCULAR ORB BUTTON (BEFORE CLICK) */}
+          {/* CENTRAL YOUR IDEAS ✦ BUTTON (FADES/SCALES AWAY ENTIRELY ON CLICK) */}
           <AnimatePresence>
-            {interactiveState === 'idle' || interactiveState === 'pulsing' ? (
+            {!isOrganized && (
               <motion.button
-                key="orb-button"
+                key="orb-center-button"
                 onClick={handleOrbClick}
                 aria-label="Reveal your ideas"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{
                   opacity: 1,
-                  scale: interactiveState === 'pulsing' ? 1.08 : [1, 1.025, 1],
+                  scale: isPulsing ? 1.1 : [1, 1.025, 1],
                 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, scale: 0, transition: { duration: 0.3 } }}
                 transition={{
-                  scale: interactiveState === 'pulsing' ? { duration: 0.25 } : { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
+                  scale: isPulsing ? { duration: 0.25 } : { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
                   opacity: { duration: 0.3 },
                 }}
                 whileHover={{ scale: 1.05 }}
                 className="
-                  relative w-[130px] h-[130px] sm:w-[170px] sm:h-[170px] rounded-full
-                  bg-gradient-to-br from-[#FF9BD2]/25 via-[#1D0A33]/80 to-[#B388FF]/30
+                  absolute z-30 w-[120px] h-[120px] sm:w-[170px] sm:h-[170px] rounded-full
+                  bg-gradient-to-br from-[#FF9BD2]/25 via-[#1D0A33]/85 to-[#B388FF]/30
                   border border-[#FF9BD2]/40 backdrop-blur-xl
                   shadow-[0_0_40px_rgba(255,155,210,0.45)] hover:shadow-[0_0_60px_rgba(255,155,210,0.7)]
-                  flex flex-col items-center justify-center gap-1.5
+                  flex flex-col items-center justify-center gap-1
                   cursor-pointer select-none gpu-layer group
                 "
               >
-                <div className="flex items-center gap-1 text-sm sm:text-lg font-display font-black text-[#FFF7FF] group-hover:text-[#FF9BD2] transition-colors uppercase tracking-wider">
+                <div className="flex items-center gap-1 text-xs sm:text-base font-display font-black text-[#FFF7FF] group-hover:text-[#FF9BD2] transition-colors uppercase tracking-wider">
                   <span>YOUR IDEAS</span>
-                  <Sparkles className="w-4 h-4 text-[#FF9BD2] animate-pulse" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
                 </div>
-                <span className="text-[10px] font-mono text-[#FF9BD2]/80 uppercase tracking-widest">
+                <span className="text-[9px] sm:text-[10px] font-mono text-[#FF9BD2]/80 uppercase tracking-widest">
                   TAP TO FIND ✦
                 </span>
               </motion.button>
-            ) : null}
+            )}
           </AnimatePresence>
 
-          {/* STATE B: FLOATING CHAOTIC IDEAS (~600ms) */}
-          {interactiveState === 'floating' && (
-            <div className="relative w-full max-w-md h-[140px] flex items-center justify-center">
-              <motion.span
-                initial={{ opacity: 0, x: -30, y: -25, scale: 0.8 }}
-                animate={{ opacity: 0.9, x: -45, y: -30, scale: 1 }}
-                className="absolute font-display font-bold text-sm sm:text-base text-[#FFF7FF]/90 drop-shadow-[0_0_10px_#FF9BD2]"
+          {/* THE 5 IDEAS: FLOATING ORIGINALLY AROUND BUTTON, THEN PHYSICAL TRAVEL TO ONE HORIZONTAL LINE */}
+          <div className="relative w-full max-w-4xl flex items-center justify-center min-h-[160px]">
+            
+            {/* INITIAL FLOATING STATE VS FINAL ONE HORIZONTAL LINE STRUCTURE */}
+            <div className={`
+              w-full flex items-center justify-center transition-all duration-700
+              ${isOrganized 
+                ? 'flex-row flex-nowrap gap-1 sm:gap-2.5 md:gap-4 px-1 sm:px-4' 
+                : 'relative h-[180px] w-full max-w-[340px] sm:max-w-[480px]'
+              }
+            `}>
+              
+              {/* 1. BRAND */}
+              <motion.div
+                layout
+                animate={!isOrganized ? {
+                  y: [-6, 6, -6],
+                  rotate: [-1.5, 1.5, -1.5],
+                } : { y: 0, rotate: 0 }}
+                transition={!isOrganized ? {
+                  y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' },
+                } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                  font-display font-bold tracking-tight uppercase transition-all duration-700
+                  ${!isOrganized 
+                    ? 'absolute -top-4 -left-2 sm:left-4 text-xs sm:text-base text-[#FFF7FF]/90 drop-shadow-[0_0_12px_rgba(255,155,210,0.5)]' 
+                    : 'relative text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFF7FF]'
+                  }
+                `}
               >
                 BRAND
-              </motion.span>
+              </motion.div>
 
-              <motion.span
-                initial={{ opacity: 0, x: 30, y: -20, scale: 0.8 }}
-                animate={{ opacity: 0.9, x: 45, y: -15, scale: 1 }}
-                className="absolute font-display font-bold text-sm sm:text-base text-[#B388FF]/90 drop-shadow-[0_0_10px_#B388FF]"
+              {isOrganized && (
+                <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
+                </motion.div>
+              )}
+
+              {/* 2. AUDIENCE */}
+              <motion.div
+                layout
+                animate={!isOrganized ? {
+                  y: [8, -8, 8],
+                  rotate: [1, -1, 1],
+                } : { y: 0, rotate: 0 }}
+                transition={!isOrganized ? {
+                  y: { duration: 5.2, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 5.2, repeat: Infinity, ease: 'easeInOut' },
+                } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                  font-display font-bold tracking-tight uppercase transition-all duration-700
+                  ${!isOrganized 
+                    ? 'absolute bottom-2 -left-4 sm:left-2 text-xs sm:text-base text-[#B388FF]/90 drop-shadow-[0_0_12px_rgba(179,136,255,0.5)]' 
+                    : 'relative text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#B388FF]'
+                  }
+                `}
               >
                 AUDIENCE
-              </motion.span>
+              </motion.div>
 
-              <motion.span
-                initial={{ opacity: 0, x: 0, y: 0, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, y: 5, scale: 1.1 }}
-                className="absolute font-display font-bold text-base sm:text-lg text-[#FF9BD2] drop-shadow-[0_0_15px_#FF9BD2]"
+              {isOrganized && (
+                <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
+                </motion.div>
+              )}
+
+              {/* 3. STORY */}
+              <motion.div
+                layout
+                animate={!isOrganized ? {
+                  y: [-5, 5, -5],
+                  rotate: [-1, 1, -1],
+                } : { y: 0, rotate: 0 }}
+                transition={!isOrganized ? {
+                  y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' },
+                } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                  font-display font-bold tracking-tight uppercase transition-all duration-700
+                  ${!isOrganized 
+                    ? 'absolute -top-5 -right-2 sm:right-4 text-xs sm:text-base text-[#FFF7FF]/90 drop-shadow-[0_0_12px_rgba(255,155,210,0.5)]' 
+                    : 'relative text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFF7FF]'
+                  }
+                `}
               >
                 STORY
-              </motion.span>
+              </motion.div>
 
-              <motion.span
-                initial={{ opacity: 0, x: -20, y: 25, scale: 0.8 }}
-                animate={{ opacity: 0.9, x: -35, y: 30, scale: 1 }}
-                className="absolute font-display font-bold text-sm sm:text-base text-[#FFB6E6]/90 drop-shadow-[0_0_10px_#FFB6E6]"
+              {isOrganized && (
+                <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
+                </motion.div>
+              )}
+
+              {/* 4. FEELING */}
+              <motion.div
+                layout
+                animate={!isOrganized ? {
+                  y: [7, -7, 7],
+                  rotate: [1.5, -1.5, 1.5],
+                } : { y: 0, rotate: 0 }}
+                transition={!isOrganized ? {
+                  y: { duration: 5.6, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 5.6, repeat: Infinity, ease: 'easeInOut' },
+                } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                  font-display font-bold tracking-tight uppercase transition-all duration-700
+                  ${!isOrganized 
+                    ? 'absolute -bottom-5 left-1/3 text-xs sm:text-base text-[#FFB6E6]/90 drop-shadow-[0_0_12px_rgba(255,182,230,0.5)]' 
+                    : 'relative text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFB6E6]'
+                  }
+                `}
               >
                 FEELING
-              </motion.span>
+              </motion.div>
 
-              <motion.span
-                initial={{ opacity: 0, x: 25, y: 25, scale: 0.8 }}
-                animate={{ opacity: 0.9, x: 40, y: 25, scale: 1 }}
-                className="absolute font-display font-bold text-sm sm:text-base text-[#C4A1FF]/90 drop-shadow-[0_0_10px_#C4A1FF]"
+              {isOrganized && (
+                <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }}>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
+                </motion.div>
+              )}
+
+              {/* 5. CONTENT ✦ */}
+              <motion.div
+                layout
+                animate={!isOrganized ? {
+                  y: [-6, 6, -6],
+                  rotate: [-1, 1, -1],
+                } : { y: 0, rotate: 0 }}
+                transition={!isOrganized ? {
+                  y: { duration: 4.2, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 4.2, repeat: Infinity, ease: 'easeInOut' },
+                } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                  font-display font-black tracking-tight uppercase transition-all duration-700 flex items-center gap-1 shrink-0
+                  ${!isOrganized 
+                    ? 'absolute top-10 -right-4 sm:right-2 text-xs sm:text-base text-[#FF9BD2] drop-shadow-[0_0_12px_rgba(255,155,210,0.6)]' 
+                    : 'relative text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,155,210,0.6)]'
+                  }
+                `}
               >
-                CONTENT
-              </motion.span>
-            </div>
-          )}
-
-          {/* STATE C & D: STRICT ONE SINGLE HORIZONTAL LINE (BRAND → AUDIENCE → STORY → FEELING → CONTENT ✦) */}
-          {(interactiveState === 'organizing' || interactiveState === 'final') && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="
-                w-full flex flex-row flex-nowrap items-center justify-center
-                gap-1 sm:gap-2.5 md:gap-4 px-1 sm:px-4 text-center select-none gpu-layer
-              "
-            >
-              {/* BRAND */}
-              <span className="font-display font-bold text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFF7FF] tracking-tight uppercase">
-                BRAND
-              </span>
-
-              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
-
-              {/* AUDIENCE */}
-              <span className="font-display font-bold text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#B388FF] tracking-tight uppercase">
-                AUDIENCE
-              </span>
-
-              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
-
-              {/* STORY */}
-              <span className="font-display font-bold text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFF7FF] tracking-tight uppercase">
-                STORY
-              </span>
-
-              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
-
-              {/* FEELING */}
-              <span className="font-display font-bold text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] text-[#FFB6E6] tracking-tight uppercase">
-                FEELING
-              </span>
-
-              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2]/60 shrink-0" />
-
-              {/* CONTENT ✦ */}
-              <span className="font-display font-black text-[11px] sm:text-[15px] md:text-[22px] lg:text-[26px] bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF] bg-clip-text text-transparent tracking-tight uppercase flex items-center gap-1 shrink-0 drop-shadow-[0_0_15px_rgba(255,155,210,0.5)]">
                 <span>CONTENT</span>
                 <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF9BD2] inline" />
-              </span>
-            </motion.div>
-          )}
+              </motion.div>
+
+            </div>
+
+          </div>
 
         </div>
 
