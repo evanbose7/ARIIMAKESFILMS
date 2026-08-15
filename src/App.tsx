@@ -26,17 +26,17 @@ export function App() {
   // Framer Motion scroll hook
   const { scrollYProgress } = useScroll();
 
-  // Initialize Lenis 60 FPS Momentum Inertia Smooth Scroll (Desktop Only, Native Mobile Touch Preserved)
+  // Initialize Lenis 60 FPS Momentum Inertia Smooth Scroll for both Mobile & Desktop
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
+    const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
 
     const lenis = new Lenis({
-      duration: 2.8, // Ultra-luxurious, deep floating slow glide
-      easing: (t) => 1 - Math.pow(1 - t, 5), // Velvet-smooth quintic ease-out curve
+      duration: isMobileDevice ? 1.2 : 2.5,
+      easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
-      wheelMultiplier: 0.55, // Gentle, ultra-soft mouse wheel step response
-      touchMultiplier: 1.0,
-      lerp: 0.045, // Feather-light velvet inertia interpolation
+      wheelMultiplier: 0.65,
+      touchMultiplier: 1.6,
+      lerp: isMobileDevice ? 0.1 : 0.05,
     });
 
     let animationFrameId: number;

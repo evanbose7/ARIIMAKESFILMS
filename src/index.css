@@ -87,6 +87,7 @@
 /* Touch & Desktop Scrolling Enhancements */
 html, body {
   -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Desktop 60 FPS / High-Refresh-Rate Scroll Performance */
