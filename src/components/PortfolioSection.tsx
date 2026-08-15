@@ -240,10 +240,8 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '16/9',
     mobileCardWidth: 'w-[88vw] sm:w-[480px]',
     projects: [
-      { id: 'yt-1', numberLabel: '01 / 04', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks | Official Film', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM', duration: '12:45', tag: 'SHORT FILM • STORYTELLING' },
-      { id: 'yt-2', numberLabel: '02 / 04', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA', duration: '08:30', tag: 'STORYTELLING • COMEDY' },
-      { id: 'yt-3', numberLabel: '03 / 04', title: 'Day in the Life of a 21-Year-Old Personal Branding Strategist', description: 'Deep-dive visual essay exploring branding, digital culture, and cinematic storytelling.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ', duration: '18:45', tag: 'VLOG • WORKFLOW' },
-      { id: 'yt-4', numberLabel: '04 / 04', title: 'BRANDED YOUTUBE SPECIAL 04', description: 'High-production channel feature blending cinematic narrative with long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#FFB6E6]/40 via-[#140824] to-[#B388FF]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '14:20', tag: 'DOCUMENTARY • BRAND' },
+      { id: 'yt-1', numberLabel: '01 / 02', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks | Official Film', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM', duration: '12:45', tag: 'SHORT FILM • STORYTELLING' },
+      { id: 'yt-2', numberLabel: '02 / 02', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA', duration: '08:30', tag: 'STORYTELLING • COMEDY' },
     ],
   },
   {
@@ -275,12 +273,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     const target = e.currentTarget;
     const scrollLeft = target.scrollLeft;
     const cardWidth = target.firstElementChild?.clientWidth || 300;
-    const newIdx = Math.round(scrollLeft / (cardWidth + 16));
+    const newIdx = Math.max(0, Math.round(scrollLeft / (cardWidth + 16)));
     
-    setActiveCardIds((prev) => ({
-      ...prev,
-      [sectionId]: Math.max(0, newIdx),
-    }));
+    if (activeCardIds[sectionId] !== newIdx) {
+      setActiveCardIds((prev) => ({
+        ...prev,
+        [sectionId]: newIdx,
+      }));
+    }
   };
 
   return (
