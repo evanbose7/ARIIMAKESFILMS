@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar';
 import { NavigationDrawer } from './components/NavigationDrawer';
 import { HeroSection } from './components/HeroSection';
 import { EmotionalGapSection } from './components/EmotionalGapSection';
+import { DifferenceSection } from './components/DifferenceSection';
 import { ConstellationSection } from './components/ConstellationSection';
 import { ResultsSection } from './components/ResultsSection';
 import { ToolkitSection } from './components/ToolkitSection';
@@ -98,6 +99,8 @@ export function App() {
           scrollYProgress={scrollYProgress}
           onSeeMyWorkClick={() => handleOpenShowreel('ARI CINEMATIC REEL 2026')}
         />
+
+        <DifferenceSection />
 
         <ConstellationSection />
 
