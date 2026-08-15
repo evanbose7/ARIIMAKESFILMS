@@ -383,8 +383,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 {section.projects.map((proj, pIdx) => {
                   const isActive = pIdx === activeIdx;
 
-                  if (section.aspectRatio === '16/9') {
-                    // YOUTUBE CARD DESIGN (FROM KAMNA-PORTFOLIO)
+                  if (section.id === 'youtube') {
+                    // YOUTUBE CARD DESIGN (EXCLUSIVE TO YOUTUBE SECTION)
                     return (
                       <a
                         key={proj.id}
@@ -432,13 +432,86 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     );
                   }
 
-                  // INSTAGRAM REELS CARD DESIGN (FROM KAMNA-PORTFOLIO)
+                  if (section.id === 'social-content') {
+                    // INSTAGRAM REELS CARD DESIGN (EXCLUSIVE TO SOCIAL CONTENT SECTION)
+                    return (
+                      <a
+                        key={proj.id}
+                        href={proj.url || 'https://www.instagram.com/ariimakesfilms'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`
+                          shrink-0 flex flex-col justify-between space-y-3
+                          scroll-snap-align-center transition-all duration-500
+                          ${section.mobileCardWidth}
+                          ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
+                        `}
+                        style={{ scrollSnapAlign: 'center' }}
+                      >
+                        <div
+                          className={`
+                            relative w-full rounded-[24px] overflow-hidden border border-white/20 bg-[#121212]
+                            shadow-[0_16px_45px_rgba(0,0,0,0.75)] transition-all duration-500 cursor-pointer group gpu-layer
+                            aspect-[9/16]
+                            ${isActive ? 'shadow-[0_0_35px_rgba(255,155,210,0.4)] border-[#FF9BD2]/60' : ''}
+                          `}
+                        >
+                          <img
+                            src={proj.thumbnail || '/assets/reel-thumb-1.jpg'}
+                            alt={proj.title}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
+                          />
+
+                          <div className="absolute top-4 right-4 z-20">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
+                              <InstagramIcon className="w-4 h-4 text-white" />
+                            </div>
+                          </div>
+
+                          <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 shadow-lg">
+                            <Play className="w-4 h-4 fill-white ml-0.5" />
+                          </div>
+
+                          <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between p-3 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10">
+                            <h3 className="font-bold text-xs text-white leading-snug line-clamp-1">
+                              {proj.title}
+                            </h3>
+                            <ExternalLink className="w-4 h-4 text-[#FFB3CB] shrink-0 ml-2" />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1 px-1 text-left">
+                          <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2] uppercase">
+                            <span>{proj.numberLabel}</span>
+                          </div>
+
+                          <h4 className="font-display font-black text-base text-[#FFF7FF] tracking-tight uppercase">
+                            {proj.title}
+                          </h4>
+
+                          <p className="text-xs text-[#FFF7FF]/75 line-clamp-2 leading-relaxed font-normal">
+                            {proj.description}
+                          </p>
+
+                          <div className="pt-1">
+                            <span className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#FF9BD2] group-hover:text-[#FFF7FF] transition-colors">
+                              <span className="underline underline-offset-4 decoration-[#FF9BD2]/50">
+                                WATCH ON INSTAGRAM
+                              </span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  }
+
+                  // OTHER SECTIONS (AI-VIDEO, VIDEO-EDITING, UGC, LONG-FORM): CLEAN BLANK/MINIMAL PLACEHOLDER CARDS
                   return (
-                    <a
+                    <div
                       key={proj.id}
-                      href={proj.url || 'https://www.instagram.com/ariimakesfilms'}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
                         scroll-snap-align-center transition-all duration-500
@@ -449,61 +522,39 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     >
                       <div
                         className={`
-                          relative w-full rounded-[24px] overflow-hidden border border-white/20 bg-[#121212]
-                          shadow-[0_16px_45px_rgba(0,0,0,0.75)] transition-all duration-500 cursor-pointer group gpu-layer
-                          aspect-[9/16]
-                          ${isActive ? 'shadow-[0_0_35px_rgba(255,155,210,0.4)] border-[#FF9BD2]/60' : ''}
+                          relative w-full rounded-[24px] overflow-hidden
+                          border border-white/15 bg-gradient-to-br ${proj.gradientBg}
+                          shadow-[0_16px_45px_rgba(0,0,0,0.5)]
+                          transition-all duration-500 cursor-pointer group gpu-layer
+                          ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
+                          ${isActive ? 'shadow-[0_0_25px_rgba(255,155,210,0.3)] border-[#FF9BD2]/40' : ''}
                         `}
                       >
-                        <img
-                          src={proj.thumbnail || '/assets/reel-thumb-1.jpg'}
-                          alt={proj.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
-                        />
-
-                        <div className="absolute top-4 right-4 z-20">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
-                            <InstagramIcon className="w-4 h-4 text-white" />
+                        <div className="absolute inset-0 z-20 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
+                        <div className="relative w-full h-full flex flex-col justify-between p-4 z-10">
+                          <div className="flex items-center justify-between text-xs font-mono">
+                            <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
+                              {proj.numberLabel}
+                            </span>
                           </div>
-                        </div>
 
-                        <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 shadow-lg">
-                          <Play className="w-4 h-4 fill-white ml-0.5" />
-                        </div>
-
-                        <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between p-3 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10">
-                          <h3 className="font-bold text-xs text-white leading-snug line-clamp-1">
-                            {proj.title}
-                          </h3>
-                          <ExternalLink className="w-4 h-4 text-[#FFB3CB] shrink-0 ml-2" />
+                          <div className="my-auto flex flex-col items-center justify-center text-center space-y-2">
+                            <span className="text-[11px] font-mono font-bold text-[#FFF7FF]/90 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
+                              {proj.title}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
                       <div className="space-y-1 px-1 text-left">
-                        <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2] uppercase">
-                          <span>{proj.numberLabel}</span>
-                        </div>
-
-                        <h4 className="font-display font-black text-base text-[#FFF7FF] tracking-tight uppercase">
+                        <h4 className="font-display font-bold text-base text-[#FFF7FF] tracking-tight uppercase">
                           {proj.title}
                         </h4>
-
-                        <p className="text-xs text-[#FFF7FF]/75 line-clamp-2 leading-relaxed font-normal">
+                        <p className="text-xs text-[#FFF7FF]/70 line-clamp-2 leading-relaxed font-normal">
                           {proj.description}
                         </p>
-
-                        <div className="pt-1">
-                          <span className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#FF9BD2] group-hover:text-[#FFF7FF] transition-colors">
-                            <span className="underline underline-offset-4 decoration-[#FF9BD2]/50">
-                              WATCH ON INSTAGRAM
-                            </span>
-                            <ArrowUpRight className="w-3.5 h-3.5" />
-                          </span>
-                        </div>
                       </div>
-                    </a>
+                    </div>
                   );
                 })}
               </div>
