@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Play, Pause, Volume2, VolumeX, ArrowUpRight, X, Film, Tv, Wand2, Video, Compass, Heart } from 'lucide-react';
+import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart } from 'lucide-react';
+
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4 text-white' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
 
 // ============================================================================
 // 1. DESKTOP ASYMMETRIC PORTFOLIO GRID DATA & INTERFACES (HERO WIREFRAME GRID)
@@ -21,6 +29,8 @@ export interface PortfolioCategoryCard {
     description: string;
     previewGradient: string;
     aspectRatio: '9/16' | '16/9';
+    thumbnail?: string;
+    url?: string;
   }[];
 }
 
@@ -29,99 +39,93 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
   {
     id: 'social-content',
     title: 'SOCIAL CONTENT',
-    subtitle: 'VIRAL SHORT-FORM & REELS',
-    description: 'Dynamic pacing, high-converting hooks, and audio rhythm designed for feeds.',
-    gridClassDesktop: 'md:col-span-1 md:row-span-2 h-full min-h-[580px]',
-    gridClassMobile: 'col-span-2 h-[460px]',
+    subtitle: 'SHORT-FORM VIRAL REELS',
+    description: 'Pacing, hook design, and audio integration built to stop the scroll.',
+    gridClassDesktop: 'md:col-span-1 md:row-span-2 min-h-[540px]',
+    gridClassMobile: 'col-span-2 h-[340px]',
     aspectRatio: 'vertical',
-    previewGradient: 'from-[#FF9BD2]/35 via-[#1D0A33] to-[#6D4AFF]/30',
+    previewGradient: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30',
     icon: Film,
     projects: [
-      { id: 'sc-1', title: 'VIRAL REEL CAMPAIGN 01', description: 'Pacing, hook design, and luxury audio integration.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16' },
-      { id: 'sc-2', title: 'SHORT-FORM BRAND EDIT 02', description: 'Creator-led video designed for high retention.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
-      { id: 'sc-3', title: 'TIKTOK CREATOR CUT 03', description: 'Platform-native hook and visual rhythm.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
-      { id: 'sc-4', title: 'INSTAGRAM BRAND STORY 04', description: 'Aesthetic visual sequence with crisp audio timing.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'sc-1', title: 'POV: Found the best side hustle (Paid per reel) 💰', description: 'Hook design and luxury audio timing for feed retention.', previewGradient: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/reel/DTS2wbWk2Nk/?igsh=bTNtN2xvZXh2cTRq' },
+      { id: 'sc-2', title: 'Earn Money Via Reels 💵', description: 'Creator-led video bringing aesthetic visual rhythm and high audience engagement.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/reel/DTDD_1rDKQP/?igsh=MXYya3dvaTFydGtrZw==' },
+      { id: 'sc-3', title: 'To anyone who is scared to create content 📸', description: 'Platform-native hook design and dynamic editing structure for organic reach.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/reel/DS4qmEQjJLn/?igsh=MTl3aHI1c2g1OTE=' },
+      { id: 'sc-4', title: 'Ep 2 Indie Filmmaker Berozgar:( Making My Film 🎥', description: 'Aesthetic visual sequence with crisp audio timing and elevated pacing.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/reel/DSCoQNZjCH7/?igsh=Y3ZjbDA5eDBmdmtt' },
     ],
   },
-  
-  // 2. YOUTUBE (CARD 02: WIDE LANDSCAPE - TOP RIGHT)
+  // 2. YOUTUBE VIDEOS (CARD 02: WIDESCREEN LANDSCAPE - TOP CENTER)
   {
     id: 'youtube',
     title: 'YOUTUBE VIDEOS',
-    subtitle: 'CINEMATIC LONG-FORM CHANNEL STORYTELLING',
-    description: 'Complete YouTube channel production: hook design, retention structure, and narrative flow.',
-    gridClassDesktop: 'md:col-span-2 md:row-span-1 min-h-[270px]',
-    gridClassMobile: 'col-span-2 h-[220px]',
-    aspectRatio: 'landscape',
-    previewGradient: 'from-[#FF9BD2]/30 via-[#160729] to-[#6D4AFF]/40',
-    icon: Tv,
-    projects: [
-      { id: 'yt-1', title: 'FEATURED YOUTUBE FILM 01', description: 'Complete YouTube production: strategy, hook design, and storytelling.', previewGradient: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', aspectRatio: '16/9' },
-      { id: 'yt-2', title: 'CREATIVE PROCESS EPISODE 02', description: 'Documentary-style YouTube episode following an idea from thought to execution.', previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', aspectRatio: '16/9' },
-      { id: 'yt-3', title: 'DOCUMENTARY YOUTUBE ESSAY 03', description: 'Deep-dive visual essay exploring branding, storytelling, and digital culture.', previewGradient: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', aspectRatio: '16/9' },
-      { id: 'yt-4', title: 'BRANDED YOUTUBE SPECIAL 04', description: 'High-production channel feature blending narrative with strategy.', previewGradient: 'from-[#FFB6E6]/40 via-[#140824] to-[#B388FF]/30', aspectRatio: '16/9' },
-    ],
-  },
-
-  // 3. AI VIDEO (CARD 03: MIDDLE RIGHT - LEFT)
-  {
-    id: 'ai-video',
-    title: 'AI VIDEOS',
-    subtitle: 'SYNTHETIC & CONCEPTUAL MOTION',
-    description: 'Transforming static photographs and creative concepts into surreal visual poetry.',
-    gridClassDesktop: 'md:col-span-1 md:row-span-1 min-h-[280px]',
-    gridClassMobile: 'col-span-1 h-[190px]',
-    aspectRatio: 'square',
-    previewGradient: 'from-[#B388FF]/35 via-[#1A0930] to-[#FFB6E6]/30',
-    icon: Wand2,
-    projects: [
-      { id: 'ai-1', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static images into visual poetry.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
-      { id: 'ai-2', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '16/9' },
-      { id: 'ai-3', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation taking creative concepts into digital landscapes.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
-    ],
-  },
-
-  // 4. LONG-FORM (CARD 04: MIDDLE RIGHT - RIGHT)
-  {
-    id: 'long-form',
-    title: 'LONG FORM VIDEOS',
-    subtitle: 'DOCUMENTARY & CINEMATIC FILMS',
-    description: 'Widescreen cinematic narratives exploring human depth behind brand origins.',
-    gridClassDesktop: 'md:col-span-1 md:row-span-1 min-h-[280px]',
-    gridClassMobile: 'col-span-1 h-[190px]',
-    aspectRatio: 'square',
-    previewGradient: 'from-[#6D4AFF]/35 via-[#140824] to-[#FF9BD2]/30',
-    icon: Video,
-    projects: [
-      { id: 'lf-1', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', previewGradient: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', aspectRatio: '16/9' },
-      { id: 'lf-2', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', previewGradient: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', aspectRatio: '16/9' },
-      { id: 'lf-3', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', previewGradient: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', aspectRatio: '16/9' },
-    ],
-  },
-
-  // 5. UGC (CARD 05: BOTTOM LEFT - WIDE)
-  {
-    id: 'ugc',
-    title: 'UGC',
-    subtitle: 'HUMAN & CREATOR-LED CONTENT',
-    description: 'Relatable visual stories that feel authentic to the audience and the platform.',
+    subtitle: 'CINEMATIC CHANNEL PRODUCTION',
+    description: 'Longer stories, narrative essays, and branded YouTube episodes.',
     gridClassDesktop: 'md:col-span-2 md:row-span-1 min-h-[260px]',
     gridClassMobile: 'col-span-2 h-[220px]',
     aspectRatio: 'landscape',
-    previewGradient: 'from-[#FF9BD2]/35 via-[#1F0A33] to-[#B388FF]/25',
-    icon: Heart,
+    previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30',
+    icon: Tv,
     projects: [
-      { id: 'ugc-1', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16' },
-      { id: 'ugc-2', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16' },
-      { id: 'ugc-3', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'yt-1', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks', description: 'Complete YouTube production: strategy, hook design, and narrative flow.', previewGradient: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM' },
+      { id: 'yt-2', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', previewGradient: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA' },
+      { id: 'yt-3', title: 'Day in the Life of a 21-Year-Old Personal Branding Strategist', description: 'Deep-dive visual essay exploring branding and digital culture.', previewGradient: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' },
     ],
   },
-
-  // 6. VIDEO EDITING (CARD 06: BOTTOM RIGHT)
+  // 3. AI VIDEO (CARD 03: SQUARE / VERTICAL - TOP RIGHT)
+  {
+    id: 'ai-video',
+    title: 'AI VIDEO',
+    subtitle: 'SYNTHETIC MOTION CONCEPTS',
+    description: 'Surreal visual poetry and synthetic motion generated for luxury campaigns.',
+    gridClassDesktop: 'md:col-span-1 md:row-span-1 min-h-[260px]',
+    gridClassMobile: 'col-span-1 h-[220px]',
+    aspectRatio: 'square',
+    previewGradient: 'from-[#C084FC]/35 via-[#1E0938] to-[#FF9BD2]/30',
+    icon: Wand2,
+    projects: [
+      { id: 'ai-1', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg' },
+      { id: 'ai-2', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg' },
+      { id: 'ai-3', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg' },
+    ],
+  },
+  // 4. LONG-FORM (CARD 04: WIDESCREEN LANDSCAPE - BOTTOM CENTER)
+  {
+    id: 'long-form',
+    title: 'LONG-FORM',
+    subtitle: 'DOCUMENTARY & BRAND FILMS',
+    description: 'Cinematic brand films, editorial narrative essays, and episodic stories.',
+    gridClassDesktop: 'md:col-span-2 md:row-span-1 min-h-[260px]',
+    gridClassMobile: 'col-span-2 h-[220px]',
+    aspectRatio: 'landscape',
+    previewGradient: 'from-[#6D4AFF]/35 via-[#120822] to-[#FF9BD2]/30',
+    icon: Video,
+    projects: [
+      { id: 'lf-1', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', previewGradient: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg' },
+      { id: 'lf-2', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', previewGradient: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg' },
+      { id: 'lf-3', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', previewGradient: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg' },
+    ],
+  },
+  // 5. UGC (CARD 05: SQUARE / COMPACT - BOTTOM RIGHT)
+  {
+    id: 'ugc',
+    title: 'UGC',
+    subtitle: 'CREATOR-LED VISUAL STORIES',
+    description: 'Relatable, human-centric short-form story designed to feel organic on feed.',
+    gridClassDesktop: 'md:col-span-1 md:row-span-1 min-h-[260px]',
+    gridClassMobile: 'col-span-1 h-[220px]',
+    aspectRatio: 'square',
+    previewGradient: 'from-[#FF9BD2]/35 via-[#1D0A33] to-[#FFB6E6]/30',
+    icon: Heart,
+    projects: [
+      { id: 'ugc-1', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-3.jpg' },
+      { id: 'ugc-2', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg' },
+      { id: 'ugc-3', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-1.jpg' },
+    ],
+  },
+  // 6. VIDEO EDITING (CARD 06: COMPACT BOTTOM)
   {
     id: 'video-editing',
     title: 'VIDEO EDITING',
-    subtitle: 'RHYTHM, COLOR & RETENTION CUTS',
+    subtitle: 'RETENTION & RHYTHM',
     description: 'Transforming raw footage into engaging short-form, social, and long-form content.',
     gridClassDesktop: 'md:col-span-1 md:row-span-1 min-h-[260px]',
     gridClassMobile: 'col-span-2 h-[220px]',
@@ -129,9 +133,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#B388FF]/35 via-[#1A0A2E] to-[#6D4AFF]/30',
     icon: Compass,
     projects: [
-      { id: 've-1', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks, sound design, and color grading.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
-      { id: 've-2', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and editorial cuts.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '16/9' },
-      { id: 've-3', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
+      { id: 've-1', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks, sound design, and color grading.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-2.jpg' },
+      { id: 've-2', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and editorial cuts.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-2.jpg' },
+      { id: 've-3', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', thumbnail: '/assets/reel-thumb-4.jpg' },
     ],
   },
 ];
@@ -146,6 +150,10 @@ export interface ProjectCardItem {
   description: string;
   aspectRatio: '9/16' | '16/9';
   gradientBg: string;
+  thumbnail?: string;
+  url?: string;
+  duration?: string;
+  tag?: string;
 }
 
 export interface PortfolioCategoryData {
@@ -171,10 +179,10 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 'sc-1', numberLabel: '01 / 04', title: 'VIRAL REEL CAMPAIGN 01', description: 'Pacing, hook design, and luxury audio integration designed for feed retention.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30' },
-      { id: 'sc-2', numberLabel: '02 / 04', title: 'SHORT-FORM BRAND EDIT 02', description: 'Creator-led video bringing aesthetic visual rhythm and audience engagement.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30' },
-      { id: 'sc-3', numberLabel: '03 / 04', title: 'TIKTOK CREATOR CUT 03', description: 'Platform-native hook design and dynamic editing structure for organic reach.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30' },
-      { id: 'sc-4', numberLabel: '04 / 04', title: 'INSTAGRAM BRAND STORY 04', description: 'Aesthetic visual sequence with crisp audio timing and elevated pacing.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30' },
+      { id: 'sc-1', numberLabel: '01 / 04', title: 'POV: Found the best side hustle (Paid per reel) 💰', description: 'Pacing, hook design, and luxury audio integration designed for feed retention.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/reel/DTS2wbWk2Nk/?igsh=bTNtN2xvZXh2cTRq' },
+      { id: 'sc-2', numberLabel: '02 / 04', title: 'Earn Money Via Reels 💵', description: 'Creator-led video bringing aesthetic visual rhythm and audience engagement.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/reel/DTDD_1rDKQP/?igsh=MXYya3dvaTFydGtrZw==' },
+      { id: 'sc-3', numberLabel: '03 / 04', title: 'To anyone who is scared to create content 📸', description: 'Platform-native hook design and dynamic editing structure for organic reach.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/reel/DS4qmEQjJLn/?igsh=MTl3aHI1c2g1OTE=' },
+      { id: 'sc-4', numberLabel: '04 / 04', title: 'Ep 2 Indie Filmmaker Berozgar:( Making My Film 🎥', description: 'Aesthetic visual sequence with crisp audio timing and elevated pacing.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/reel/DSCoQNZjCH7/?igsh=Y3ZjbDA5eDBmdmtt' },
     ],
   },
   {
@@ -187,9 +195,9 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 'ai-1', numberLabel: '01 / 03', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30' },
-      { id: 'ai-2', numberLabel: '02 / 03', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30' },
-      { id: 'ai-3', numberLabel: '03 / 03', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30' },
+      { id: 'ai-1', numberLabel: '01 / 03', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'ai-2', numberLabel: '02 / 03', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'ai-3', numberLabel: '03 / 03', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
     ],
   },
   {
@@ -202,9 +210,9 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 've-1', numberLabel: '01 / 03', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks and editorial color grading.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30' },
-      { id: 've-2', numberLabel: '02 / 03', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and clean cuts.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30' },
-      { id: 've-3', numberLabel: '03 / 03', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30' },
+      { id: 've-1', numberLabel: '01 / 03', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks and editorial color grading.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 've-2', numberLabel: '02 / 03', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and clean cuts.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 've-3', numberLabel: '03 / 03', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
     ],
   },
   {
@@ -217,9 +225,9 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 'ugc-1', numberLabel: '01 / 03', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30' },
-      { id: 'ugc-2', numberLabel: '02 / 03', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30' },
-      { id: 'ugc-3', numberLabel: '03 / 03', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30' },
+      { id: 'ugc-1', numberLabel: '01 / 03', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'ugc-2', numberLabel: '02 / 03', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'ugc-3', numberLabel: '03 / 03', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
     ],
   },
   {
@@ -230,12 +238,12 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Tv,
     accentColor: '#B388FF',
     aspectRatio: '16/9',
-    mobileCardWidth: 'w-[88vw] sm:w-[540px]',
+    mobileCardWidth: 'w-[88vw] sm:w-[480px]',
     projects: [
-      { id: 'yt-1', numberLabel: '01 / 04', title: 'FEATURED YOUTUBE FILM 01', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40' },
-      { id: 'yt-2', numberLabel: '02 / 04', title: 'CREATIVE PROCESS EPISODE 02', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30' },
-      { id: 'yt-3', numberLabel: '03 / 04', title: 'DOCUMENTARY YOUTUBE ESSAY 03', description: 'Deep-dive visual essay exploring branding, digital culture, and cinematic storytelling.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30' },
-      { id: 'yt-4', numberLabel: '04 / 04', title: 'BRANDED YOUTUBE SPECIAL 04', description: 'High-production channel feature blending cinematic narrative with long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#FFB6E6]/40 via-[#140824] to-[#B388FF]/30' },
+      { id: 'yt-1', numberLabel: '01 / 04', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks | Official Film', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM', duration: '12:45', tag: 'SHORT FILM • STORYTELLING' },
+      { id: 'yt-2', numberLabel: '02 / 04', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA', duration: '08:30', tag: 'STORYTELLING • COMEDY' },
+      { id: 'yt-3', numberLabel: '03 / 04', title: 'Day in the Life of a 21-Year-Old Personal Branding Strategist', description: 'Deep-dive visual essay exploring branding, digital culture, and cinematic storytelling.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ', duration: '18:45', tag: 'VLOG • WORKFLOW' },
+      { id: 'yt-4', numberLabel: '04 / 04', title: 'BRANDED YOUTUBE SPECIAL 04', description: 'High-production channel feature blending cinematic narrative with long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#FFB6E6]/40 via-[#140824] to-[#B388FF]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '14:20', tag: 'DOCUMENTARY • BRAND' },
     ],
   },
   {
@@ -246,11 +254,11 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Video,
     accentColor: '#C4A1FF',
     aspectRatio: '16/9',
-    mobileCardWidth: 'w-[88vw] sm:w-[540px]',
+    mobileCardWidth: 'w-[88vw] sm:w-[480px]',
     projects: [
-      { id: 'lf-1', numberLabel: '01 / 03', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30' },
-      { id: 'lf-2', numberLabel: '02 / 03', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30' },
-      { id: 'lf-3', numberLabel: '03 / 03', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30' },
+      { id: 'lf-1', numberLabel: '01 / 03', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '15:10', tag: 'DOCUMENTARY • BRAND' },
+      { id: 'lf-2', numberLabel: '02 / 03', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '11:40', tag: 'CINEMATIC • ESSAY' },
+      { id: 'lf-3', numberLabel: '03 / 03', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '22:15', tag: 'EPISODIC • SERIES' },
     ],
   },
 ];
@@ -262,8 +270,6 @@ interface PortfolioSectionProps {
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [isMuted, setIsMuted] = useState<boolean>(true);
 
   const handleCarouselScroll = (sectionId: string, e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
@@ -277,500 +283,439 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     }));
   };
 
-  const lineVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-    },
-  };
-
   return (
-    <section className="relative w-full min-h-screen py-20 sm:py-32 overflow-hidden z-20 bg-[#10081B] text-[#FFF7FF] select-none">
+    <section 
+      id="portfolio"
+      className="relative w-full py-24 sm:py-36 px-4 sm:px-6 overflow-hidden z-20 bg-[#0F0718] text-[#FFF7FF] select-none"
+    >
       
-      {/* 1. ATMOSPHERIC SOFT PURPLE SILK RADIAL GLOW */}
+      {/* BACKGROUND AMBIENT GLOW */}
       <div 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1000px] h-[900px] opacity-25 blur-[180px] pointer-events-none rounded-full"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1200px] h-[700px] blur-[150px] pointer-events-none rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #6D4AFF 45%, #10081B 80%, transparent 100%)',
+          background: 'radial-gradient(ellipse at center, #B388FF 0%, #FF9BD2 45%, #0F0718 80%, transparent 100%)',
         }}
       />
 
-      {/* ========================================================================= */}
-      {/* A. DESKTOP LAYOUT (HIDDEN ON MOBILE, VISIBLE ON MD: FLEX) */}
-      {/* ========================================================================= */}
-      <div className="hidden md:flex flex-col items-center w-full max-w-[1180px] mx-auto text-center space-y-16 relative z-20">
+      {/* MAIN SECTION HEADER */}
+      <div className="w-full max-w-[1360px] mx-auto text-center space-y-4 mb-16 sm:mb-24 relative z-20">
         
-        {/* DESKTOP HEADING: SOME THINGS I'VE MADE. */}
-        <div className="w-full flex flex-col items-center space-y-4">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '150px 0px' }}
-            transition={{ duration: 0.5 }}
-            className="
-              inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full
-              bg-white/[0.06] border border-white/[0.12] backdrop-blur-[16px]
-              text-[11px] font-bold tracking-[0.18em] uppercase text-[#FFE6FA]
-              shadow-[0_0_15px_rgba(255,155,210,0.3)]
-            "
-          >
-            <span>PORTFOLIO</span>
-            <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
-          </motion.div>
+        {/* Eyebrow Pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.14] backdrop-blur-md text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#FFE6FA] shadow-[0_0_20px_rgba(255,155,210,0.3)]"
+        >
+          <span>PORTFOLIO SHOWCASE</span>
+          <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
+        </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            className="w-full"
-          >
-            <h2 className="font-display font-black text-center flex flex-col items-center justify-center">
-              <div className="overflow-hidden py-1">
-                <motion.span
-                  variants={lineVariants}
-                  className="
-                    block uppercase
-                    text-[clamp(72px,7.5vw,100px)]
-                    leading-[0.92] tracking-[-0.03em] font-black text-center
-                    bg-gradient-to-r from-[#FFF7FF] via-[#FFC8EE] to-[#C4A1FF] bg-clip-text text-transparent
-                    drop-shadow-[0_0_35px_rgba(255,155,210,0.4)]
-                  "
-                >
-                  SOME THINGS I'VE MADE.
-                </motion.span>
-              </div>
-            </h2>
-          </motion.div>
+        {/* Section Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="
+            font-display font-black uppercase
+            text-[clamp(38px,8vw,56px)] md:text-[clamp(64px,6.5vw,90px)]
+            leading-[0.92] tracking-[-0.03em] text-[#FFF7FF] text-center
+          "
+        >
+          SOME THINGS I'VE MADE.
+        </motion.h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-serif italic text-xl text-[#FF9BD2] pt-1"
-          >
-            A FEW STORIES, EDITS & IDEAS I'VE BROUGHT TO LIFE. ✦
-          </motion.p>
-        </div>
-
-        {/* ASYMMETRIC EDITORIAL PORTFOLIO GRID (DESKTOP WIREFRAME REFERENCE) */}
-        <div className="w-full grid grid-cols-3 gap-6 text-left">
-          {CATEGORY_CARDS.map((card, idx) => {
-            const Icon = card.icon;
-
-            return (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 25, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -5, scale: 1.015 }}
-                onClick={() => setSelectedCard(card)}
-                className={`
-                  group relative rounded-[34px] p-8
-                  bg-gradient-to-b from-white/[0.08] via-[#160A28] to-black
-                  border border-white/[0.14] backdrop-blur-2xl
-                  shadow-[0_12px_40px_rgba(0,0,0,0.5)]
-                  flex flex-col justify-between overflow-hidden cursor-pointer select-none gpu-layer
-                  ${card.gridClassDesktop}
-                `}
-              >
-                {/* Atmospheric Media Background Layer */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${card.previewGradient} opacity-60 group-hover:opacity-95 transition-opacity duration-500`} />
-                
-                {/* Top Badge & Category Icon */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/20 text-[#FF9BD2] text-[11px] font-mono font-bold uppercase backdrop-blur-md">
-                    <Icon className="w-3.5 h-3.5" />
-                    <span>{card.id.replace('-', ' ')}</span>
-                  </div>
-
-                  <span className="text-[10px] font-mono text-white/50 uppercase tracking-widest">
-                    EXPLORE ✦
-                  </span>
-                </div>
-
-                {/* Center Title & Subtitle */}
-                <div className="relative z-10 space-y-2 my-auto">
-                  <h3 className="font-display font-black text-4xl text-[#FFF7FF] group-hover:text-[#FF9BD2] transition-colors tracking-tight uppercase leading-none">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-[#FFF7FF]/75 font-serif italic max-w-[34ch] line-clamp-2">
-                    {card.subtitle}
-                  </p>
-                </div>
-
-                {/* Bottom Floating Arrow ↗ */}
-                <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-[11px] font-mono font-bold tracking-widest text-[#FF9BD2] uppercase">
-                    VIEW COLLECTION
-                  </span>
-                  <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[#FF9BD2] group-hover:scale-110 group-hover:bg-[#FF9BD2] group-hover:text-[#140A22] transition-all shadow-[0_0_20px_rgba(255,155,210,0.4)]">
-                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* IMMERSIVE COLLECTION MODAL FOR DESKTOP */}
-        <AnimatePresence>
-          {selectedCard && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-6 select-none">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedCard(null)}
-                className="absolute inset-0 bg-[#0A0412]/94 backdrop-blur-2xl"
-              />
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="
-                  relative z-10 w-full max-w-[850px] rounded-[32px] p-10
-                  bg-gradient-to-b from-[#1C0933] via-[#100620] to-black
-                  border border-[#FF9BD2]/40 shadow-[0_0_50px_rgba(255,155,210,0.35)]
-                  flex flex-col space-y-8 max-h-[90vh] overflow-y-auto gpu-layer text-left
-                "
-              >
-                <button
-                  onClick={() => setSelectedCard(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-white/20 transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
-                  aria-label="Close collection"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <div className="space-y-2 pr-12">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF9BD2]/20 border border-[#FF9BD2]/40 text-[#FF9BD2] text-xs font-mono font-bold uppercase">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>{selectedCard.title} ARCHIVE</span>
-                  </div>
-                  <h3 className="font-display font-black text-4xl text-[#FFF7FF] tracking-tight uppercase">
-                    {selectedCard.title}
-                  </h3>
-                  <p className="text-base text-[#FFF7FF]/80 leading-relaxed max-w-[60ch]">
-                    {selectedCard.description}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  {selectedCard.projects.map((proj) => (
-                    <div
-                      key={proj.id}
-                      className={`
-                        p-5 rounded-[24px] bg-gradient-to-br ${proj.previewGradient}
-                        border border-white/15 flex flex-col justify-between space-y-4 relative overflow-hidden group
-                        ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
-                      `}
-                    >
-                      <div className="flex items-center justify-between relative z-10">
-                        <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-black/60 text-[#FF9BD2] font-bold">
-                          {proj.id.toUpperCase()}
-                        </span>
-                        <div className="w-9 h-9 rounded-full bg-[#FF9BD2] text-[#140A22] flex items-center justify-center shadow-[0_0_15px_#FF9BD2]">
-                          <Play className="w-4 h-4 fill-current ml-0.5" />
-                        </div>
-                      </div>
-
-                      <div className="relative z-10 space-y-1">
-                        <h4 className="font-display font-black text-base text-[#FFF7FF]">
-                          {proj.title}
-                        </h4>
-                        <p className="text-xs text-[#FFF7FF]/75 line-clamp-2 leading-relaxed">
-                          {proj.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <button
-                    onClick={() => {
-                      setSelectedCard(null);
-                      onOpenWorkModal();
-                    }}
-                    className="
-                      px-6 py-3 rounded-full
-                      bg-gradient-to-r from-[#FF9BD2] to-[#B388FF]
-                      text-[#140A22] font-display font-bold text-xs tracking-widest uppercase
-                      shadow-[0_0_20px_rgba(255,155,210,0.5)]
-                      flex items-center gap-2 cursor-pointer select-none min-h-[48px]
-                    "
-                  >
-                    <span>WORK WITH ARI</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </button>
-
-                  <button
-                    onClick={() => setSelectedCard(null)}
-                    className="text-xs font-mono text-[#FFF7FF]/60 hover:text-[#FFF7FF] cursor-pointer min-h-[48px] px-2 flex items-center"
-                  >
-                    Close ✕
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
-
+        {/* Supporting Line */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="font-serif italic text-xl sm:text-2xl md:text-3xl text-[#FF9BD2] pt-1"
+        >
+          LET THE WORK SPEAK.
+        </motion.p>
       </div>
 
       {/* ========================================================================= */}
-      {/* B. MOBILE LAYOUT: HORIZONTAL SWIPE CAROUSELS (BLOCK MD:HIDDEN) */}
+      {/* A. MOBILE LAYOUT (PHONE SCOPED): KAMNA-PORTFOLIO INSTAGRAM & YOUTUBE CARDS */}
       {/* ========================================================================= */}
       <div className="block md:hidden w-full max-w-[1360px] mx-auto flex flex-col items-center relative z-20 space-y-16">
+        {PORTFOLIO_SECTIONS.map((section) => {
+          const Icon = section.icon;
+          const activeIdx = activeCardIds[section.id] || 0;
 
-        {/* MOBILE SECTION INTRO */}
-        <div className="w-full text-center space-y-4 px-4 pt-4">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.14] backdrop-blur-md text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#FFE6FA] shadow-[0_0_20px_rgba(255,155,210,0.3)]"
-          >
-            <span>09 — PORTFOLIO</span>
-            <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="
-              font-display font-black uppercase
-              text-[clamp(36px,8vw,56px)] leading-[0.92] tracking-[-0.03em] text-center
-              bg-gradient-to-r from-[#FFF7FF] via-[#FFC8EE] to-[#C4A1FF] bg-clip-text text-transparent
-              drop-shadow-[0_0_35px_rgba(255,155,210,0.45)]
-            "
-          >
-            SOME THINGS<br /> I'VE MADE.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-serif italic text-base text-[#FF9BD2] max-w-[560px] mx-auto pt-1"
-          >
-            A few things I've made across social, video, AI and long-form content. ✦
-          </motion.p>
-        </div>
-
-        {/* MOBILE 6 SUBSECTIONS HORIZONTAL SWIPE CAROUSELS */}
-        <div className="w-full flex flex-col space-y-20">
-          {PORTFOLIO_SECTIONS.map((section) => {
-            const Icon = section.icon;
-            const activeIdx = activeCardIds[section.id] || 0;
-
-            return (
-              <div key={section.id} className="w-full flex flex-col space-y-6 text-left">
-                
-                {/* SUBSECTION HEADER */}
-                <div className="w-full px-5 flex flex-col justify-between gap-1 border-b border-white/10 pb-3">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#FF9BD2] uppercase">
-                    <Icon className="w-3.5 h-3.5" style={{ color: section.accentColor }} />
-                    <span>{section.eyebrowLabel}</span>
-                  </div>
-                  <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase">
-                    {section.title}
-                  </h3>
-                  <p className="text-xs font-serif italic text-white/60">
-                    {section.subhead}
-                  </p>
+          return (
+            <div key={section.id} className="w-full space-y-4">
+              
+              {/* SUBSECTION HEADER */}
+              <div className="w-full px-5 flex flex-col justify-between gap-1 border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#FF9BD2] uppercase">
+                  <Icon className="w-3.5 h-3.5" style={{ color: section.accentColor }} />
+                  <span>{section.eyebrowLabel}</span>
                 </div>
+                <h3 className="font-display font-black text-2xl text-[#FFF7FF] tracking-tight uppercase">
+                  {section.title}
+                </h3>
+                <p className="text-xs font-serif italic text-white/60">
+                  {section.subhead}
+                </p>
+              </div>
 
-                {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP - CENTER SNAP ALIGNMENT) */}
-                <div
-                  onScroll={(e) => handleCarouselScroll(section.id, e)}
-                  className={`
-                    w-full flex flex-row flex-nowrap items-stretch gap-4
-                    overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar
-                    py-3 gpu-layer
-                    ${section.aspectRatio === '16/9' ? 'px-[6vw]' : 'px-[12vw]'}
-                  `}
-                  style={{
-                    scrollSnapType: 'x mandatory',
-                    WebkitOverflowScrolling: 'touch',
-                    touchAction: 'pan-x pan-y',
-                    overscrollBehaviorX: 'contain',
-                  }}
-                >
-                  {section.projects.map((proj, pIdx) => {
-                    const isActive = pIdx === activeIdx;
+              {/* HORIZONTAL SWIPE CAROUSEL (NATIVE CSS SCROLL-SNAP) */}
+              <div
+                onScroll={(e) => handleCarouselScroll(section.id, e)}
+                className={`
+                  w-full flex flex-row flex-nowrap items-stretch gap-4
+                  overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar
+                  py-3 gpu-layer
+                  ${section.aspectRatio === '16/9' ? 'px-[6vw]' : 'px-[12vw]'}
+                `}
+                style={{
+                  scrollSnapType: 'x mandatory',
+                  WebkitOverflowScrolling: 'touch',
+                  touchAction: 'pan-x pan-y',
+                  overscrollBehaviorX: 'contain',
+                }}
+              >
+                {section.projects.map((proj, pIdx) => {
+                  const isActive = pIdx === activeIdx;
 
+                  if (section.aspectRatio === '16/9') {
+                    // YOUTUBE CARD DESIGN (FROM KAMNA-PORTFOLIO)
                     return (
-                      <div
+                      <a
                         key={proj.id}
+                        href={proj.url || 'https://www.youtube.com/@Kidwithcrayons'}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`
-                          shrink-0 flex flex-col justify-between space-y-3
+                          shrink-0 flex flex-col gap-3
                           scroll-snap-align-center transition-all duration-500
                           ${section.mobileCardWidth}
                           ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
                         `}
                         style={{ scrollSnapAlign: 'center' }}
                       >
-                        {/* VIDEO FRAME CONTAINER */}
-                        <div
-                          className={`
-                            relative w-full rounded-[24px] overflow-hidden
-                            border border-white/20 bg-gradient-to-br ${proj.gradientBg}
-                            shadow-[0_16px_45px_rgba(0,0,0,0.75)]
-                            transition-all duration-500 cursor-pointer group gpu-layer
-                            ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
-                            ${isActive ? 'shadow-[0_0_35px_rgba(255,155,210,0.4)] border-[#FF9BD2]/60' : ''}
-                          `}
-                        >
-                          <div className="absolute inset-0 z-20 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
-                          <div className="absolute inset-0 z-10 pointer-events-none film-grain opacity-25 mix-blend-overlay" />
-
-                          <div className="relative w-full h-full flex flex-col justify-between p-4 z-10">
-                            <div className="flex items-center justify-between text-xs font-mono">
-                              <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
-                                {proj.numberLabel}
-                              </span>
-
-                              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 text-[9px] text-white/80 font-bold uppercase">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#FF9BD2] animate-ping" />
-                                <span>{proj.aspectRatio === '16/9' ? 'WIDESCREEN' : 'REEL'}</span>
+                        <div className={`
+                          w-full flex flex-col gap-3 rounded-2xl bg-[#141414] border border-white/10 p-3 shadow-lg hover:border-red-500/40 transition-colors
+                          ${isActive ? 'border-red-500/50 shadow-[0_0_30px_rgba(229,9,20,0.35)]' : ''}
+                        `}>
+                          <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black transform-gpu">
+                            <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/25">
+                              <div className="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl">
+                                <Play className="w-5 h-5 fill-white ml-0.5" />
                               </div>
                             </div>
-
-                            <div className="my-auto flex flex-col items-center justify-center text-center space-y-2">
-                              <span className="text-[11px] font-mono font-bold text-[#FFF7FF]/90 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
-                                {proj.title}
-                              </span>
+                            <img
+                              src={proj.thumbnail || '/assets/yt-thumb-1.jpg'}
+                              alt={proj.title}
+                              className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                            />
+                          </div>
+                          <div className="flex flex-col gap-1.5 px-1 pb-1">
+                            <div className="flex items-center justify-between text-[11px] text-white/60">
+                              <span className="font-bold text-red-400 uppercase tracking-wider">{proj.tag || 'SHORT FILM • STORYTELLING'}</span>
+                              <span>{proj.duration || '12:45'}</span>
                             </div>
-
-                            <div className="flex items-center justify-between pt-2 border-t border-white/15">
-                              <button
-                                onClick={() => setIsPlaying(!isPlaying)}
-                                className="w-8 h-8 rounded-full bg-[#FF9BD2] text-[#100719] flex items-center justify-center shadow-[0_0_15px_#FF9BD2] transition-transform"
-                                aria-label="Toggle play"
-                              >
-                                {isPlaying ? (
-                                  <Pause className="w-3.5 h-3.5 fill-current ml-0.5" />
-                                ) : (
-                                  <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                                )}
-                              </button>
-
-                              <button
-                                onClick={() => setIsMuted(!isMuted)}
-                                className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/60 border border-white/20 text-[10px] font-mono text-[#FFF7FF]"
-                              >
-                                {isMuted ? (
-                                  <>
-                                    <VolumeX className="w-3 h-3 text-[#FF9BD2]" />
-                                    <span>MUTED</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Volume2 className="w-3 h-3 text-[#FF9BD2]" />
-                                    <span>AUDIO ON</span>
-                                  </>
-                                )}
-                              </button>
+                            <h3 className="font-bold text-sm text-white leading-snug line-clamp-2">{proj.title}</h3>
+                            <div className="flex items-center justify-between text-[11px] text-white/40 pt-1">
+                              <span className="flex items-center gap-1 text-red-500 font-bold ml-auto">
+                                Watch on YouTube <ExternalLink className="w-3.5 h-3.5" />
+                              </span>
                             </div>
                           </div>
                         </div>
-
-                        {/* METADATA BELOW CARD */}
-                        <div className="space-y-1 px-1 text-left">
-                          <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2] uppercase">
-                            <span>{proj.numberLabel}</span>
-                          </div>
-
-                          <h4 className="font-display font-black text-lg text-[#FFF7FF] tracking-tight uppercase">
-                            {proj.title}
-                          </h4>
-
-                          <p className="text-xs text-[#FFF7FF]/75 line-clamp-2 leading-relaxed font-normal">
-                            {proj.description}
-                          </p>
-
-                          <div className="pt-1">
-                            <button
-                              onClick={onOpenWorkModal}
-                              className="
-                                inline-flex items-center gap-1 text-xs font-mono font-bold text-[#FF9BD2] hover:text-[#FFF7FF]
-                                transition-colors group min-h-[44px] cursor-pointer select-none
-                              "
-                            >
-                              <span className="underline underline-offset-4 decoration-[#FF9BD2]/50 group-hover:decoration-[#FFF7FF]">
-                                VIEW PROJECT
-                              </span>
-                              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
+                      </a>
                     );
-                  })}
-                </div>
+                  }
 
-                {/* CAROUSEL PROGRESS DOTS INDICATOR BELOW */}
-                <div className="w-full flex items-center justify-center gap-2 pt-1">
+                  // INSTAGRAM REELS CARD DESIGN (FROM KAMNA-PORTFOLIO)
+                  return (
+                    <a
+                      key={proj.id}
+                      href={proj.url || 'https://www.instagram.com/ariimakesfilms'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`
+                        shrink-0 flex flex-col justify-between space-y-3
+                        scroll-snap-align-center transition-all duration-500
+                        ${section.mobileCardWidth}
+                        ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
+                      `}
+                      style={{ scrollSnapAlign: 'center' }}
+                    >
+                      <div
+                        className={`
+                          relative w-full rounded-[24px] overflow-hidden border border-white/20 bg-[#121212]
+                          shadow-[0_16px_45px_rgba(0,0,0,0.75)] transition-all duration-500 cursor-pointer group gpu-layer
+                          aspect-[9/16]
+                          ${isActive ? 'shadow-[0_0_35px_rgba(255,155,210,0.4)] border-[#FF9BD2]/60' : ''}
+                        `}
+                      >
+                        <img
+                          src={proj.thumbnail || '/assets/reel-thumb-1.jpg'}
+                          alt={proj.title}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
+                        />
+
+                        <div className="absolute top-4 right-4 z-20">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
+                            <InstagramIcon className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+
+                        <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 shadow-lg">
+                          <Play className="w-4 h-4 fill-white ml-0.5" />
+                        </div>
+
+                        <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between p-3 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10">
+                          <h3 className="font-bold text-xs text-white leading-snug line-clamp-1">
+                            {proj.title}
+                          </h3>
+                          <ExternalLink className="w-4 h-4 text-[#FFB3CB] shrink-0 ml-2" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1 px-1 text-left">
+                        <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2] uppercase">
+                          <span>{proj.numberLabel}</span>
+                        </div>
+
+                        <h4 className="font-display font-black text-base text-[#FFF7FF] tracking-tight uppercase">
+                          {proj.title}
+                        </h4>
+
+                        <p className="text-xs text-[#FFF7FF]/75 line-clamp-2 leading-relaxed font-normal">
+                          {proj.description}
+                        </p>
+
+                        <div className="pt-1">
+                          <span className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#FF9BD2] group-hover:text-[#FFF7FF] transition-colors">
+                            <span className="underline underline-offset-4 decoration-[#FF9BD2]/50">
+                              WATCH ON INSTAGRAM
+                            </span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* PROGRESS INDICATOR DOTS */}
+              <div className="flex items-center justify-between px-5 pt-1 text-xs font-mono">
+                <span className="text-[#FF9BD2] font-bold">
+                  0{activeIdx + 1} / 0{section.projects.length}
+                </span>
+
+                <div className="flex items-center gap-1.5">
                   {section.projects.map((_, dotIdx) => (
-                    <div
+                    <span
                       key={dotIdx}
                       className={`
                         h-1.5 rounded-full transition-all duration-300
-                        ${dotIdx === activeIdx ? 'w-5 bg-[#FF9BD2] shadow-[0_0_10px_#FF9BD2]' : 'w-1.5 bg-white/20'}
+                        ${dotIdx === activeIdx ? 'w-6 bg-[#FF9BD2] shadow-[0_0_10px_#FF9BD2]' : 'w-1.5 bg-white/20'}
                       `}
                     />
                   ))}
                 </div>
-
               </div>
-            );
-          })}
-        </div>
 
-        {/* MOBILE PORTFOLIO CLIMAX FOOTER */}
-        <div className="w-full pt-10 pb-6 flex flex-col items-center justify-center text-center space-y-4 px-4">
-          <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#FF9BD2] uppercase">
-            ✦ THAT'S THE WORK ✦
-          </span>
+            </div>
+          );
+        })}
+      </div>
 
-          <h2 className="font-display font-extrabold text-2xl text-[#FFF7FF] uppercase tracking-tight">
-            THAT'S THE WORK.<br />
-            <span className="bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF] bg-clip-text text-transparent">
-              AND THERE'S MORE TO COME.
-            </span>
-          </h2>
+      {/* ========================================================================= */}
+      {/* B. DESKTOP LAYOUT: EDITORIAL 6-CARD ASYMMETRIC GRID (WIRE-FRAME MATCHED) */}
+      {/* ========================================================================= */}
+      <div className="hidden md:grid w-full max-w-[1360px] mx-auto grid-cols-4 auto-rows-[270px] gap-6 relative z-20">
+        {CATEGORY_CARDS.map((card) => {
+          const Icon = card.icon;
 
-          <div className="pt-2">
-            <button
-              onClick={onOpenWorkModal}
+          return (
+            <motion.div
+              key={card.id}
+              onClick={() => setSelectedCard(card)}
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className={`
+                relative rounded-[28px] overflow-hidden p-6 sm:p-8
+                border border-white/15 bg-gradient-to-br ${card.previewGradient}
+                backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+                hover:border-[#FF9BD2]/70 hover:shadow-[0_0_40px_rgba(255,155,210,0.35)]
+                flex flex-col justify-between cursor-pointer group gpu-layer
+                ${card.gridClassDesktop}
+              `}
+            >
+              <div className="absolute inset-0 z-20 pointer-events-none rounded-[28px] shadow-[inset_0_0_35px_rgba(16,7,25,0.8)]" />
+              <div className="absolute inset-0 z-10 pointer-events-none film-grain opacity-25 mix-blend-overlay" />
+
+              {/* CARD TOP HEADER */}
+              <div className="flex items-start justify-between z-30">
+                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-white/15 backdrop-blur-md">
+                  <Icon className="w-4 h-4 text-[#FF9BD2]" />
+                  <span className="text-[11px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
+                    {card.subtitle}
+                  </span>
+                </div>
+
+                <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur-md flex items-center justify-center text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] group-hover:border-[#FF9BD2] transition-all duration-300 shadow-md">
+                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </div>
+
+              {/* CARD BOTTOM DETAILS */}
+              <div className="space-y-2 z-30 pt-12">
+                <h3 className="font-display font-black text-2xl lg:text-3xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
+                  {card.title}
+                </h3>
+                
+                <p className="text-xs sm:text-sm text-[#FFF7FF]/80 line-clamp-2 font-normal leading-relaxed">
+                  {card.description}
+                </p>
+
+                <div className="pt-2 flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2]">
+                  <span>VIEW COLLECTION</span>
+                  <span className="text-white/40">({card.projects.length} PROJECTS)</span>
+                </div>
+              </div>
+
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* ========================================================================= */}
+      {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {selectedCard && (
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-backdrop-fade">
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="
-                px-7 py-3.5 rounded-full
-                bg-gradient-to-r from-[#FF9BD2] to-[#B388FF]
-                text-[#100719] font-display font-bold text-xs tracking-widest uppercase
-                shadow-[0_0_25px_rgba(255,155,210,0.5)]
-                flex items-center gap-2 cursor-pointer min-h-[48px]
+                relative w-full max-w-4xl max-h-[90vh] rounded-[32px]
+                border border-[#FF9BD2]/40 bg-[#160B24] p-6 sm:p-8
+                shadow-[0_0_80px_rgba(255,155,210,0.4)] flex flex-col justify-between
+                overflow-y-auto z-50 selection:bg-[#FF9BD2] selection:text-[#100719]
               "
             >
-              <span>VIEW ALL WORK</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
+              {/* MODAL CLOSE BUTTON */}
+              <button
+                type="button"
+                onClick={() => setSelectedCard(null)}
+                className="absolute top-5 right-5 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-      </div>
+              {/* MODAL HEADER */}
+              <div className="space-y-2 border-b border-white/15 pb-6">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
+                  <selectedCard.icon className="w-4 h-4" />
+                  <span>{selectedCard.subtitle}</span>
+                </div>
+                <h3 className="font-display font-black text-3xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
+                  {selectedCard.title}
+                </h3>
+                <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
+                  {selectedCard.description}
+                </p>
+              </div>
+
+              {/* MODAL PROJECTS GRID */}
+              <div className="py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {selectedCard.projects.map((proj, idx) => (
+                  <div
+                    key={proj.id}
+                    className="
+                      rounded-[24px] border border-white/15 bg-gradient-to-br from-white/[0.07] to-white/[0.02]
+                      p-4 flex flex-col justify-between space-y-4 hover:border-[#FF9BD2]/60 transition-all duration-300 group
+                    "
+                  >
+                    <div className={`
+                      relative w-full rounded-[18px] overflow-hidden bg-gradient-to-br ${proj.previewGradient}
+                      ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
+                      border border-white/15 shadow-md flex items-center justify-center
+                    `}>
+                      {proj.thumbnail ? (
+                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[18px]" />
+                      ) : (
+                        <Play className="w-8 h-8 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
+                      )}
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-[11px] font-mono text-[#FF9BD2] font-bold">
+                        <span>PROJECT 0{idx + 1}</span>
+                        <span>{proj.aspectRatio === '16/9' ? '16:9' : '9:16'}</span>
+                      </div>
+
+                      <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors">
+                        {proj.title}
+                      </h4>
+
+                      <p className="text-xs text-[#FFF7FF]/70 line-clamp-2">
+                        {proj.description}
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        if (proj.url) {
+                          window.open(proj.url, '_blank', 'noopener,noreferrer');
+                        } else {
+                          setSelectedCard(null);
+                          onOpenWorkModal();
+                        }
+                      }}
+                      className="
+                        w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
+                        text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                        transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer
+                      "
+                    >
+                      <span>VIEW PROJECT</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* MODAL FOOTER */}
+              <div className="pt-6 border-t border-white/15 flex items-center justify-between">
+                <span className="text-xs font-mono text-white/50 uppercase">
+                  ARI CINEMATIC ARCHIVE ✦ 2026
+                </span>
+
+                <button
+                  onClick={() => {
+                    setSelectedCard(null);
+                    onOpenWorkModal();
+                  }}
+                  className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
+                >
+                  START A PROJECT WITH ARI ✦
+                </button>
+              </div>
+
+            </motion.div>
+
+          </div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
