@@ -517,6 +517,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
                           />
 
+                          <div className="absolute top-4 left-4 z-20 pointer-events-none">
+                            <span className="px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-mono text-xs font-bold text-[#FF9BD2]">
+                              {proj.numberLabel}
+                            </span>
+                          </div>
+
                           <div className="absolute top-4 right-4 z-20">
                             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
                               <InstagramIcon className="w-4 h-4 text-white" />
@@ -532,10 +538,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         </div>
 
                         <div className="space-y-1 px-1 text-left">
-                          <div className="flex items-center gap-2 text-[11px] font-mono font-bold text-[#FF9BD2] uppercase">
-                            <span>{proj.numberLabel}</span>
-                          </div>
-
                           <h4 className="font-display font-black text-base text-[#FFF7FF] tracking-tight uppercase">
                             {proj.title}
                           </h4>
@@ -661,25 +663,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     </div>
                   );
                 })}
-              </div>
-
-              {/* PROGRESS INDICATOR DOTS */}
-              <div className="flex items-center justify-between px-5 pt-1 text-xs font-mono">
-                <span className="text-[#FF9BD2] font-bold">
-                  0{activeIdx + 1} / 0{section.projects.length}
-                </span>
-
-                <div className="flex items-center gap-1.5">
-                  {section.projects.map((_, dotIdx) => (
-                    <span
-                      key={dotIdx}
-                      className={`
-                        h-1.5 rounded-full transition-all duration-300
-                        ${dotIdx === activeIdx ? 'w-6 bg-[#FF9BD2] shadow-[0_0_10px_#FF9BD2]' : 'w-1.5 bg-white/20'}
-                      `}
-                    />
-                  ))}
-                </div>
               </div>
 
             </div>
