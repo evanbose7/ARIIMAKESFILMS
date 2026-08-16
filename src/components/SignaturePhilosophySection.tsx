@@ -421,7 +421,7 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
               bg-gradient-to-r from-[#FFF7FF] via-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent
               drop-shadow-[0_0_50px_rgba(255,155,210,0.65)]
             ">
-              all it takes is <span className="text-[#FFF7FF] font-black underline decoration-[#FF9BD2]/60 decoration-wavy underline-offset-8">ONE IDEA</span> <br />
+              all it takes is <span className="text-[#FFF7FF] font-black">ONE IDEA</span> <br />
               to change everything.
             </h2>
           </motion.div>
