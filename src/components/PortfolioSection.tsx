@@ -614,7 +614,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                               src={proj.videoUrl}
                               autoPlay
                               loop
+                              muted
                               playsInline
+                              preload="auto"
                               className="w-full h-full object-cover rounded-[24px]"
                             />
                             <div className="absolute top-3 left-3 z-20">
