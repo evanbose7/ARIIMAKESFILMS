@@ -310,7 +310,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
   }, [activeMobileVideo]);
 
   const handleMobileCardTap = (
-    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
     proj: ProjectCardItem,
     categoryTitle: string
   ) => {
@@ -321,21 +320,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       category: categoryTitle,
       videoUrl: proj.videoUrl,
     });
-
-    const container = e.currentTarget;
-    const videoEl = container.querySelector('video') as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
-    if (videoEl) {
-      videoEl.muted = false;
-      try {
-        if (videoEl.webkitEnterFullscreen) {
-          videoEl.webkitEnterFullscreen();
-        } else if (videoEl.requestFullscreen) {
-          videoEl.requestFullscreen().catch(() => {});
-        }
-      } catch (err) {
-        // Fallback to custom full screen modal
-      }
-    }
   };
 
   // Desktop Internal Carousel States
@@ -617,8 +601,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   return (
                     <div
                       key={proj.id}
-                      onClick={(e) => handleMobileCardTap(e, proj, section.title)}
-                      onTouchEnd={(e) => handleMobileCardTap(e, proj, section.title)}
+                      onClick={() => handleMobileCardTap(proj, section.title)}
+                      onTouchEnd={() => handleMobileCardTap(proj, section.title)}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
                         scroll-snap-align-center transition-all duration-500 cursor-pointer
@@ -640,6 +624,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         {proj.videoUrl ? (
                           <>
                             <video
+                              ref={(el) => {
+                                if (el) {
+                                  el.muted = true;
+                                  el.defaultMuted = true;
+                                }
+                              }}
                               src={proj.videoUrl}
                               autoPlay
                               loop
