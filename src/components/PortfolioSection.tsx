@@ -570,6 +570,20 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         const video = e.currentTarget.querySelector('video');
                         if (video) {
                           video.muted = false;
+
+                          const handleExitFullscreen = () => {
+                            video.muted = true;
+                            video.removeEventListener('webkitendfullscreen', handleExitFullscreen);
+                            document.removeEventListener('fullscreenchange', handleExitFullscreen);
+                          };
+
+                          video.addEventListener('webkitendfullscreen', handleExitFullscreen);
+                          document.addEventListener('fullscreenchange', () => {
+                            if (!document.fullscreenElement) {
+                              handleExitFullscreen();
+                            }
+                          });
+
                           if (video.requestFullscreen) {
                             video.requestFullscreen().catch(() => {});
                           } else if ((video as any).webkitEnterFullscreen) {
