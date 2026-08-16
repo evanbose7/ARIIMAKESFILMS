@@ -953,7 +953,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 04 — ARCHITECTURE & INTERIOR DESIGN (MIDDLE RIGHT BESIDE FOOD) */}
+        {/* CARD 04 — ARCHITECTURE & INTERIOR DESIGN (MIDDLE RIGHT BESIDE FOOD WITH UPLOADED BACKGROUND) */}
         {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -961,30 +961,39 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
-            border border-white/15 bg-gradient-to-br from-[#6D4AFF]/25 via-[#120822] to-[#FF9BD2]/20
-            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
-            hover:border-[#6D4AFF]/70 hover:shadow-[0_0_35px_rgba(109,74,255,0.35)]
+            relative col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
+            border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            hover:border-[#C4A1FF]/70 hover:shadow-[0_0_35px_rgba(196,161,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
-          <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
+          {/* UPLOADED BACKGROUND IMAGE WITH DARK GRADIENT OVERLAY */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/assets/architecture_bento_bg.jpg"
+              alt="Architecture & Interior Design Category Background"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-65"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B] via-[#12071B]/55 to-black/40 z-10" />
+          </div>
+
+          <div className="relative flex items-center justify-between z-30">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md">
               <Compass className="w-3.5 h-3.5 text-[#C4A1FF]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 SPATIAL & EDITORIAL
               </span>
             </div>
-            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C4A1FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+            <div className="w-7 h-7 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] backdrop-blur-md group-hover:bg-[#C4A1FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-0.5 z-30 pt-4">
-            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C4A1FF] transition-colors">
+          <div className="relative space-y-0.5 z-30 pt-4">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C4A1FF] transition-colors drop-shadow-md">
               ARCHITECTURE & INTERIOR DESIGN
             </h3>
-            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
               Spatial storytelling, architectural tours & luxury interiors.
             </p>
           </div>
