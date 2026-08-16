@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, MotionValue } from 'framer-motion';
-import { Sparkles, Building2, Heart, Utensils, Gem, Wand2, Video, Award, Play, Eye } from 'lucide-react';
+import { Sparkles, Building2, Heart, Utensils, Gem, Wand2, Video } from 'lucide-react';
 
 interface ExperienceSectionProps {
   scrollYProgress?: MotionValue<number>;
@@ -262,28 +262,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
             <blockquote className="font-display font-bold text-xl sm:text-2xl text-[#FFF7FF] leading-snug tracking-tight">
               "I don't create the same content for every brand. I look for the story that only that brand can tell."
             </blockquote>
-          </div>
-        </motion.div>
-
-        {/* 7. MICRO SOCIAL PROOF BADGES */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-3 pt-1"
-        >
-          <div className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-[#FF9BD2]/30 text-xs font-mono text-[#FF9BD2] flex items-center gap-1.5 shadow-[0_0_12px_rgba(255,155,210,0.25)]">
-            <Eye className="w-3.5 h-3.5" />
-            <span>4L+ Views ✦</span>
-          </div>
-          <div className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-[#B388FF]/30 text-xs font-mono text-[#B388FF] flex items-center gap-1.5 shadow-[0_0_12px_rgba(179,136,255,0.25)]">
-            <Play className="w-3.5 h-3.5 fill-current" />
-            <span>YouTube ✦</span>
-          </div>
-          <div className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-[#FFB6E6]/30 text-xs font-mono text-[#FFB6E6] flex items-center gap-1.5 shadow-[0_0_12px_rgba(255,182,230,0.25)]">
-            <Award className="w-3.5 h-3.5" />
-            <span>Brand Campaigns ✦</span>
           </div>
         </motion.div>
 
