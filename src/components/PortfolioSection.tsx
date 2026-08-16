@@ -530,7 +530,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
                           />
 
-                          <div className="absolute top-4 right-4 z-20">
+                          <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
+                              AI
+                            </span>
                             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
                               <InstagramIcon className="w-4 h-4 text-white" />
                             </div>
@@ -611,7 +614,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                               src={proj.videoUrl}
                               autoPlay
                               loop
-                              muted
                               playsInline
                               className="w-full h-full object-cover rounded-[24px]"
                             />
@@ -619,6 +621,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                               <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-mono text-xs font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
                                 {proj.numberLabel}
                               </span>
+                            </div>
+                            <div className="absolute top-3 right-3 z-20 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
+                              AI
                             </div>
                             <div className="absolute inset-0 flex items-center justify-center z-20">
                               <div className="w-12 h-12 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
@@ -628,9 +633,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
                               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                                 {proj.title}
-                              </span>
-                              <span className="text-[10px] font-mono font-bold text-[#FF9BD2] shrink-0 ml-2">
-                                TAP SOUND ✦
                               </span>
                             </div>
                             <div className="absolute inset-0 z-10 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
