@@ -18,22 +18,26 @@ interface WorkWithMeModalProps {
 
 export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClose }) => {
   const [mounted, setMounted] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
     if (isOpen) {
+      const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      setScrollTop(currentY);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') onClose();
+      };
       window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
     }
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!mounted) return null;
+  if (!mounted || !isOpen) return null;
 
   const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
   const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
@@ -41,18 +45,28 @@ export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClos
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[99999999] flex items-center justify-center p-4 sm:p-6 select-none">
-          {/* Blurred Fullscreen Backdrop Overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            top: `${scrollTop}px`,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 999999999,
+          }}
+          className="flex items-center justify-center p-4 sm:p-6 select-none overflow-hidden"
+        >
+          {/* Blurred Fullscreen Backdrop Overlay covering current active viewport */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md z-0 cursor-pointer"
+            className="absolute inset-0 bg-black/80 backdrop-blur-md z-0 cursor-pointer"
           />
 
-          {/* Centered Focus Dialogue Box */}
+          {/* Centered Focus Dialogue Box at current scroll Y */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
