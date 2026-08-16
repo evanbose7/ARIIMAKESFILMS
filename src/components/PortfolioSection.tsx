@@ -31,6 +31,7 @@ export interface PortfolioCategoryCard {
     previewGradient: string;
     aspectRatio: '9/16' | '16/9';
     thumbnail?: string;
+    videoUrl?: string;
     url?: string;
   }[];
 }
@@ -71,21 +72,21 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'yt-3', title: 'Day in the Life of a 21-Year-Old Personal Branding Strategist', description: 'Deep-dive visual essay exploring branding and digital culture.', previewGradient: 'from-[#6D4AFF]/45 via-[#140824] to-[#FF9BD2]/30', aspectRatio: '16/9', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ' },
     ],
   },
-  // 3. AI VIDEO (CARD 03: SQUARE / VERTICAL - MIDDLE LEFT)
+  // 3. FOOD (CARD 03: SQUARE / VERTICAL - MIDDLE LEFT)
   {
-    id: 'ai-video',
-    title: 'AI VIDEO',
-    subtitle: 'SYNTHETIC MOTION CONCEPTS',
-    description: 'Surreal visual poetry and synthetic motion generated for luxury campaigns.',
+    id: 'food',
+    title: 'FOOD',
+    subtitle: 'GOURMET & CULINARY',
+    description: 'Artisanal food, luxury desserts & culinary stories.',
     gridClassDesktop: 'col-span-4 row-span-1 min-h-[260px]',
     gridClassMobile: 'col-span-1 h-[220px]',
     aspectRatio: 'square',
-    previewGradient: 'from-[#C084FC]/35 via-[#1E0938] to-[#FF9BD2]/30',
+    previewGradient: 'from-[#FF9BD2]/40 via-[#1E0938] to-[#FFB6E6]/30',
     icon: Wand2,
     projects: [
-      { id: 'ai-1', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
-      { id: 'ai-2', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16' },
-      { id: 'ai-3', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'food-1', title: 'ARTISANAL DESSERT FILM 01', description: 'Cinematic food cinematography highlighting textures, flavor profiles, and artisanal passion.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/food-1.mp4' },
+      { id: 'food-3', title: 'VOICEOVER FOOD STORY 02', description: 'Narrative-driven culinary reel with rich audio score and voiceover storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', videoUrl: '/assets/food-3.mp4' },
+      { id: 'food-4', title: 'SEASONAL MENU SPECIAL 03', description: 'Visual feast capturing vibrant colors and sensory culinary experiences.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/food-4.mp4' },
     ],
   },
   // 4. LONG-FORM (CARD 04: WIDESCREEN LANDSCAPE - MIDDLE RIGHT)
@@ -879,7 +880,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 03 — AI VIDEO (MIDDLE LEFT UNDER YOUTUBE) */}
+        {/* CARD 03 — FOOD (MIDDLE LEFT UNDER YOUTUBE) */}
         {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -888,30 +889,30 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
             col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
-            border border-white/15 bg-gradient-to-br from-[#C084FC]/25 via-[#1E0938] to-[#FF9BD2]/20
+            border border-white/15 bg-gradient-to-br from-[#FF9BD2]/25 via-[#1E0938] to-[#FFB6E6]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
-            hover:border-[#C084FC]/70 hover:shadow-[0_0_35px_rgba(192,132,252,0.35)]
+            hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
           <div className="flex items-center justify-between z-30">
             <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
-              <Wand2 className="w-3.5 h-3.5 text-[#C084FC]" />
+              <Wand2 className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
-                SYNTHETIC MOTION
+                GOURMET & CULINARY
               </span>
             </div>
-            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C084FC] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
           <div className="space-y-0.5 z-30 pt-4">
-            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C084FC] transition-colors">
-              AI VIDEO
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
+              FOOD
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
-              Surreal visual poetry & synthetic motion concepts.
+              Artisanal food, luxury desserts & culinary stories.
             </p>
           </div>
         </motion.div>
@@ -1038,9 +1039,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       {/* ========================================================================= */}
       {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL */}
       {/* ========================================================================= */}
+      {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL (HORIZONTALLY ARRANGED CARDS) */}
+      {/* ========================================================================= */}
       <AnimatePresence>
         {selectedCard && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-backdrop-fade">
+          <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-2xl animate-backdrop-fade">
             
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -1048,9 +1051,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="
-                relative w-full max-w-4xl max-h-[90vh] rounded-[32px]
-                border border-[#FF9BD2]/40 bg-[#160B24] p-6 sm:p-8
-                shadow-[0_0_80px_rgba(255,155,210,0.4)] flex flex-col justify-between
+                relative w-full max-w-5xl max-h-[92vh] rounded-[36px]
+                border border-[#FF9BD2]/40 bg-[#140824] p-6 sm:p-8
+                shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
                 overflow-y-auto z-50 selection:bg-[#FF9BD2] selection:text-[#100719]
               "
             >
@@ -1058,7 +1061,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               <button
                 type="button"
                 onClick={() => setSelectedCard(null)}
-                className="absolute top-5 right-5 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
+                className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -1078,69 +1081,85 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 </p>
               </div>
 
-              {/* MODAL PROJECTS GRID */}
-              <div className="py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {/* MODAL PROJECTS HORIZONTALLY ARRANGED CARDS */}
+              <div className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-snap-x items-stretch">
                 {selectedCard.projects.map((proj, idx) => (
                   <div
                     key={proj.id}
                     className="
-                      rounded-[24px] border border-white/15 bg-gradient-to-br from-white/[0.07] to-white/[0.02]
-                      p-4 flex flex-col justify-between space-y-4 hover:border-[#FF9BD2]/60 transition-all duration-300 group
+                      flex-none w-[280px] sm:w-[320px] rounded-[28px] border border-white/15
+                      bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
+                      p-4.5 flex flex-col justify-between space-y-4
+                      hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
+                      transition-all duration-300 group scroll-snap-align-center
                     "
                   >
-                    <div className={`
-                      relative w-full rounded-[18px] overflow-hidden bg-gradient-to-br ${proj.previewGradient}
-                      ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
-                      border border-white/15 shadow-md flex items-center justify-center
-                    `}>
-                      {proj.thumbnail ? (
-                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[18px]" />
+                    {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER */}
+                    <div className="relative w-full aspect-[9/16] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg">
+                      {proj.videoUrl ? (
+                        <video
+                          src={proj.videoUrl}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          className="w-full h-full object-cover rounded-[22px]"
+                        />
+                      ) : proj.thumbnail ? (
+                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[22px]" />
                       ) : (
-                        <Play className="w-8 h-8 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
+                        <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`}>
+                          <Play className="w-10 h-10 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
+                        </div>
                       )}
+
+                      {/* NUMBER BADGE */}
+                      <div className="absolute top-3 left-3 z-20 pointer-events-none">
+                        <span className="px-3 py-1 rounded-full bg-black/65 border border-white/20 font-mono text-xs font-bold text-[#FF9BD2] backdrop-blur-md">
+                          0{idx + 1} / 0{selectedCard.projects.length}
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between text-[11px] font-mono text-[#FF9BD2] font-bold">
-                        <span>PROJECT 0{idx + 1}</span>
-                        <span>{proj.aspectRatio === '16/9' ? '16:9' : '9:16'}</span>
+                    {/* DETAILS & ACTION BUTTON */}
+                    <div className="space-y-2 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors line-clamp-2">
+                          {proj.title}
+                        </h4>
+                        <p className="text-xs text-[#FFF7FF]/70 line-clamp-3 mt-1 leading-relaxed">
+                          {proj.description}
+                        </p>
                       </div>
 
-                      <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors">
-                        {proj.title}
-                      </h4>
-
-                      <p className="text-xs text-[#FFF7FF]/70 line-clamp-2">
-                        {proj.description}
-                      </p>
+                      <button
+                        onClick={() => {
+                          if (proj.url) {
+                            window.open(proj.url, '_blank', 'noopener,noreferrer');
+                          } else if (onOpenWorkModal) {
+                            setSelectedCard(null);
+                            onOpenWorkModal();
+                          } else {
+                            window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
+                          }
+                        }}
+                        className="
+                          w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
+                          text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                          transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer mt-2
+                        "
+                      >
+                        <span>VIEW PROJECT</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
-
-                    <button
-                      onClick={() => {
-                        if (proj.url) {
-                          window.open(proj.url, '_blank', 'noopener,noreferrer');
-                        } else if (onOpenWorkModal) {
-                          setSelectedCard(null);
-                          onOpenWorkModal();
-                        } else {
-                          window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
-                        }
-                      }}
-                      className="
-                        w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
-                        text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                        transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer
-                      "
-                    >
-                      <span>VIEW PROJECT</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
                   </div>
                 ))}
               </div>
 
               {/* MODAL FOOTER */}
-              <div className="pt-6 border-t border-white/15 flex items-center justify-between">
+              <div className="pt-4 border-t border-white/15 flex items-center justify-between">
                 <span className="text-xs font-mono text-white/50 uppercase">
                   ARI CINEMATIC ARCHIVE ✦ 2026
                 </span>
