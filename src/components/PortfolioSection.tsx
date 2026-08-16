@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -290,6 +290,22 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
   const [activeFullscreenVideo, setActiveFullscreenVideo] = useState<{ url: string; title: string } | null>(null);
   const [modalScrollTop, setModalScrollTop] = useState<number>(0);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
+  
+  // Desktop Modal Carousel Scroll Ref & Handlers
+  const modalScrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollModalLeft = () => {
+    if (modalScrollContainerRef.current) {
+      modalScrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+    }
+  };
+
+  const scrollModalRight = () => {
+    if (modalScrollContainerRef.current) {
+      modalScrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+    }
+  };
+
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
@@ -1105,31 +1121,65 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   <X className="w-5 h-5" />
                 </button>
 
-                {/* MODAL HEADER */}
-                <div className="space-y-2 border-b border-white/15 pb-6">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
-                    <selectedCard.icon className="w-4 h-4" />
-                    <span>{selectedCard.subtitle}</span>
+                {/* MODAL HEADER WITH LEFT & RIGHT ARROWS FOR CAROUSEL */}
+                <div className="flex items-start justify-between border-b border-white/15 pb-6 pr-12">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
+                      <selectedCard.icon className="w-4 h-4" />
+                      <span>{selectedCard.subtitle}</span>
+                    </div>
+                    <h3 className="font-display font-black text-2xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
+                      {selectedCard.title}
+                    </h3>
+                    <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
+                      {selectedCard.description}
+                    </p>
                   </div>
-                  <h3 className="font-display font-black text-3xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
-                    {selectedCard.title}
-                  </h3>
-                  <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
-                    {selectedCard.description}
-                  </p>
+
+                  {/* LEFT & RIGHT NAVIGATION ARROW BUTTONS */}
+                  <div className="hidden sm:flex items-center gap-3 self-center pt-2">
+                    <button
+                      type="button"
+                      onClick={scrollModalLeft}
+                      aria-label="Scroll left"
+                      className="
+                        w-11 h-11 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF]
+                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                        flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg active:scale-95
+                      "
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={scrollModalRight}
+                      aria-label="Scroll right"
+                      className="
+                        w-11 h-11 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF]
+                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                        flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg active:scale-95
+                      "
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </div>
                 </div>
 
-                {/* MODAL PROJECTS GRID - ALL CARDS FULLY VISIBLE ON DESKTOP */}
-                <div className="py-6 grid grid-cols-1 md:grid-cols-3 gap-6 w-full items-stretch">
+                {/* MODAL PROJECTS CAROUSEL CONTAINER (HORIZONTALLY SCROLLABLE WITH NAV ARROWS) */}
+                <div
+                  ref={modalScrollContainerRef}
+                  className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-smooth snap-x items-stretch w-full"
+                >
                   {selectedCard.projects.map((proj, idx) => (
                     <div
                       key={proj.id}
                       className="
-                        w-full rounded-[28px] border border-white/15
+                        flex-none w-[280px] sm:w-[320px] md:w-[340px] rounded-[28px] border border-white/15
                         bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
                         p-4.5 flex flex-col justify-between space-y-4
                         hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
-                        transition-all duration-300 group/card
+                        transition-all duration-300 group/card snap-start
                       "
                     >
                       {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER WITH CLICK-TO-PLAY */}
