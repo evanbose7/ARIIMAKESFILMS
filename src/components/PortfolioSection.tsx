@@ -1218,10 +1218,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       {/* ========================================================================= */}
       <AnimatePresence>
         {activeMobileVideo && (
-          <div className="fixed inset-0 z-[999999] flex flex-col items-center justify-between bg-black/95 backdrop-blur-2xl p-4 sm:p-6 select-none animate-backdrop-fade">
-            
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="fixed inset-0 z-[999999] w-screen h-screen bg-[#000000] flex flex-col items-center justify-between p-3 sm:p-5 select-none overflow-hidden"
+          >
             {/* Top header bar */}
-            <div className="w-full max-w-lg flex items-center justify-between py-3 px-2 z-50">
+            <div className="w-full max-w-lg flex items-center justify-between py-2 px-1 z-50 shrink-0">
               <button
                 type="button"
                 onClick={() => {
@@ -1250,13 +1255,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
 
             {/* Video container */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-lg flex-1 flex items-center justify-center rounded-3xl overflow-hidden bg-black border border-white/15 shadow-2xl my-2"
-            >
+            <div className="relative w-full max-w-lg flex-1 flex items-center justify-center rounded-2xl overflow-hidden bg-[#000000] border border-white/10 shadow-2xl my-2">
               <video
                 key={activeMobileVideo.videoUrl}
                 src={activeMobileVideo.videoUrl}
@@ -1268,12 +1267,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   e.currentTarget.muted = false;
                   e.currentTarget.play().catch(() => {});
                 }}
-                className="w-full h-full max-h-[75vh] object-cover sm:object-contain rounded-3xl"
+                className="w-full h-full max-h-[82vh] object-cover sm:object-contain rounded-2xl"
               />
-            </motion.div>
+            </div>
 
             {/* Bottom info bar */}
-            <div className="w-full max-w-lg text-center py-2 z-50">
+            <div className="w-full max-w-lg text-center py-1.5 z-50 shrink-0">
               <button
                 type="button"
                 onClick={() => {
@@ -1282,13 +1281,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     window.history.back();
                   }
                 }}
-                className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs uppercase tracking-wider hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
+                className="px-6 py-2 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs uppercase tracking-wider hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
               >
                 RETURN TO CARDS ✕
               </button>
             </div>
 
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
