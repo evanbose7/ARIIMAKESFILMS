@@ -296,13 +296,25 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
   const scrollModalLeft = () => {
     if (modalScrollContainerRef.current) {
-      modalScrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+      const container = modalScrollContainerRef.current;
+      const firstCard = container.firstElementChild as HTMLElement;
+      const scrollDistance = firstCard ? firstCard.offsetWidth + 20 : 340;
+      container.scrollTo({
+        left: container.scrollLeft - scrollDistance,
+        behavior: 'smooth',
+      });
     }
   };
 
   const scrollModalRight = () => {
     if (modalScrollContainerRef.current) {
-      modalScrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+      const container = modalScrollContainerRef.current;
+      const firstCard = container.firstElementChild as HTMLElement;
+      const scrollDistance = firstCard ? firstCard.offsetWidth + 20 : 340;
+      container.scrollTo({
+        left: container.scrollLeft + scrollDistance,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -1167,6 +1179,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   {/* CAROUSEL CONTAINER */}
                   <div
                     ref={modalScrollContainerRef}
+                    style={{ scrollBehavior: 'smooth' }}
                     className="flex flex-row overflow-x-auto gap-5 pb-1 no-scrollbar scroll-smooth snap-x items-stretch w-full px-1"
                   >
                   {selectedCard.projects.map((proj, idx) => (
