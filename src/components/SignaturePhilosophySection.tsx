@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, MessageCircle, ArrowRight } from 'lucide-react';
 
 interface SignaturePhilosophySectionProps {
   heroImageSrc?: string;
@@ -398,36 +398,45 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
   );
 };
 
-export const FinalManifestoSection: React.FC = () => {
+interface FinalManifestoSectionProps {}
+
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5 text-white' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = () => {
+  const [showOptions, setShowOptions] = useState(false);
+
+  const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
+  const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
 
   return (
     <section className="relative w-full py-20 sm:py-32 px-4 sm:px-8 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
       
       {/* Ambient Radial Soft Glow behind ONE IDEA */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#FF9BD2]/15 blur-[140px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[550px] h-[340px] sm:h-[550px] rounded-full bg-radial from-[#FF9BD2]/20 via-[#B388FF]/10 to-transparent blur-3xl -z-10" />
 
-      <div className="w-full max-w-[1000px] mx-auto text-center flex flex-col items-center space-y-16 relative z-20">
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-10 sm:space-y-14 z-10">
         
+        {/* PARAGRAPH STATEMENT */}
         <motion.div
-          initial={{ opacity: 0, y: 45, scale: 0.94 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-4 max-w-[1000px] relative"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-4 max-w-3xl"
         >
-          <span className="text-[16px] sm:text-[18px] md:text-[20px] font-mono tracking-[0.12em] text-[#FFF7FF]/70 uppercase block font-bold">
-            Because sometimes…
-          </span>
-          <h2 className="
-            font-display font-black relative z-10
-            text-[42px] sm:text-[80px] md:text-[110px]
-            leading-[0.92] tracking-[-0.03em] uppercase
-            bg-gradient-to-r from-[#FFF7FF] via-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent
-            drop-shadow-[0_0_50px_rgba(255,155,210,0.65)]
-          ">
-            all it takes is <span className="text-[#FFF7FF] font-black">ONE IDEA</span> <br />
+          <p className="font-sans font-light text-lg sm:text-2xl md:text-3xl text-[#FFF7FF]/90 leading-relaxed tracking-wide">
+            Because sometimes... all it takes is{' '}
+            <span className="font-semibold text-[#FF9BD2] drop-shadow-[0_0_12px_rgba(255,155,210,0.4)]">
+              ONE IDEA
+            </span>{' '}
             to change everything.
-          </h2>
+          </p>
         </motion.div>
 
         {/* FINAL EDITORIAL CTA & TRANSLUCENT GLASS PILL */}
@@ -436,30 +445,113 @@ export const FinalManifestoSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col items-center space-y-8 pt-4"
+          className="flex flex-col items-center space-y-8 pt-4 w-full"
         >
           <h3 className="font-display font-black text-[32px] sm:text-[42px] md:text-[64px] bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent uppercase tracking-tight flex items-center gap-3">
             <span className="font-serif italic font-normal text-[#FFF7FF]">SO, SHALL WE ROLL?</span>
             <span>🎲</span>
           </h3>
 
-          {/* Translucent Purple Glass Pill Direct Instagram Link */}
-          <a
-            href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
-              bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
-              border border-[#FF9BD2]/50 backdrop-blur-xl
-              text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
-              shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
-              hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
-            "
-          >
-            <span>LET'S MAKE SOMETHING</span>
-            <ArrowUpRight className="w-4 h-4 text-[#FF9BD2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          {/* Inline Reveal Options: Instagram & WhatsApp */}
+          {!showOptions ? (
+            <button
+              type="button"
+              onClick={() => setShowOptions(true)}
+              className="
+                relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
+                bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
+                border border-[#FF9BD2]/50 backdrop-blur-xl
+                text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
+                shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
+                hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
+              "
+            >
+              <span>LET'S MAKE SOMETHING</span>
+              <ArrowUpRight className="w-4 h-4 text-[#FF9BD2]" />
+            </button>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="
+                w-full max-w-md flex flex-col gap-3.5 p-5 sm:p-6 rounded-3xl
+                border border-[#FF9BD2]/50 bg-[#1A0B2A]/95 backdrop-blur-2xl
+                shadow-[0_0_60px_rgba(255,155,210,0.4)] text-left
+              "
+            >
+              <div className="flex items-center justify-between px-1 mb-1">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#FF9BD2]">
+                  CHOOSE HOW TO CONNECT
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowOptions(false)}
+                  className="text-xs text-white/50 hover:text-white transition-colors cursor-pointer px-2 py-1"
+                >
+                  ✕ Close
+                </button>
+              </div>
+
+              {/* Option 1: Instagram DM */}
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group relative flex items-center gap-4 rounded-2xl
+                  border border-white/15 bg-[#12071B] p-4 sm:p-4.5
+                  transition-all duration-300 hover:scale-[1.02]
+                  hover:border-[#FF9BD2]/60 hover:bg-[#250E36]
+                  hover:shadow-[0_10px_30px_rgba(255,155,210,0.3)] cursor-pointer overflow-hidden
+                "
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-[#FFB6E6] to-[#FF9BD2] text-white shadow-md group-hover:scale-110 transition-transform">
+                  <InstagramIcon className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-sm text-white group-hover:text-[#FFB6E6] transition-colors">
+                      Instagram DM
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-[#FF9BD2] transition-colors" />
+                  </div>
+                  <p className="text-xs text-white/60 truncate mt-0.5">
+                    @ariimakesfilms · Brand & Collab Inquiries
+                  </p>
+                </div>
+              </a>
+
+              {/* Option 2: Direct WhatsApp Chat */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group relative flex items-center gap-4 rounded-2xl
+                  border border-white/15 bg-[#12071B] p-4 sm:p-4.5
+                  transition-all duration-300 hover:scale-[1.02]
+                  hover:border-[#25D366]/60 hover:bg-[#0E261A]
+                  hover:shadow-[0_10px_30px_rgba(37,211,102,0.3)] cursor-pointer overflow-hidden
+                "
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white shadow-md group-hover:scale-110 transition-transform">
+                  <MessageCircle className="w-5 h-5 fill-white/20 text-white" />
+                </div>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-sm text-white group-hover:text-[#25D366] transition-colors">
+                      WhatsApp Direct
+                    </h4>
+                    <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all" />
+                  </div>
+                  <p className="text-xs text-white/60 truncate mt-0.5">
+                    +91 76668 37735 · Direct Collaborations
+                  </p>
+                </div>
+              </a>
+            </motion.div>
+          )}
         </motion.div>
 
       </div>
