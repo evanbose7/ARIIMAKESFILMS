@@ -288,6 +288,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
   
+  // Mobile Full-Screen Video State (Phone scoped)
+  const [activeMobileVideo, setActiveMobileVideo] = useState<{
+    title: string;
+    category: string;
+    videoUrl: string;
+  } | null>(null);
+
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
@@ -580,6 +587,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                       style={{ scrollSnapAlign: 'center' }}
                     >
                       <div
+                        onClick={() => {
+                          if (proj.videoUrl) {
+                            setActiveMobileVideo({
+                              title: proj.title,
+                              category: section.title,
+                              videoUrl: proj.videoUrl,
+                            });
+                          }
+                        }}
                         className={`
                           relative w-full rounded-[24px] overflow-hidden
                           border border-white/15 bg-gradient-to-br ${proj.gradientBg}
@@ -602,6 +618,19 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             <div className="absolute top-3 left-3 z-20">
                               <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-mono text-xs font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
                                 {proj.numberLabel}
+                              </span>
+                            </div>
+                            <div className="absolute inset-0 flex items-center justify-center z-20">
+                              <div className="w-12 h-12 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
+                                <Play className="w-5 h-5 fill-white ml-0.5" />
+                              </div>
+                            </div>
+                            <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                              <span className="font-bold text-xs text-white leading-snug line-clamp-1">
+                                {proj.title}
+                              </span>
+                              <span className="text-[10px] font-mono font-bold text-[#FF9BD2] shrink-0 ml-2">
+                                TAP SOUND ✦
                               </span>
                             </div>
                             <div className="absolute inset-0 z-10 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
@@ -1147,6 +1176,68 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               </div>
 
             </motion.div>
+
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ========================================================================= */}
+      {/* D. MOBILE FULL-SCREEN VIDEO PLAYER WITH STEREO SOUND (PHONE SCOPED) */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {activeMobileVideo && (
+          <div className="fixed inset-0 z-[999999] flex flex-col items-center justify-between bg-black/95 backdrop-blur-2xl p-4 sm:p-6 select-none animate-backdrop-fade">
+            
+            {/* Top header bar */}
+            <div className="w-full max-w-lg flex items-center justify-between py-3 px-2 z-50">
+              <div className="flex flex-col">
+                <span className="text-[11px] font-mono font-bold text-[#FF9BD2] uppercase tracking-widest flex items-center gap-1.5">
+                  <span>{activeMobileVideo.category}</span>
+                  <span className="text-white/40">•</span>
+                  <span className="text-[#FFB6E6]">FULL SCREEN WITH SOUND ✦</span>
+                </span>
+                <h3 className="font-display font-black text-base sm:text-lg text-[#FFF7FF] tracking-tight line-clamp-1">
+                  {activeMobileVideo.title}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveMobileVideo(null)}
+                className="w-10 h-10 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] flex items-center justify-center transition-all cursor-pointer shadow-lg shrink-0 ml-4"
+                aria-label="Close Full Screen Video"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Video container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-lg flex-1 flex items-center justify-center rounded-3xl overflow-hidden bg-black border border-white/15 shadow-2xl my-2"
+            >
+              <video
+                src={activeMobileVideo.videoUrl}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full max-h-[80vh] object-contain rounded-3xl"
+              />
+            </motion.div>
+
+            {/* Bottom info bar */}
+            <div className="w-full max-w-lg text-center py-2 z-50">
+              <button
+                type="button"
+                onClick={() => setActiveMobileVideo(null)}
+                className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs uppercase tracking-wider hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
+              >
+                CLOSE VIDEO ✕
+              </button>
+            </div>
 
           </div>
         )}
