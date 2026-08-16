@@ -25,13 +25,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   };
 
   return (
-    <section className="relative w-full min-h-screen py-24 sm:py-32 px-4 sm:px-6 overflow-hidden z-20 bg-[#14091F] text-[#FFF7FF] flex flex-col items-center justify-center select-none">
+    <section className="relative w-full min-h-screen py-24 sm:py-32 px-4 sm:px-6 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
       
       {/* 1. QUIET STUDIO ATMOSPHERIC SOFT RADIAL GLOW BEHIND PORTRAIT */}
       <div 
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[950px] h-[850px] opacity-25 blur-[180px] pointer-events-none rounded-full"
         style={{
-          background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #C084FC 40%, #8B5CF6 70%, #14091F 100%)',
+          background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #C084FC 40%, #8B5CF6 70%, transparent 100%)',
         }}
       />
 
