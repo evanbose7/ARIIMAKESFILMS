@@ -279,7 +279,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
 ];
 
 interface PortfolioSectionProps {
-  onOpenWorkModal: () => void;
+  onOpenWorkModal?: () => void;
 }
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
@@ -1119,9 +1119,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                       onClick={() => {
                         if (proj.url) {
                           window.open(proj.url, '_blank', 'noopener,noreferrer');
-                        } else {
+                        } else if (onOpenWorkModal) {
                           setSelectedCard(null);
                           onOpenWorkModal();
+                        } else {
+                          window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
                         }
                       }}
                       className="
@@ -1143,15 +1145,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   ARI CINEMATIC ARCHIVE ✦ 2026
                 </span>
 
-                <button
-                  onClick={() => {
-                    setSelectedCard(null);
-                    onOpenWorkModal();
-                  }}
+                <a
+                  href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setSelectedCard(null)}
                   className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
                 >
                   START A PROJECT WITH ARI ✦
-                </button>
+                </a>
               </div>
 
             </motion.div>

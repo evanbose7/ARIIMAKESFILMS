@@ -398,11 +398,7 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
   );
 };
 
-interface FinalManifestoSectionProps {
-  onWorkWithMeClick?: () => void;
-}
-
-export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ onWorkWithMeClick }) => {
+export const FinalManifestoSection: React.FC = () => {
 
   return (
     <section className="relative w-full py-20 sm:py-32 px-4 sm:px-8 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
@@ -447,10 +443,11 @@ export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ on
             <span>🎲</span>
           </h3>
 
-          {/* Translucent Purple Glass Pill CTA Button */}
-          <button
-            type="button"
-            onClick={onWorkWithMeClick}
+          {/* Translucent Purple Glass Pill Direct Instagram Link */}
+          <a
+            href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
               bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
@@ -462,7 +459,7 @@ export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ on
           >
             <span>LET'S MAKE SOMETHING</span>
             <ArrowUpRight className="w-4 h-4 text-[#FF9BD2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          </a>
         </motion.div>
 
       </div>
