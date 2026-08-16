@@ -362,7 +362,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.14] backdrop-blur-md text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#FFE6FA] shadow-[0_0_20px_rgba(255,155,210,0.3)]"
         >
-          <span>09 — PORTFOLIO</span>
+          <span>PORTFOLIO</span>
           <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
         </motion.div>
 
