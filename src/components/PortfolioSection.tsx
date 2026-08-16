@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SignaturePhilosophySection } from './SignaturePhilosophySection';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4 text-white' }) => (
@@ -90,21 +90,22 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'food-4', title: 'SEASONAL MENU SPECIAL 03', description: 'Visual feast capturing vibrant colors and sensory culinary experiences.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/food-4.mp4' },
     ],
   },
-  // 4. LONG-FORM (CARD 04: WIDESCREEN LANDSCAPE - MIDDLE RIGHT)
+  // 4. ARCHITECTURE & INTERIOR DESIGN (CARD 04: WIDESCREEN LANDSCAPE - MIDDLE RIGHT)
   {
-    id: 'long-form',
-    title: 'LONG-FORM VIDEOS',
-    subtitle: 'DOCUMENTARY & BRAND FILMS',
-    description: 'Cinematic brand films, editorial narrative essays, and episodic stories.',
+    id: 'architecture',
+    title: 'ARCHITECTURE & INTERIOR DESIGN',
+    subtitle: 'SPATIAL & EDITORIAL',
+    description: 'Spatial storytelling, architectural tours & luxury interiors.',
     gridClassDesktop: 'col-span-4 row-span-1 min-h-[260px]',
     gridClassMobile: 'col-span-2 h-[220px]',
     aspectRatio: 'landscape',
     previewGradient: 'from-[#6D4AFF]/35 via-[#120822] to-[#FF9BD2]/30',
-    icon: Video,
+    icon: Compass,
     projects: [
-      { id: 'lf-1', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', previewGradient: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', aspectRatio: '16/9' },
-      { id: 'lf-2', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', previewGradient: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', aspectRatio: '16/9' },
-      { id: 'lf-3', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', previewGradient: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', aspectRatio: '16/9' },
+      { id: 'arch-1', title: 'ARTSIGNIA 5 YEARS ANNIVERSARY', description: 'Cinematic architectural documentary celebrating 5 years of spatial innovation.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', videoUrl: '/assets/architecture-1.mp4' },
+      { id: 'arch-2', title: 'MODERN INTERIOR FEATURE 02', description: 'Elegant spatial camera movements showcasing light, luxury textures, and design.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/architecture-2.mp4' },
+      { id: 'arch-3', title: 'CREATIVE DESIGN TOUR 03', description: 'Editorial tour exploring architectural rhythm, material harmony, and atmosphere.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', videoUrl: '/assets/architecture-3.mp4' },
+      { id: 'arch-4', title: 'GURU GOBIND MUSEUM ARCHITECTURE', description: 'Monumental architectural storytelling preserving heritage through modern lens.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/architecture-4.mp4' },
     ],
   },
   // 5. UGC (CARD 05: WIDE STRIP - BOTTOM LEFT)
@@ -936,7 +937,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 04 — LONG-FORM VIDEOS (MIDDLE RIGHT BESIDE AI VIDEO) */}
+        {/* CARD 04 — ARCHITECTURE & INTERIOR DESIGN (MIDDLE RIGHT BESIDE FOOD) */}
         {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -953,9 +954,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         >
           <div className="flex items-center justify-between z-30">
             <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
-              <Video className="w-3.5 h-3.5 text-[#C4A1FF]" />
+              <Compass className="w-3.5 h-3.5 text-[#C4A1FF]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
-                DOCUMENTARY & ESSAYS
+                SPATIAL & EDITORIAL
               </span>
             </div>
             <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#C4A1FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
@@ -965,10 +966,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
           <div className="space-y-0.5 z-30 pt-4">
             <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#C4A1FF] transition-colors">
-              LONG-FORM VIDEOS
+              ARCHITECTURE & INTERIOR DESIGN
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
-              Cinematic brand films & editorial narrative essays.
+              Spatial storytelling, architectural tours & luxury interiors.
             </p>
           </div>
         </motion.div>
