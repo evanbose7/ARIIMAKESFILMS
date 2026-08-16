@@ -730,12 +730,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
       {/* ========================================================================= */}
       {/* B. DESKTOP LAYOUT (LARGE SCREEN SCOPED >= 1024px): ASYMMETRIC BENTO GRID */}
+      {/* 20% LARGER FOR DESKTOP: max-w-[1440px], gap-6 */}
       {/* ========================================================================= */}
-      <div className="hidden lg:grid w-full max-w-[1200px] mx-auto grid-cols-12 gap-5 relative z-20">
+      <div className="hidden lg:grid w-full max-w-[1440px] mx-auto grid-cols-12 gap-6 relative z-20">
         
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL PORTRAIT REEL - EXACT 9:16 PORTRAIT MEDIA) */}
-        {/* col-span-4, row-span-2 (~9:16 portrait ratio, spacious 696px height) */}
+        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL PORTRAIT REEL - 20% LARGER 835px) */}
+        {/* col-span-4, row-span-2 (~9:16 portrait ratio, 835px height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           id="portfolio-reels"
@@ -743,7 +744,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
           className="
-            col-span-4 row-span-2 min-h-[620px] lg:min-h-[696px] rounded-[28px] overflow-hidden
+            col-span-4 row-span-2 min-h-[620px] lg:min-h-[835px] rounded-[28px] overflow-hidden
             border border-white/15 bg-[#12071B]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
@@ -843,15 +844,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE CINEMATIC - EXACT 16:9 WIDESCREEN MEDIA) */}
-        {/* col-span-8, row-span-1 (Exact 16:9 widescreen ratio, spacious 446px height) */}
+        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE CINEMATIC - 20% LARGER 535px) */}
+        {/* col-span-8, row-span-1 (Exact 16:9 widescreen ratio, 535px height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           id="portfolio-youtube"
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-8 row-span-1 min-h-[380px] lg:min-h-[446px] rounded-[28px] overflow-hidden
+            col-span-8 row-span-1 min-h-[380px] lg:min-h-[535px] rounded-[28px] overflow-hidden
             border border-white/15 bg-[#120822]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
@@ -967,15 +968,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 03 — FOOD (MIDDLE LEFT UNDER YOUTUBE WITH UPLOADED BACKGROUND) */}
-        {/* col-span-4, row-span-1 (compact height) */}
+        {/* CARD 03 — FOOD (20% LARGER 276px HEIGHT) */}
+        {/* col-span-4, row-span-1 */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[2])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[230px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[276px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1014,15 +1015,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 04 — ARCHITECTURE & INTERIOR DESIGN (MIDDLE RIGHT BESIDE FOOD WITH UPLOADED BACKGROUND) */}
-        {/* col-span-4, row-span-1 (compact height) */}
+        {/* CARD 04 — ARCHITECTURE & INTERIOR DESIGN (20% LARGER 276px HEIGHT) */}
+        {/* col-span-4, row-span-1 */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[3])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[230px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[276px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#C4A1FF]/70 hover:shadow-[0_0_35px_rgba(196,161,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1061,15 +1062,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT EQUAL 3-CARD ROW) */}
-        {/* col-span-4, row-span-1 (compact height) */}
+        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (20% LARGER 204px HEIGHT) */}
+        {/* col-span-4, row-span-1 */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[4])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[170px] lg:min-h-[204px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1108,15 +1109,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 06 — WELL BEING (BOTTOM MIDDLE EQUAL 3-CARD ROW WITH UPLOADED BACKGROUND) */}
-        {/* col-span-4, row-span-1 (compact height) */}
+        {/* CARD 06 — WELL BEING (20% LARGER 204px HEIGHT) */}
+        {/* col-span-4, row-span-1 */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[5])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[170px] lg:min-h-[204px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1155,15 +1156,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 07 — ANIMATION (BOTTOM RIGHT EQUAL 3-CARD ROW WITH UPLOADED BACKGROUND) */}
-        {/* col-span-4, row-span-1 (compact height) */}
+        {/* CARD 07 — ANIMATION (20% LARGER 204px HEIGHT) */}
+        {/* col-span-4, row-span-1 */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[6])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[170px] lg:min-h-[204px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FFB6E6]/70 hover:shadow-[0_0_35px_rgba(255,182,230,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1196,7 +1197,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               ANIMATION
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
-              3D motion design, visual effects & animation.
+              3D motion design & animated storytelling.
             </p>
           </div>
         </motion.div>
