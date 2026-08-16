@@ -25,19 +25,22 @@ export const CtaButtons: React.FC<CtaButtonsProps> = ({
 
       {/* 2. LET'S MAKE SOMETHING (Contact Modal Trigger) */}
       {onWorkWithMeClick && (
-        <MagneticButton
+        <button
+          type="button"
           onClick={onWorkWithMeClick}
-          ariaLabel="Let's Make Something - Contact Ari"
+          aria-label="Let's Make Something - Contact Ari"
           className="
-            w-full sm:w-auto min-w-[220px] max-w-[280px]
-            bg-[#241038]/80 text-[#FFF7FF] border border-[#FF9BD2]/50
-            hover:border-[#FF9BD2] hover:bg-[#381654]/90
-            hover:shadow-[0_0_30px_rgba(255,155,210,0.5)]
+            relative inline-flex items-center justify-center gap-2
+            min-h-[48px] sm:min-h-[56px] h-[56px] w-full sm:w-auto min-w-[220px] max-w-[280px] rounded-full
+            bg-[#241038]/85 text-[#FFF7FF] font-bold text-sm tracking-wider uppercase
+            border border-[#FF9BD2]/60 shadow-[0_0_25px_rgba(255,155,210,0.4)]
+            hover:shadow-[0_0_40px_rgba(255,155,210,0.65)] hover:border-[#FF9BD2] hover:bg-[#381654]/95
+            hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer select-none gpu-layer
           "
         >
           <Sparkles className="w-4 h-4 text-[#FF9BD2] animate-pulse" />
           <span>LET'S MAKE SOMETHING</span>
-        </MagneticButton>
+        </button>
       )}
     </div>
   );

@@ -403,7 +403,6 @@ interface FinalManifestoSectionProps {
 }
 
 export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ onWorkWithMeClick }) => {
-  const [, setIsBtnHovered] = useState(false);
 
   return (
     <section className="relative w-full py-20 sm:py-32 px-4 sm:px-8 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
@@ -449,11 +448,8 @@ export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ on
           </h3>
 
           {/* Translucent Purple Glass Pill CTA Button */}
-          <motion.button
-            onMouseEnter={() => setIsBtnHovered(true)}
-            onMouseLeave={() => setIsBtnHovered(false)}
-            whileHover={{ y: -2, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <button
+            type="button"
             onClick={onWorkWithMeClick}
             className="
               relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
@@ -461,12 +457,12 @@ export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ on
               border border-[#FF9BD2]/50 backdrop-blur-xl
               text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
               shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
-              transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
+              hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
             "
           >
             <span>LET'S MAKE SOMETHING</span>
             <ArrowUpRight className="w-4 h-4 text-[#FF9BD2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.button>
+          </button>
         </motion.div>
 
       </div>
