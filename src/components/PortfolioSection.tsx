@@ -602,7 +602,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     <div
                       key={proj.id}
                       onClick={() => handleMobileCardTap(proj, section.title)}
-                      onTouchEnd={() => handleMobileCardTap(proj, section.title)}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
                         scroll-snap-align-center transition-all duration-500 cursor-pointer
@@ -1257,10 +1256,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 autoPlay
                 playsInline
                 preload="auto"
-                onCanPlay={(e) => {
-                  e.currentTarget.muted = false;
-                  e.currentTarget.play().catch(() => {});
-                }}
                 className="w-full h-full max-h-[82vh] object-cover sm:object-contain rounded-2xl"
               />
             </div>
