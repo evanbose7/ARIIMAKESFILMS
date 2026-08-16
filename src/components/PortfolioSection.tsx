@@ -301,7 +301,7 @@ interface PortfolioSectionProps {
   onOpenWorkModal?: () => void;
 }
 
-export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal: _onOpenWorkModal }) => {
+export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
   const [activeFullscreenVideo, setActiveFullscreenVideo] = useState<{ url: string; title: string } | null>(null);
   const [modalScrollTop, setModalScrollTop] = useState<number>(0);
@@ -1202,6 +1202,28 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           </div>
         </motion.div>
 
+      </div>
+
+      {/* CONNECT WITH ME BUTTON AT THE BOTTOM OF PORTFOLIO SECTION */}
+      <div className="w-full max-w-[1440px] mx-auto mt-14 sm:mt-20 flex flex-col items-center justify-center relative z-20">
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.03, y: -4 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={onOpenWorkModal}
+          className="
+            group relative inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full
+            bg-gradient-to-r from-[#FF9BD2] via-[#B388FF] to-[#FFB6E6]
+            text-[#100719] font-display font-black text-base sm:text-lg tracking-wider uppercase
+            shadow-[0_0_40px_rgba(255,155,210,0.5)] hover:shadow-[0_0_60px_rgba(255,155,210,0.8)]
+            transition-all duration-300 cursor-pointer overflow-hidden
+          "
+        >
+          <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <Sparkles className="w-5 h-5 text-[#100719] animate-pulse" />
+          <span>CONNECT WITH ME</span>
+          <ArrowUpRight className="w-5 h-5 text-[#100719] group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+        </motion.button>
       </div>
 
       {/* SIGNATURE PHILOSOPHY / DICE CREATIVE MANIFESTO (INSIDE PORTFOLIO SECTION) */}
