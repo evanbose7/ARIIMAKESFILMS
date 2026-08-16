@@ -734,23 +734,46 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       <div className="hidden lg:grid w-full max-w-[1200px] mx-auto grid-cols-12 gap-5 relative z-20">
         
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL VERTICAL - LEFT SIDE) */}
+        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL VERTICAL - FULL-BLEED REEL MEDIA) */}
         {/* col-span-4, row-span-2 (~4:7 ratio, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           id="portfolio-reels"
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
           className="
-            col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden p-5 sm:p-6
-            border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#190930] to-[#B388FF]/20
+            col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden
+            border border-white/15 bg-[#12071B]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
-            flex flex-col justify-between relative group gpu-layer scroll-mt-28
+            relative group gpu-layer scroll-mt-28 cursor-pointer
           "
         >
-          {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-2">
+          {/* 1. FULL-BLEED REEL MEDIA BACKGROUND LAYER */}
+          <div className="absolute inset-0 z-0 w-full h-full">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={desktopReelIndex}
+                src={desktopReelThumbnails[desktopReelIndex]}
+                alt="Social Reel Preview"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full object-cover select-none brightness-[1.05] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
+              />
+            </AnimatePresence>
+            
+            {/* TOP GRADIENT OVERLAY (For Header Legibility) */}
+            <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#0F0718]/90 via-[#0F0718]/45 to-transparent pointer-events-none z-10" />
+
+            {/* BOTTOM GRADIENT OVERLAY (For Footer Legibility) */}
+            <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#0F0718]/95 via-[#0F0718]/50 to-transparent pointer-events-none z-10" />
+          </div>
+
+          {/* 2. TOP UI OVERLAY HEADER */}
+          <div className="absolute top-0 inset-x-0 z-20 p-5 sm:p-6 flex items-center justify-between pointer-events-auto">
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
               <Film className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
@@ -789,54 +812,38 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
           </div>
 
-          {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16) */}
-          <div 
-            onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
-            className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/20 bg-[#121212] shadow-xl cursor-pointer group/reel my-1.5 min-h-[280px]"
-          >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={desktopReelIndex}
-                src={desktopReelThumbnails[desktopReelIndex]}
-                alt="Social Reel Preview"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full object-cover select-none brightness-[1.05] contrast-[1.05]"
-              />
-            </AnimatePresence>
+          {/* 3. CENTER PLAY BUTTON OVERLAY */}
+          <div className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-black/65 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 group-hover:scale-110 transition-transform pointer-events-none">
+            <Play className="w-5 h-5 fill-white ml-0.5" />
+          </div>
 
-            <div className="absolute top-3 right-3 z-20">
-              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
-                <InstagramIcon className="w-3.5 h-3.5 text-white" />
-              </div>
+          {/* 4. INSTAGRAM BADGE (TOP RIGHT OVERLAY) */}
+          <div className="absolute top-16 right-5 sm:right-6 z-20 pointer-events-none">
+            <div className="w-7.5 h-7.5 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg border border-white/20">
+              <InstagramIcon className="w-4 h-4 text-white" />
             </div>
+          </div>
 
-            <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 group-hover/reel:scale-110 transition-transform">
-              <Play className="w-4 h-4 fill-white ml-0.5" />
-            </div>
-
-            <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
-              <span className="font-bold text-xs text-white leading-snug line-clamp-1">
+          {/* 5. BOTTOM UI OVERLAY FOOTER */}
+          <div className="absolute bottom-0 inset-x-0 z-20 p-5 sm:p-6 flex flex-col gap-2 pointer-events-none">
+            <div className="flex items-center justify-between">
+              <span className="font-display font-bold text-sm sm:text-base text-white leading-snug line-clamp-1 drop-shadow-md">
                 {desktopReelTitles[desktopReelIndex]}
               </span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#FFB3CB] shrink-0 ml-1.5" />
+              <ExternalLink className="w-4 h-4 text-[#FFB3CB] shrink-0 ml-2" />
+            </div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-white/15">
+              <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
+                SHORT-FORM VIRAL REELS
+              </span>
+              <span className="text-[11px] font-mono text-white/70">4 REELS SHOWCASE</span>
             </div>
           </div>
-
-          {/* FOOTER LABEL */}
-          <div className="flex items-center justify-between pt-1.5">
-            <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
-              SHORT-FORM VIRAL REELS
-            </span>
-            <span className="text-[11px] font-mono text-white/50">4 REELS SHOWCASE</span>
-          </div>
-
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE HORIZONTAL - TOP RIGHT) */}
+        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE HORIZONTAL - FULL-BLEED THUMBNAIL) */}
         {/* col-span-8, row-span-1 (Aspect ~16:7, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -844,15 +851,42 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden p-5 sm:p-6
-            border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#120822] to-[#FFB6E6]/20
+            col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden
+            border border-white/15 bg-[#120822]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
-            flex flex-col justify-between relative group gpu-layer scroll-mt-28
+            relative group gpu-layer scroll-mt-28 cursor-pointer
           "
         >
-          {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-2">
+          {/* 1. FULL-BLEED YOUTUBE MEDIA BACKGROUND LAYER */}
+          <a
+            href={desktopYtUrls[desktopYtIndex]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-0 w-full h-full block overflow-hidden"
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={desktopYtIndex}
+                src={desktopYtThumbnails[desktopYtIndex]}
+                alt="YouTube Video Preview"
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-700"
+              />
+            </AnimatePresence>
+
+            {/* TOP GRADIENT OVERLAY (For Header Legibility) */}
+            <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-[#0F0718]/90 via-[#0F0718]/40 to-transparent pointer-events-none z-10" />
+
+            {/* BOTTOM GRADIENT OVERLAY (For Footer Legibility) */}
+            <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#0F0718]/95 via-[#0F0718]/45 to-transparent pointer-events-none z-10" />
+          </a>
+
+          {/* 2. TOP UI OVERLAY HEADER */}
+          <div className="absolute top-0 inset-x-0 z-20 p-5 sm:p-6 flex items-center justify-between pointer-events-auto">
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
               <Tv className="w-3.5 h-3.5 text-red-500" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
@@ -868,9 +902,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 {[0, 1, 2, 3].map((dotIdx) => (
                   <button
                     key={dotIdx}
-                    onClick={() => setDesktopYtIndex(dotIdx)}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDesktopYtIndex(dotIdx);
+                    }}
                     className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                      desktopYtIndex === dotIdx ? 'w-4 bg-red-500 shadow-[0_0_6px_#EF4444]' : 'w-1.5 bg-white/20'
+                      desktopYtIndex === dotIdx ? 'w-4 bg-red-500 shadow-[0_0_6px_#EF4444]' : 'w-1.5 bg-white/30'
                     }`}
                   />
                 ))}
@@ -902,42 +940,30 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
           </div>
 
-          {/* ACTIVE YOUTUBE SHOWCASE (WIDESCREEN 16:9) */}
-          <a 
+          {/* 3. CENTER PLAY BUTTON OVERLAY */}
+          <a
             href={desktopYtUrls[desktopYtIndex]}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-full flex-1 rounded-[16px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/yt flex items-center justify-center my-1.5 min-h-[130px]"
+            className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-red-600/90 border border-white/30 text-white flex items-center justify-center shadow-xl z-20 group-hover:scale-110 transition-transform cursor-pointer"
           >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={desktopYtIndex}
-                src={desktopYtThumbnails[desktopYtIndex]}
-                alt="YouTube Video Preview"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full object-cover select-none"
-              />
-            </AnimatePresence>
-
-            <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/25">
-              <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl group-hover/yt:scale-110 transition-transform">
-                <Play className="w-4 h-4 fill-white ml-0.5" />
-              </div>
-            </div>
-
-            <div className="absolute bottom-2.5 left-2.5 right-2.5 z-20 p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
-              <span className="font-bold text-xs text-white leading-snug line-clamp-1">
-                {desktopYtTitles[desktopYtIndex]}
-              </span>
-              <span className="flex items-center gap-1 text-[11px] font-bold text-red-400 shrink-0 ml-2.5">
-                Watch ↗
-              </span>
-            </div>
+            <Play className="w-5 h-5 fill-white ml-0.5" />
           </a>
 
+          {/* 4. BOTTOM UI OVERLAY FOOTER */}
+          <a
+            href={desktopYtUrls[desktopYtIndex]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-0 inset-x-0 z-20 p-5 sm:p-6 flex items-center justify-between cursor-pointer"
+          >
+            <span className="font-display font-bold text-sm sm:text-base text-white leading-snug line-clamp-1 drop-shadow-md">
+              {desktopYtTitles[desktopYtIndex]}
+            </span>
+            <span className="flex items-center gap-1 text-xs font-bold text-red-400 shrink-0 ml-3 bg-black/60 px-3 py-1 rounded-full border border-red-500/30 backdrop-blur-md">
+              Watch ↗
+            </span>
+          </a>
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
