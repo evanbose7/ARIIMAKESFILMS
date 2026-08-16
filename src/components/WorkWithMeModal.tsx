@@ -22,7 +22,7 @@ export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClos
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-6 select-none">
+        <div className="fixed inset-0 z-[9999999] flex items-end sm:items-center justify-center p-0 sm:p-6 pointer-events-auto select-none">
           {/* Backdrop Click */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -98,6 +98,7 @@ export function App() {
         <HeroSection
           scrollYProgress={scrollYProgress}
           onSeeMyWorkClick={handleScrollToPortfolio}
+          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
         />
 
         <EmotionalGapSection

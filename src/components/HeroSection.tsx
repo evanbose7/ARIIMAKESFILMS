@@ -14,6 +14,7 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   scrollYProgress,
+  onWorkWithMeClick,
   onSeeMyWorkClick,
 }) => {
   return (
@@ -36,8 +37,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* 3. Supporting Paragraph */}
         <SupportingParagraph />
 
-        {/* 4. Single Primary CTA Button: SEE MY WORK */}
-        <CtaButtons onSeeMyWorkClick={onSeeMyWorkClick} />
+        {/* 4. Primary CTA Buttons: SEE MY WORK & LET'S MAKE SOMETHING */}
+        <CtaButtons
+          onSeeMyWorkClick={onSeeMyWorkClick}
+          onWorkWithMeClick={onWorkWithMeClick}
+        />
 
       </div>
 
