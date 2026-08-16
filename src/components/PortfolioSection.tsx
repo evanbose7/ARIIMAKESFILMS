@@ -456,7 +456,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {PORTFOLIO_SECTIONS.map((section) => {
           const Icon = section.icon;
           const activeIdx = activeCardIds[section.id] || 0;
-          const mobileSectionId = section.id === 'social-content' ? 'portfolio-reels' : section.id === 'youtube-content' ? 'portfolio-youtube' : undefined;
+          const mobileSectionId = (section.id === 'social-content' || section.id === 'reels')
+            ? 'portfolio-reels'
+            : (section.id === 'youtube' || section.id === 'youtube-content')
+            ? 'portfolio-youtube'
+            : undefined;
 
           return (
             <div key={section.id} id={mobileSectionId} className="w-full space-y-4 scroll-mt-24">
