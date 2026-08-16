@@ -1121,56 +1121,45 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   <X className="w-5 h-5" />
                 </button>
 
-                {/* MODAL HEADER WITH LEFT & RIGHT ARROWS FOR CAROUSEL */}
-                <div className="flex items-start justify-between border-b border-white/15 pb-6 pr-12">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
-                      <selectedCard.icon className="w-4 h-4" />
-                      <span>{selectedCard.subtitle}</span>
-                    </div>
-                    <h3 className="font-display font-black text-2xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
-                      {selectedCard.title}
-                    </h3>
-                    <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
-                      {selectedCard.description}
-                    </p>
+                {/* MODAL HEADER */}
+                <div className="space-y-2 border-b border-white/15 pb-6 pr-12">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
+                    <selectedCard.icon className="w-4 h-4" />
+                    <span>{selectedCard.subtitle}</span>
                   </div>
-
-                  {/* LEFT & RIGHT NAVIGATION ARROW BUTTONS */}
-                  <div className="hidden sm:flex items-center gap-3 self-center pt-2">
-                    <button
-                      type="button"
-                      onClick={scrollModalLeft}
-                      aria-label="Scroll left"
-                      className="
-                        w-11 h-11 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF]
-                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                        flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg active:scale-95
-                      "
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={scrollModalRight}
-                      aria-label="Scroll right"
-                      className="
-                        w-11 h-11 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF]
-                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                        flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg active:scale-95
-                      "
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </button>
-                  </div>
+                  <h3 className="font-display font-black text-2xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
+                    {selectedCard.title}
+                  </h3>
+                  <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
+                    {selectedCard.description}
+                  </p>
                 </div>
 
-                {/* MODAL PROJECTS CAROUSEL CONTAINER (HORIZONTALLY SCROLLABLE WITH NAV ARROWS) */}
-                <div
-                  ref={modalScrollContainerRef}
-                  className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-smooth snap-x items-stretch w-full"
-                >
+                {/* MODAL PROJECTS CAROUSEL WITH END-SIDE NAVIGATION BUTTONS */}
+                <div className="relative w-full py-6">
+                  
+                  {/* LEFT ARROW BUTTON AT FAR LEFT END SIDE */}
+                  <button
+                    type="button"
+                    onClick={scrollModalLeft}
+                    aria-label="Scroll left"
+                    className="
+                      absolute left-0 top-1/2 -translate-y-1/2 z-30
+                      w-12 h-12 rounded-full bg-black/80 border border-white/30 text-white
+                      hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                      shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
+                      flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
+                      -translate-x-3 sm:-translate-x-5
+                    "
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+
+                  {/* CAROUSEL CONTAINER */}
+                  <div
+                    ref={modalScrollContainerRef}
+                    className="flex flex-row overflow-x-auto gap-6 pb-2 no-scrollbar scroll-smooth snap-x items-stretch w-full px-2"
+                  >
                   {selectedCard.projects.map((proj, idx) => (
                     <div
                       key={proj.id}
@@ -1259,6 +1248,25 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                       </div>
                     </div>
                   ))}
+                  </div>
+
+                  {/* RIGHT ARROW BUTTON AT FAR RIGHT END SIDE */}
+                  <button
+                    type="button"
+                    onClick={scrollModalRight}
+                    aria-label="Scroll right"
+                    className="
+                      absolute right-0 top-1/2 -translate-y-1/2 z-30
+                      w-12 h-12 rounded-full bg-black/80 border border-white/30 text-white
+                      hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                      shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
+                      flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
+                      translate-x-3 sm:translate-x-5
+                    "
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+
                 </div>
 
                 {/* MODAL FOOTER */}
