@@ -120,9 +120,9 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
     previewGradient: 'from-[#FF9BD2]/35 via-[#1D0A33] to-[#FFB6E6]/30',
     icon: Sparkles,
     projects: [
-      { id: 'jwl-1', title: 'FINE JEWELRY REEL 01', description: 'Macro reflections and diamond brilliance captured in high-contrast luxury grade.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-1.mp4' },
-      { id: 'jwl-2', title: 'LUXURY CRAFTSMANSHIP 02', description: 'Sensory storytelling highlighting gold textures, artisan details, and elegance.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-2.mp4' },
-      { id: 'jwl-3', title: 'INTERNATIONAL BRAND FEATURE 03', description: 'Editorial global brand film designed for international luxury campaigns.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-3.mp4' },
+      { id: 'jwl-1', title: 'FINE JEWELRY REEL 01', description: 'Macro reflections and diamond brilliance captured in high-contrast luxury grade.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16', videoUrl: '/assets/jewellery-1.mp4' },
+      { id: 'jwl-2', title: 'LUXURY CRAFTSMANSHIP 02', description: 'Sensory storytelling highlighting gold textures, artisan details, and elegance.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/jewellery-2.mp4' },
+      { id: 'jwl-3', title: 'INTERNATIONAL BRAND FEATURE 03', description: 'Editorial global brand film designed for international luxury campaigns.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/jewellery-3.mp4' },
     ],
   },
   // 6. VIDEO EDITING (CARD 06: WIDE STRIP - BOTTOM RIGHT)
@@ -1012,7 +1012,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT WIDE STRIP) */}
+        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT WIDE STRIP WITH UPLOADED BACKGROUND) */}
         {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -1020,30 +1020,39 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
-            border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#1D0A33] to-[#FFB6E6]/20
-            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            relative col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
-          <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
+          {/* UPLOADED BACKGROUND IMAGE WITH BRIGHTER LIGHT OVERLAY */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/assets/jewelry_bento_bg.jpg"
+              alt="Jewelry Category Background"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 brightness-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/90 via-[#12071B]/35 to-black/20 z-10" />
+          </div>
+
+          <div className="relative flex items-center justify-between z-30">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 LUXURY & CRAFTSMANSHIP
               </span>
             </div>
-            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+            <div className="w-7 h-7 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] backdrop-blur-md group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-0.5 z-30 pt-3">
-            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
+          <div className="relative space-y-0.5 z-30 pt-3">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors drop-shadow-md">
               JEWELRY (INTERNATIONAL BRANDS)
             </h3>
-            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
+            <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
               High-end jewelry films, international brand stories & luxury craftsmanship.
             </p>
           </div>
@@ -1125,12 +1134,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                className="
-                  relative z-10 w-full max-w-6xl max-h-[96vh] rounded-[36px]
+                className={`
+                  relative z-10 w-full ${selectedCard.projects.length > 3 ? 'max-w-6xl' : 'max-w-5xl'} max-h-[96vh] rounded-[36px]
                   border border-[#FF9BD2]/40 bg-[#140824] p-5 sm:p-7
                   shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
                   overflow-y-auto selection:bg-[#FF9BD2] selection:text-[#100719]
-                "
+                `}
               >
                 {/* MODAL CLOSE BUTTON */}
                 <button
@@ -1156,42 +1165,46 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   </p>
                 </div>
 
-                {/* MODAL PROJECTS CAROUSEL WITH END-SIDE NAVIGATION BUTTONS */}
+                {/* MODAL PROJECTS CAROUSEL / GRID WITH END-SIDE NAV ARROWS ONLY WHEN > 3 PROJECTS */}
                 <div className="relative w-full py-4">
                   
-                  {/* LEFT ARROW BUTTON AT FAR LEFT END SIDE */}
-                  <button
-                    type="button"
-                    onClick={scrollModalLeft}
-                    aria-label="Scroll left"
-                    className="
-                      absolute left-0 top-1/2 -translate-y-1/2 z-30
-                      w-11 h-11 rounded-full bg-black/80 border border-white/30 text-white
-                      hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                      shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
-                      flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
-                      -translate-x-2 sm:-translate-x-4
-                    "
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
+                  {/* LEFT ARROW BUTTON AT FAR LEFT END SIDE (ONLY IF > 3 PROJECTS) */}
+                  {selectedCard.projects.length > 3 && (
+                    <button
+                      type="button"
+                      onClick={scrollModalLeft}
+                      aria-label="Scroll left"
+                      className="
+                        absolute left-0 top-1/2 -translate-y-1/2 z-30
+                        w-11 h-11 rounded-full bg-black/80 border border-white/30 text-white
+                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                        shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
+                        flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
+                        -translate-x-2 sm:-translate-x-4
+                      "
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                  )}
 
-                  {/* CAROUSEL CONTAINER */}
+                  {/* CAROUSEL / GRID CONTAINER */}
                   <div
                     ref={modalScrollContainerRef}
                     style={{ scrollBehavior: 'smooth' }}
-                    className="flex flex-row overflow-x-auto gap-5 pb-1 no-scrollbar scroll-smooth snap-x items-stretch w-full px-1"
+                    className={
+                      selectedCard.projects.length > 3
+                        ? "flex flex-row overflow-x-auto gap-5 pb-1 no-scrollbar scroll-smooth snap-x items-stretch w-full px-1"
+                        : "grid grid-cols-1 md:grid-cols-3 gap-5 w-full items-stretch"
+                    }
                   >
                   {selectedCard.projects.map((proj, idx) => (
                     <div
                       key={proj.id}
-                      className="
-                        flex-none w-[270px] sm:w-[300px] md:w-[320px] rounded-[24px] border border-white/15
-                        bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
-                        p-3.5 sm:p-4 flex flex-col justify-between space-y-3
-                        hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
-                        transition-all duration-300 group/card snap-start
-                      "
+                      className={
+                        selectedCard.projects.length > 3
+                          ? "flex-none w-[270px] sm:w-[300px] md:w-[320px] rounded-[24px] border border-white/15 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01] p-3.5 sm:p-4 flex flex-col justify-between space-y-3 hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)] transition-all duration-300 group/card snap-start"
+                          : "w-full rounded-[24px] border border-white/15 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01] p-3.5 sm:p-4 flex flex-col justify-between space-y-3 hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)] transition-all duration-300 group/card"
+                      }
                     >
                       {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER WITH CLICK-TO-PLAY */}
                       <div
@@ -1272,23 +1285,24 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   ))}
                   </div>
 
-                  {/* RIGHT ARROW BUTTON AT FAR RIGHT END SIDE */}
-                  <button
-                    type="button"
-                    onClick={scrollModalRight}
-                    aria-label="Scroll right"
-                    className="
-                      absolute right-0 top-1/2 -translate-y-1/2 z-30
-                      w-12 h-12 rounded-full bg-black/80 border border-white/30 text-white
-                      hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                      shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
-                      flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
-                      translate-x-3 sm:translate-x-5
-                    "
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-
+                  {/* RIGHT ARROW BUTTON AT FAR RIGHT END SIDE (ONLY IF > 3 PROJECTS) */}
+                  {selectedCard.projects.length > 3 && (
+                    <button
+                      type="button"
+                      onClick={scrollModalRight}
+                      aria-label="Scroll right"
+                      className="
+                        absolute right-0 top-1/2 -translate-y-1/2 z-30
+                        w-11 h-11 rounded-full bg-black/80 border border-white/30 text-white
+                        hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                        shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
+                        flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
+                        translate-x-2 sm:translate-x-4
+                      "
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  )}
                 </div>
 
                 {/* MODAL FOOTER */}
