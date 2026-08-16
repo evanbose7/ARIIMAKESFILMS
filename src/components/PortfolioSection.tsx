@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4 text-white' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -287,69 +287,6 @@ interface PortfolioSectionProps {
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
-  
-  // Mobile Full-Screen Video State (Phone scoped)
-  const [activeMobileVideo, setActiveMobileVideo] = useState<{
-    title: string;
-    category: string;
-    videoUrl: string;
-  } | null>(null);
-
-  // Handle phone hardware / browser back button to dismiss full-screen video
-  useEffect(() => {
-    if (activeMobileVideo) {
-      window.history.pushState({ modal: 'mobile-video-player' }, '');
-      const handlePopState = () => {
-        setActiveMobileVideo(null);
-      };
-      window.addEventListener('popstate', handlePopState);
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-      };
-    }
-  }, [activeMobileVideo]);
-
-  const handleMobileCardTap = (
-    proj: ProjectCardItem,
-    categoryTitle: string
-  ) => {
-    if (!proj.videoUrl) return;
-
-    setActiveMobileVideo({
-      title: proj.title,
-      category: categoryTitle,
-      videoUrl: proj.videoUrl,
-    });
-  };
-
-  const touchStartPos = React.useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-
-  const handleMobileTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length > 0) {
-      touchStartPos.current = {
-        x: e.touches[0].clientX,
-        y: e.touches[0].clientY,
-      };
-    }
-  };
-
-  const handleMobileTouchEnd = (
-    e: React.TouchEvent,
-    proj: ProjectCardItem,
-    categoryTitle: string
-  ) => {
-    if (e.changedTouches.length > 0) {
-      const touchEnd = e.changedTouches[0];
-      const diffX = Math.abs(touchEnd.clientX - touchStartPos.current.x);
-      const diffY = Math.abs(touchEnd.clientY - touchStartPos.current.y);
-
-      // Distinguish tap from swipe scroll (< 12px movement is a TAP)
-      if (diffX < 12 && diffY < 12) {
-        handleMobileCardTap(proj, categoryTitle);
-      }
-    }
-  };
-
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
@@ -629,12 +566,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   return (
                     <div
                       key={proj.id}
-                      onClick={() => handleMobileCardTap(proj, section.title)}
-                      onTouchStart={handleMobileTouchStart}
-                      onTouchEnd={(e) => handleMobileTouchEnd(e, proj, section.title)}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
-                        scroll-snap-align-center transition-all duration-500 cursor-pointer
+                        scroll-snap-align-center transition-all duration-500
                         ${section.mobileCardWidth}
                         ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
                       `}
@@ -645,7 +579,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                           relative w-full rounded-[24px] overflow-hidden
                           border border-white/15 bg-gradient-to-br ${proj.gradientBg}
                           shadow-[0_16px_45px_rgba(0,0,0,0.5)]
-                          transition-all duration-500 cursor-pointer group gpu-layer
+                          transition-all duration-500 group gpu-layer
                           ${proj.aspectRatio === '16/9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}
                           ${isActive ? 'shadow-[0_0_25px_rgba(255,155,210,0.3)] border-[#FF9BD2]/40' : ''}
                         `}
@@ -653,26 +587,12 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         {proj.videoUrl ? (
                           <>
                             <video
-                              ref={(el) => {
-                                if (el) {
-                                  el.defaultMuted = true;
-                                  el.muted = true;
-                                  el.setAttribute('muted', '');
-                                }
-                              }}
                               src={proj.videoUrl}
                               autoPlay
                               loop
                               muted
                               playsInline
                               preload="auto"
-                              onPlay={(e) => {
-                                e.currentTarget.muted = true;
-                              }}
-                              onLoadedData={(e) => {
-                                e.currentTarget.muted = true;
-                                e.currentTarget.play().catch(() => {});
-                              }}
                               className="w-full h-full object-cover rounded-[24px]"
                             />
                             <div className="absolute top-3 left-3 z-20 pointer-events-none">
@@ -710,7 +630,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         )}
                       </div>
 
-                      <div className="space-y-1 px-1 text-left pointer-events-none">
+                      <div className="space-y-1 px-1 text-left">
                         <h4 className="font-display font-bold text-base text-[#FFF7FF] tracking-tight uppercase">
                           {proj.title}
                         </h4>
@@ -1233,80 +1153,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </motion.div>
 
           </div>
-        )}
-      </AnimatePresence>
-
-      {/* ========================================================================= */}
-      {/* D. MOBILE FULL-SCREEN VIDEO PLAYER WITH STEREO SOUND (PHONE SCOPED) */}
-      {/* ========================================================================= */}
-      <AnimatePresence>
-        {activeMobileVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-0 z-[999999] w-screen h-screen bg-[#000000] flex flex-col items-center justify-between p-3 sm:p-5 select-none overflow-hidden"
-          >
-            {/* Top header bar */}
-            <div className="w-full max-w-lg flex items-center justify-between py-2 px-1 z-50 shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveMobileVideo(null);
-                  if (window.history.state?.modal === 'mobile-video-player') {
-                    window.history.back();
-                  }
-                }}
-                className="px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] flex items-center gap-1.5 text-xs font-mono font-bold transition-all cursor-pointer shadow-lg shrink-0"
-                aria-label="Back to Portfolio"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>BACK</span>
-              </button>
-
-              <div className="flex flex-col text-right">
-                <span className="text-[11px] font-mono font-bold text-[#FF9BD2] uppercase tracking-widest flex items-center justify-end gap-1.5">
-                  <span>{activeMobileVideo.category}</span>
-                  <span className="text-white/40">•</span>
-                  <span className="text-[#FFB6E6]">STEREO SOUND ✦</span>
-                </span>
-                <h3 className="font-display font-black text-sm sm:text-base text-[#FFF7FF] tracking-tight line-clamp-1">
-                  {activeMobileVideo.title}
-                </h3>
-              </div>
-            </div>
-
-            {/* Video container */}
-            <div className="relative w-full max-w-lg flex-1 flex items-center justify-center rounded-2xl overflow-hidden bg-[#000000] border border-white/10 shadow-2xl my-2">
-              <video
-                key={activeMobileVideo.videoUrl}
-                src={activeMobileVideo.videoUrl}
-                controls
-                autoPlay
-                playsInline
-                preload="auto"
-                className="w-full h-full max-h-[82vh] object-cover sm:object-contain rounded-2xl"
-              />
-            </div>
-
-            {/* Bottom info bar */}
-            <div className="w-full max-w-lg text-center py-1.5 z-50 shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveMobileVideo(null);
-                  if (window.history.state?.modal === 'mobile-video-player') {
-                    window.history.back();
-                  }
-                }}
-                className="px-6 py-2 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs uppercase tracking-wider hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
-              >
-                RETURN TO CARDS ✕
-              </button>
-            </div>
-
-          </motion.div>
         )}
       </AnimatePresence>
 
