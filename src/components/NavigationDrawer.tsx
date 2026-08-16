@@ -1,6 +1,20 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Play, Tv, Heart, ArrowRight, Sparkles, Send, Globe, Share2 } from 'lucide-react';
+import { X, Play, Tv, Heart, ArrowRight, Sparkles } from 'lucide-react';
+
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5 text-white' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5 text-white' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
 
 interface NavigationDrawerProps {
   isOpen: boolean;
@@ -40,6 +54,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   isOpen,
   onClose,
   onSelectPortfolioLink,
+  onWorkWithMeClick,
 }) => {
   const cardContainerVariants = {
     hidden: {},
@@ -62,6 +77,9 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
       },
     },
   };
+
+  const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
+  const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
 
   return (
     <AnimatePresence>
@@ -144,12 +162,12 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
               </button>
             </div>
 
-            {/* PORTFOLIO SHORTCUT LINKS (STACKED GLASS CARDS) */}
+            {/* PORTFOLIO SHORTCUT LINKS & CONNECT WITH ME BUTTON */}
             <motion.div
               variants={cardContainerVariants}
               initial="hidden"
               animate="show"
-              className="flex-1 flex flex-col justify-center gap-[18px] py-8 z-10"
+              className="flex-1 flex flex-col justify-center gap-[16px] py-6 z-10"
             >
               {PORTFOLIO_CARDS.map((card) => {
                 const Icon = card.icon;
@@ -165,12 +183,12 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                       onClose();
                     }}
                     className="
-                      group relative w-full rounded-[28px] p-[22px]
+                      group relative w-full rounded-[28px] p-[20px]
                       bg-white/[0.06] border border-white/[0.12]
                       backdrop-blur-[18px] shadow-[0_8px_32px_rgba(179,136,255,0.18)]
                       hover:border-[#FFB6E6] hover:bg-white/[0.10]
                       transition-all duration-300 cursor-pointer overflow-hidden
-                      flex items-center justify-between min-h-[96px]
+                      flex items-center justify-between min-h-[90px]
                     "
                   >
                     {/* Pink Glow behind card on hover */}
@@ -179,11 +197,11 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                     <div className="flex flex-col space-y-1 relative z-10">
                       <div className="flex items-center gap-2">
                         <Icon className="w-4 h-4 text-[#FF9BD2] group-hover:scale-110 transition-transform" />
-                        <h3 className="font-display font-bold text-[22px] text-[#FFF7FF] tracking-wide group-hover:text-[#FF9BD2] transition-colors">
+                        <h3 className="font-display font-bold text-[20px] text-[#FFF7FF] tracking-wide group-hover:text-[#FF9BD2] transition-colors">
                           {card.title}
                         </h3>
                       </div>
-                      <p className="text-[14px] text-[#FFF7FF]/70 font-normal leading-snug">
+                      <p className="text-[13px] text-[#FFF7FF]/70 font-normal leading-snug">
                         {card.caption}
                       </p>
                     </div>
@@ -194,35 +212,66 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                   </motion.div>
                 );
               })}
+
+              {/* 4TH BUTTON: CONNECT WITH ME */}
+              <motion.div
+                variants={cardVariants}
+                whileHover={{ y: -6, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  if (onWorkWithMeClick) onWorkWithMeClick();
+                  onClose();
+                }}
+                className="
+                  group relative w-full rounded-[28px] p-[20px]
+                  bg-gradient-to-r from-[#FF9BD2]/20 via-[#1F0A33] to-[#B388FF]/20
+                  border border-[#FF9BD2]/40
+                  backdrop-blur-[18px] shadow-[0_8px_32px_rgba(255,155,210,0.25)]
+                  hover:border-[#FF9BD2] hover:bg-white/[0.14]
+                  transition-all duration-300 cursor-pointer overflow-hidden
+                  flex items-center justify-between min-h-[90px]
+                "
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FF9BD2]/20 to-[#B388FF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                <div className="flex flex-col space-y-1 relative z-10">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#FF9BD2] group-hover:scale-110 transition-transform" />
+                    <h3 className="font-display font-bold text-[20px] text-[#FFF7FF] tracking-wide group-hover:text-[#FF9BD2] transition-colors uppercase">
+                      CONNECT WITH ME
+                    </h3>
+                  </div>
+                  <p className="text-[13px] text-[#FFF7FF]/80 font-normal leading-snug">
+                    Instagram & WhatsApp direct contact
+                  </p>
+                </div>
+
+                <div className="relative z-10 w-9 h-9 rounded-full bg-[#FF9BD2]/20 border border-[#FF9BD2]/40 flex items-center justify-center group-hover:border-[#FF9BD2] group-hover:bg-[#FF9BD2] transition-all shrink-0">
+                  <ArrowRight className="w-4 h-4 text-[#FFF7FF] group-hover:text-[#100719] group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
             </motion.div>
 
-            {/* BOTTOM SOCIAL AREA */}
+            {/* BOTTOM SOCIAL AREA (ONLY INSTAGRAM & WHATSAPP SYMBOLS) */}
             <div className="pt-4 border-t border-white/10 shrink-0 z-10 flex flex-col space-y-3">
-              <div className="flex items-center justify-between text-[14px] font-medium text-[#FFF7FF]/80">
+              <div className="flex items-center justify-center gap-8 text-[#FFF7FF]">
                 <a
-                  href="https://instagram.com"
+                  href={instagramUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#FF9BD2] hover:drop-shadow-[0_0_8px_#FF9BD2] transition-all py-1.5 px-2 rounded min-h-[48px] flex items-center gap-1.5"
+                  aria-label="Instagram"
+                  className="p-3.5 rounded-full bg-white/[0.08] border border-white/15 hover:border-[#FF9BD2] hover:bg-[#FF9BD2]/20 hover:scale-110 transition-all cursor-pointer flex items-center justify-center group shadow-md"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#FF9BD2]" />
-                  <span>Instagram</span>
+                  <InstagramIcon className="w-5.5 h-5.5 text-[#FF9BD2] group-hover:scale-110 transition-transform" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#FF9BD2] hover:drop-shadow-[0_0_8px_#FF9BD2] transition-all py-1.5 px-2 rounded min-h-[48px] flex items-center gap-1.5"
+                  aria-label="WhatsApp"
+                  className="p-3.5 rounded-full bg-white/[0.08] border border-white/15 hover:border-[#25D366] hover:bg-[#25D366]/20 hover:scale-110 transition-all cursor-pointer flex items-center justify-center group shadow-md"
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#B388FF]" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href="mailto:ari@creator.com"
-                  className="hover:text-[#FF9BD2] hover:drop-shadow-[0_0_8px_#FF9BD2] transition-all py-1.5 px-2 rounded min-h-[48px] flex items-center gap-1.5"
-                >
-                  <Send className="w-3.5 h-3.5 text-[#FFB6E6]" />
-                  <span>Email</span>
+                  <WhatsAppIcon className="w-5.5 h-5.5 text-[#25D366] group-hover:scale-110 transition-transform" />
                 </a>
               </div>
             </div>
