@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Crown, CheckCircle2 } from 'lucide-react';
+import { X, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
+
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6 text-white' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
 
 interface WorkWithMeModalProps {
   isOpen: boolean;
@@ -8,137 +16,131 @@ interface WorkWithMeModalProps {
 }
 
 export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClose }) => {
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedServices, setSelectedServices] = useState<string[]>(['AI VIDEO', 'STRATEGY']);
-  const [ideaText, setIdeaText] = useState('');
-
-  const services = ['AI VIDEO', 'STRATEGY', 'VIDEO EDITING', 'UGC CONTENT', 'STORYTELLING'];
-
-  const toggleService = (srv: string) => {
-    if (selectedServices.includes(srv)) {
-      setSelectedServices(selectedServices.filter((s) => s !== srv));
-    } else {
-      setSelectedServices([...selectedServices, srv]);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 2500);
-  };
+  const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
+  const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 select-none">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-6 select-none">
+          {/* Backdrop Click */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-[#0F0817]/90 backdrop-blur-xl"
+            className="absolute inset-0 bg-black/80 backdrop-blur-md z-0"
           />
 
-          {/* Modal Card */}
+          {/* Modal / Mobile Bottom Sheet Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="
-              relative w-full max-w-lg bg-[#1C102B] border border-[#F472B6]/40
-              rounded-3xl p-6 md:p-8 shadow-[0_20px_60px_rgba(236,72,153,0.3)] z-10
-              max-h-[90vh] overflow-y-auto no-scrollbar royal-rim-light text-left
+              relative z-10 w-full max-w-lg rounded-t-3xl sm:rounded-3xl
+              border border-white/15 bg-[#12071B] p-6 sm:p-8
+              shadow-[0_25px_80px_rgba(255,155,210,0.35)] overflow-hidden text-left
             "
           >
-            {/* Close Button (Touch target >= 44px) */}
-            <button
-              onClick={onClose}
-              aria-label="Close modal"
-              className="absolute top-4 right-4 min-w-[44px] min-h-[44px] w-[44px] h-[44px] rounded-full bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors flex items-center justify-center cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            {/* Ambient Halo Glows */}
+            <div className="pointer-events-none absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#FF9BD2]/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#25D366]/20 blur-3xl" />
 
-            {submitted ? (
-              <div className="py-12 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#EC4899]/20 text-[#F472B6] flex items-center justify-center mx-auto border border-[#F472B6]">
-                  <CheckCircle2 className="w-8 h-8 animate-bounce" />
-                </div>
-                <h3 className="font-display font-bold text-2xl text-[#FDF4F8]">INQUIRY RECEIVED</h3>
-                <p className="text-sm text-[#FDF4F8]/70 max-w-xs mx-auto">
-                  Ari will review your concept and respond within 24 hours.
-                </p>
+            {/* Mobile Pull Handle Indicator */}
+            <div className="sm:hidden w-12 h-1.5 rounded-full bg-white/20 mx-auto mb-5" />
+
+            {/* Header Bar */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#FF9BD2]">
+                  LET'S TALK
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight mt-0.5">
+                  CHOOSE HOW TO CONNECT
+                </h3>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 pt-2">
-                <div className="pr-10">
-                  <span className="text-[11px] font-mono text-[#F472B6] tracking-widest uppercase flex items-center gap-1">
-                    <Crown className="w-3.5 h-3.5 text-[#F472B6]" /> ROYAL CREATOR INQUIRY
-                  </span>
-                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[#FDF4F8] mt-1">
-                    WORK WITH ARI
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#FDF4F8]/60 mt-1">
-                    Select what you need help bringing to life.
+
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close modal"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-all cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* 2 Options Cards: Instagram & WhatsApp */}
+            <div className="flex flex-col gap-4">
+              
+              {/* Option 1: Instagram DM */}
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className="
+                  group relative flex items-center gap-4 rounded-2xl
+                  border border-white/15 bg-[#1A0B26] p-4 sm:p-5
+                  transition-all duration-300 hover:scale-[1.02]
+                  hover:border-[#FF9BD2]/60 hover:bg-[#250E36]
+                  hover:shadow-[0_10px_30px_rgba(255,155,210,0.3)]
+                  cursor-pointer overflow-hidden
+                "
+              >
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#FFB6E6] to-[#FF9BD2] text-white shadow-lg group-hover:scale-110 transition-transform">
+                  <InstagramIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                </div>
+
+                <div className="flex flex-col flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-sm sm:text-base text-white group-hover:text-[#FFB6E6] transition-colors">
+                      Instagram DM
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-[#FF9BD2] transition-colors" />
+                  </div>
+                  <p className="text-xs text-white/60 truncate mt-0.5">
+                    @ariimakesfilms · Brand & Collab Inquiries
                   </p>
                 </div>
+              </a>
 
-                {/* Service Selection (Tap targets >= 44px) */}
-                <div>
-                  <label className="block text-xs font-mono text-white/70 mb-2">SERVICES NEEDED</label>
-                  <div className="flex flex-wrap gap-2">
-                    {services.map((srv) => {
-                      const isSelected = selectedServices.includes(srv);
-                      return (
-                        <button
-                          type="button"
-                          key={srv}
-                          onClick={() => toggleService(srv)}
-                          className={`
-                            min-h-[44px] px-4 py-2 rounded-full text-xs font-medium border transition-all cursor-pointer flex items-center justify-center
-                            ${
-                              isSelected
-                                ? 'bg-gradient-to-r from-[#EC4899] to-[#A855F7] text-[#13091F] border-[#F472B6] font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)]'
-                                : 'bg-white/5 border-white/10 text-white/70 hover:border-white/30'
-                            }
-                          `}
-                        >
-                          {srv}
-                        </button>
-                      );
-                    })}
+              {/* Option 2: Direct WhatsApp Chat */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className="
+                  group relative flex items-center gap-4 rounded-2xl
+                  border border-white/15 bg-[#1A0B26] p-4 sm:p-5
+                  transition-all duration-300 hover:scale-[1.02]
+                  hover:border-[#25D366]/60 hover:bg-[#0E261A]
+                  hover:shadow-[0_10px_30px_rgba(37,211,102,0.3)]
+                  cursor-pointer overflow-hidden
+                "
+              >
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white shadow-lg group-hover:scale-110 transition-transform">
+                  <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 fill-white/20" />
+                </div>
+
+                <div className="flex flex-col flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-sm sm:text-base text-white group-hover:text-[#25D366] transition-colors">
+                      WhatsApp Direct
+                    </h4>
+                    <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all" />
                   </div>
+                  <p className="text-xs text-white/60 truncate mt-0.5">
+                    +91 76668 37735 · Direct Collaborations
+                  </p>
                 </div>
+              </a>
 
-                {/* Project Idea Input */}
-                <div>
-                  <label className="block text-xs font-mono text-white/70 mb-1">YOUR IDEA / CONCEPT</label>
-                  <textarea
-                    rows={3}
-                    value={ideaText}
-                    onChange={(e) => setIdeaText(e.target.value)}
-                    placeholder="Describe what's in your head, brand goal, or vision..."
-                    className="w-full bg-[#0F0817] border border-[#F472B6]/20 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-[#F472B6] transition-colors resize-none placeholder:text-white/30"
-                    required
-                  />
-                </div>
+            </div>
 
-                {/* Submit Button (Touch target >= 48px) */}
-                <button
-                  type="submit"
-                  className="w-full min-h-[48px] h-12 rounded-full bg-gradient-to-r from-[#EC4899] via-[#F472B6] to-[#A855F7] text-[#13091F] font-bold text-sm flex items-center justify-center gap-2 transition-colors pink-glow-primary uppercase tracking-wider cursor-pointer"
-                >
-                  <span>SEND DIRECT INQUIRY</span>
-                  <Send className="w-4 h-4 text-[#13091F]" />
-                </button>
-              </form>
-            )}
           </motion.div>
         </div>
       )}
