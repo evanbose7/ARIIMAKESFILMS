@@ -1298,15 +1298,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                       {activeFullscreenVideo.title}
                     </h4>
                   </div>
-
-                  <a
-                    href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,155,210,0.4)] cursor-pointer"
-                  >
-                    WATCH ON INSTAGRAM ✦
-                  </a>
                 </div>
 
               </motion.div>
