@@ -284,8 +284,9 @@ interface PortfolioSectionProps {
   onOpenWorkModal?: () => void;
 }
 
-export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
+export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal: _onOpenWorkModal }) => {
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
+  const [activeFullscreenVideo, setActiveFullscreenVideo] = useState<{ url: string; title: string } | null>(null);
   const [modalScrollTop, setModalScrollTop] = useState<number>(0);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
   // Desktop Internal Carousel States
@@ -1045,7 +1046,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       <SignaturePhilosophySection />
 
       {/* ========================================================================= */}
-      {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL (HORIZONTALLY ARRANGED CARDS) */}
+      {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL (HORIZONTALLY FIT CARDS) */}
       {/* ========================================================================= */}
       {createPortal(
         <AnimatePresence>
@@ -1078,7 +1079,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                 className="
-                  relative z-10 w-full max-w-5xl max-h-[92vh] rounded-[36px]
+                  relative z-10 w-full max-w-6xl max-h-[92vh] rounded-[36px]
                   border border-[#FF9BD2]/40 bg-[#140824] p-6 sm:p-8
                   shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
                   overflow-y-auto selection:bg-[#FF9BD2] selection:text-[#100719]
@@ -1108,21 +1109,29 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   </p>
                 </div>
 
-                {/* MODAL PROJECTS HORIZONTALLY ARRANGED CARDS */}
-                <div className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-snap-x items-stretch">
+                {/* MODAL PROJECTS GRID - ALL CARDS FULLY VISIBLE ON DESKTOP */}
+                <div className="py-6 grid grid-cols-1 md:grid-cols-3 gap-6 w-full items-stretch">
                   {selectedCard.projects.map((proj, idx) => (
                     <div
                       key={proj.id}
                       className="
-                        flex-none w-[280px] sm:w-[320px] rounded-[28px] border border-white/15
+                        w-full rounded-[28px] border border-white/15
                         bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
                         p-4.5 flex flex-col justify-between space-y-4
                         hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
-                        transition-all duration-300 group scroll-snap-align-center
+                        transition-all duration-300 group/card
                       "
                     >
-                      {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER */}
-                      <div className="relative w-full aspect-[9/16] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg">
+                      {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER WITH CLICK-TO-PLAY */}
+                      <div
+                        onClick={() => {
+                          setActiveFullscreenVideo({
+                            url: proj.videoUrl || proj.url || '/assets/food-1.mp4',
+                            title: proj.title,
+                          });
+                        }}
+                        className="relative w-full aspect-[9/16] max-h-[340px] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/vid"
+                      >
                         {proj.videoUrl ? (
                           <video
                             src={proj.videoUrl}
@@ -1136,10 +1145,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         ) : proj.thumbnail ? (
                           <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[22px]" />
                         ) : (
-                          <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`}>
-                            <Play className="w-10 h-10 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
-                          </div>
+                          <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`} />
                         )}
+
+                        {/* CENTERED HOVER PLAY OVERLAY */}
+                        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] opacity-0 group-hover/vid:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                          <div className="w-14 h-14 rounded-full bg-[#FF9BD2] text-[#100719] shadow-[0_0_30px_rgba(255,155,210,0.8)] flex items-center justify-center transform scale-90 group-hover/vid:scale-100 transition-transform">
+                            <Play className="w-6 h-6 fill-current ml-0.5" />
+                          </div>
+                        </div>
 
                         {/* NUMBER BADGE */}
                         <div className="absolute top-3 left-3 z-20 pointer-events-none">
@@ -1149,10 +1163,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         </div>
                       </div>
 
-                      {/* DETAILS & ACTION BUTTON */}
+                      {/* DETAILS & PLAY BUTTON (DESKTOP FULLSCREEN TRIGGER) */}
                       <div className="space-y-2 flex-1 flex flex-col justify-between">
                         <div>
-                          <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors line-clamp-2">
+                          <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover/card:text-[#FF9BD2] transition-colors line-clamp-2">
                             {proj.title}
                           </h4>
                           <p className="text-xs text-[#FFF7FF]/70 line-clamp-3 mt-1 leading-relaxed">
@@ -1160,25 +1174,27 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                           </p>
                         </div>
 
+                        {/* CIRCULAR GLOWING PLAY BUTTON (DESKTOP ONLY) */}
                         <button
+                          type="button"
                           onClick={() => {
-                            if (proj.url) {
-                              window.open(proj.url, '_blank', 'noopener,noreferrer');
-                            } else if (onOpenWorkModal) {
-                              setSelectedCard(null);
-                              onOpenWorkModal();
-                            } else {
-                              window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
-                            }
+                            setActiveFullscreenVideo({
+                              url: proj.videoUrl || proj.url || '/assets/food-1.mp4',
+                              title: proj.title,
+                            });
                           }}
                           className="
-                            w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
-                            text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                            transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer mt-2
+                            w-full py-3 rounded-full bg-[#FF9BD2] text-[#100719] border border-[#FF9BD2]
+                            font-mono font-bold text-xs uppercase tracking-widest
+                            hover:bg-[#FFF7FF] hover:border-[#FFF7FF] hover:scale-[1.02]
+                            shadow-[0_0_25px_rgba(255,155,210,0.5)] transition-all duration-300
+                            flex items-center justify-center gap-2 cursor-pointer mt-2 group/play
                           "
                         >
-                          <span>VIEW PROJECT</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
+                          <div className="w-5 h-5 rounded-full bg-[#100719] text-[#FF9BD2] flex items-center justify-center group-hover/play:scale-110 transition-transform">
+                            <Play className="w-3 h-3 fill-current ml-0.5" />
+                          </div>
+                          <span>PLAY FULLSCREEN</span>
                         </button>
                       </div>
                     </div>
@@ -1204,6 +1220,96 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
               </motion.div>
 
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
+      {/* ========================================================================= */}
+      {/* D. DESKTOP FULLSCREEN VIDEO THEATER OVERLAY */}
+      {/* ========================================================================= */}
+      {createPortal(
+        <AnimatePresence>
+          {activeFullscreenVideo && (
+            <div
+              style={{
+                position: 'absolute',
+                top: `${modalScrollTop}px`,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                zIndex: 9999999999,
+              }}
+              className="flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-3xl select-none"
+            >
+              {/* Fullscreen Backdrop Overlay */}
+              <div
+                onClick={() => setActiveFullscreenVideo(null)}
+                className="absolute inset-0 bg-black/90 cursor-pointer z-0"
+              />
+
+              {/* Centered Fullscreen Video Window */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                className="
+                  relative z-10 w-full max-w-5xl rounded-3xl overflow-hidden
+                  border border-[#FF9BD2]/50 bg-black shadow-[0_0_120px_rgba(255,155,210,0.5)]
+                  flex flex-col items-center justify-center
+                "
+              >
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setActiveFullscreenVideo(null)}
+                  aria-label="Close fullscreen video"
+                  className="
+                    absolute top-4 right-4 z-50 flex h-11 w-11 items-center justify-center
+                    rounded-full bg-black/70 border border-white/20 text-white
+                    hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                    transition-all duration-300 cursor-pointer shadow-2xl
+                  "
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* Unmuted Video Element with Native Controls */}
+                <div className="relative w-full aspect-[9/16] max-h-[80vh] flex items-center justify-center bg-black">
+                  <video
+                    src={activeFullscreenVideo.url}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-contain max-h-[80vh]"
+                  />
+                </div>
+
+                {/* Title Bar at bottom */}
+                <div className="w-full p-4 sm:p-5 bg-gradient-to-t from-[#140824] via-[#140824]/90 to-transparent border-t border-white/15 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono text-[#FF9BD2] font-bold uppercase tracking-widest block">
+                      NOW PLAYING FULLSCREEN
+                    </span>
+                    <h4 className="font-display font-black text-lg sm:text-xl text-white uppercase tracking-tight">
+                      {activeFullscreenVideo.title}
+                    </h4>
+                  </div>
+
+                  <a
+                    href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-white transition-all shadow-[0_0_20px_rgba(255,155,210,0.4)] cursor-pointer"
+                  >
+                    WATCH ON INSTAGRAM ✦
+                  </a>
+                </div>
+
+              </motion.div>
             </div>
           )}
         </AnimatePresence>,
