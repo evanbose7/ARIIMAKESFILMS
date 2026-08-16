@@ -172,7 +172,7 @@ export interface PortfolioCategoryData {
 export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   {
     id: 'food',
-    eyebrowLabel: '01 / 06 ✦ GOURMET & CULINARY',
+    eyebrowLabel: '01 / 07 ✦ GOURMET & CULINARY',
     title: 'FOOD',
     subhead: 'Artisanal food, luxury desserts & culinary stories.',
     icon: Wand2,
@@ -180,15 +180,14 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     aspectRatio: '9/16',
     mobileCardWidth: 'w-full min-w-full',
     projects: [
-      { id: 'food-1', numberLabel: '01 / 04', title: 'ARTISANAL DESSERT FILM 01', description: 'Cinematic food cinematography highlighting textures, flavor profiles, and artisanal passion.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/food-1.mp4' },
-      { id: 'food-2', numberLabel: '02 / 04', title: 'CULINARY CREATION REEL 02', description: 'High-speed pacing and mouth-watering close-ups designed for food lovers.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-2.mp4' },
-      { id: 'food-3', numberLabel: '03 / 04', title: 'VOICEOVER FOOD STORY 03', description: 'Narrative-driven culinary reel with rich audio score and voiceover storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/food-3.mp4' },
-      { id: 'food-4', numberLabel: '04 / 04', title: 'SEASONAL MENU SPECIAL 04', description: 'Visual feast capturing vibrant colors and sensory culinary experiences.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-4.mp4' },
+      { id: 'food-1', numberLabel: '01 / 03', title: 'ARTISANAL DESSERT FILM 01', description: 'Cinematic food cinematography highlighting textures, flavor profiles, and artisanal passion.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/food-1.mp4' },
+      { id: 'food-3', numberLabel: '02 / 03', title: 'VOICEOVER FOOD STORY 02', description: 'Narrative-driven culinary reel with rich audio score and voiceover storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/food-3.mp4' },
+      { id: 'food-4', numberLabel: '03 / 03', title: 'SEASONAL MENU SPECIAL 03', description: 'Visual feast capturing vibrant colors and sensory culinary experiences.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-4.mp4' },
     ],
   },
   {
     id: 'architecture',
-    eyebrowLabel: '02 / 06 ✦ SPATIAL & EDITORIAL',
+    eyebrowLabel: '02 / 07 ✦ SPATIAL & EDITORIAL',
     title: 'ARCHITECTURE AND INTERIOR DESIGN',
     subhead: 'Spatial storytelling, architectural tours & luxury interiors.',
     icon: Compass,
@@ -204,7 +203,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   },
   {
     id: 'jewellery',
-    eyebrowLabel: '03 / 06 ✦ LUXURY & ELEGANCE',
+    eyebrowLabel: '03 / 07 ✦ LUXURY & ELEGANCE',
     title: 'JEWELLERY (INTERNATIONAL BRANDS)',
     subhead: 'High jewelry visual storytelling & international campaigns.',
     icon: Heart,
@@ -219,7 +218,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   },
   {
     id: 'wellbeing',
-    eyebrowLabel: '04 / 06 ✦ MIND & MOVEMENT',
+    eyebrowLabel: '04 / 07 ✦ MIND & MOVEMENT',
     title: 'WELL BEING',
     subhead: 'Holistic wellness, movement & mindful living films.',
     icon: Sparkles,
@@ -234,8 +233,21 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     ],
   },
   {
+    id: 'animation',
+    eyebrowLabel: '05 / 07 ✦ MOTION & ANIMATION',
+    title: 'ANIMATION',
+    subhead: '3D motion design, visual effects & animated storytelling.',
+    icon: Wand2,
+    accentColor: '#FFB6E6',
+    aspectRatio: '9/16',
+    mobileCardWidth: 'w-full min-w-full',
+    projects: [
+      { id: 'anim-1', numberLabel: '01 / 01', title: 'CREATIVE ANIMATION REEL 01', description: 'Dynamic 3D animation, fluid visual effects, and high-speed motion design.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-2.mp4' },
+    ],
+  },
+  {
     id: 'social-content',
-    eyebrowLabel: '05 / 06 ✦ INSTAGRAM & REELS',
+    eyebrowLabel: '06 / 07 ✦ INSTAGRAM & REELS',
     title: 'SOCIAL CONTENT',
     subhead: 'Short-form content made to stop the scroll.',
     icon: Film,
@@ -251,7 +263,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   },
   {
     id: 'youtube',
-    eyebrowLabel: '06 / 06 ✦ CINEMATIC WIDESCREEN',
+    eyebrowLabel: '07 / 07 ✦ CINEMATIC WIDESCREEN',
     title: 'YOUTUBE',
     subhead: 'Longer stories. More room to tell them.',
     icon: Tv,
