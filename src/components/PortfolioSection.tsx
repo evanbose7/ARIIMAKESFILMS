@@ -734,8 +734,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       <div className="hidden lg:grid w-full max-w-[1200px] mx-auto grid-cols-12 gap-5 relative z-20">
         
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL VERTICAL - FULL-BLEED REEL MEDIA) */}
-        {/* col-span-4, row-span-2 (~4:7 ratio, compact height) */}
+        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL PORTRAIT REEL - FULL-BLEED MEDIA) */}
+        {/* col-span-4, row-span-2 (~0.62 width-to-height ratio, spacious portrait height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           id="portfolio-reels"
@@ -743,7 +743,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
           className="
-            col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden
+            col-span-4 row-span-2 min-h-[580px] lg:min-h-[640px] rounded-[28px] overflow-hidden
             border border-white/15 bg-[#12071B]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
@@ -843,15 +843,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE HORIZONTAL - FULL-BLEED THUMBNAIL) */}
-        {/* col-span-8, row-span-1 (Aspect ~16:7, compact height) */}
+        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE CINEMATIC - FULL-BLEED THUMBNAIL) */}
+        {/* col-span-8, row-span-1 (Aspect ~16:8, spacious cinematic height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           id="portfolio-youtube"
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden
+            col-span-8 row-span-1 min-h-[350px] lg:min-h-[390px] rounded-[28px] overflow-hidden
             border border-white/15 bg-[#120822]
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
@@ -975,7 +975,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[230px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1022,7 +1022,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-4 row-span-1 min-h-[200px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[210px] lg:min-h-[230px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#C4A1FF]/70 hover:shadow-[0_0_35px_rgba(196,161,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
