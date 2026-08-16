@@ -407,50 +407,69 @@ export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ on
     <section className="relative w-full py-20 sm:py-32 px-4 sm:px-8 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
       
       {/* Ambient Radial Soft Glow behind ONE IDEA */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[550px] h-[340px] sm:h-[550px] rounded-full bg-radial from-[#FF9BD2]/20 via-[#B388FF]/10 to-transparent blur-3xl -z-10" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] h-[340px] sm:h-[600px] rounded-full bg-radial from-[#FF9BD2]/25 via-[#B388FF]/15 to-transparent blur-3xl -z-10" />
 
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-10 sm:space-y-14 z-10">
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center z-10">
         
-        {/* PARAGRAPH STATEMENT */}
+        {/* TOP MONOSPACE EYEBROW */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-4 max-w-3xl"
+          transition={{ duration: 0.7 }}
+          className="mb-4 sm:mb-6"
         >
-          <p className="font-sans font-light text-lg sm:text-2xl md:text-3xl text-[#FFF7FF]/90 leading-relaxed tracking-wide">
-            Because sometimes... all it takes is{' '}
-            <span className="font-semibold text-[#FF9BD2] drop-shadow-[0_0_12px_rgba(255,155,210,0.4)]">
-              ONE IDEA
-            </span>{' '}
-            to change everything.
-          </p>
+          <span className="text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.25em] text-[#FFF7FF]/70 uppercase block">
+            BECAUSE SOMETIMES...
+          </span>
         </motion.div>
 
-        {/* FINAL EDITORIAL CTA & TRANSLUCENT GLASS PILL */}
+        {/* HUGE GRADIENT BOLD DISPLAY HEADLINE (EXACTLY AS IN screenshot IMAGE) */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 35, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 sm:mb-16"
+        >
+          <h2 className="
+            font-display font-black
+            text-[38px] sm:text-[72px] md:text-[90px]
+            leading-[0.96] tracking-tight uppercase text-center
+            bg-gradient-to-b from-[#FFF7FF] via-[#FFB6E6] to-[#C084FC] bg-clip-text text-transparent
+            drop-shadow-[0_0_40px_rgba(255,155,210,0.55)] max-w-3xl mx-auto
+          ">
+            ALL IT TAKES IS<br />
+            ONE IDEA<br />
+            TO CHANGE<br />
+            EVERYTHING.
+          </h2>
+        </motion.div>
+
+        {/* SERIF ITALIC SUBHEAD: SO, SHALL WE ROLL? */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col items-center space-y-8 pt-4 w-full"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col items-center space-y-8 w-full"
         >
-          <h3 className="font-display font-black text-[32px] sm:text-[42px] md:text-[64px] bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent uppercase tracking-tight flex items-center gap-3">
-            <span className="font-serif italic font-normal text-[#FFF7FF]">SO, SHALL WE ROLL?</span>
-            <span>🎲</span>
+          <h3 className="font-serif italic font-normal text-2xl sm:text-4xl md:text-5xl text-[#FFF7FF] tracking-tight flex items-center justify-center gap-3">
+            <span>SO, SHALL WE ROLL?</span>
+            <span className="inline-block w-5 h-5 sm:w-7 sm:h-7 rounded-lg bg-[#A855F7] shadow-[0_0_18px_#A855F7] align-middle ml-1 shrink-0" />
           </h3>
 
+          {/* CTA PILL BUTTON */}
           <button
             type="button"
             onClick={onWorkWithMeClick}
             className="
-              relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
-              bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
-              border border-[#FF9BD2]/50 backdrop-blur-xl
-              text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
-              shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
-              hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
+              relative px-8 py-4 sm:px-10 sm:py-4.5 rounded-full mt-4
+              bg-[#200A38]/90 border border-[#FF9BD2]/60 backdrop-blur-xl
+              text-xs sm:text-sm font-mono font-bold tracking-[0.2em] text-[#FFF7FF] uppercase
+              shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.7)]
+              hover:border-[#FF9BD2] hover:scale-105 active:scale-95 transition-all duration-300
+              flex items-center gap-3 cursor-pointer gpu-layer
             "
           >
             <span>LET'S MAKE SOMETHING</span>
