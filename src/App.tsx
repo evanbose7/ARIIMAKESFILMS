@@ -31,6 +31,7 @@ export function App() {
       touchMultiplier: 1.6,
       lerp: isMobile ? 0.09 : 0.06,
     });
+    (window as any).lenis = lenis;
 
     let animationFrameId: number;
 
@@ -43,15 +44,24 @@ export function App() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      delete (window as any).lenis;
       lenis.destroy();
     };
   }, []);
 
-  const handleScrollToPortfolio = () => {
-    const portfolioEl = document.getElementById('portfolio');
-    if (portfolioEl) {
-      portfolioEl.scrollIntoView({ behavior: 'smooth' });
+  const scrollToTarget = (targetId: string) => {
+    const targetEl = document.getElementById(targetId) || document.getElementById('portfolio');
+    if (!targetEl) return;
+
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(targetEl, { offset: -70 });
+    } else {
+      targetEl.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleScrollToPortfolio = () => {
+    scrollToTarget('portfolio');
   };
 
   const handleSelectPortfolioLink = (type: 'YOUTUBE' | 'REELS' | 'BRAND WORKS') => {
@@ -59,22 +69,13 @@ export function App() {
 
     setTimeout(() => {
       if (type === 'YOUTUBE') {
-        const ytEl = document.getElementById('portfolio-youtube') || document.getElementById('portfolio');
-        if (ytEl) {
-          ytEl.scrollIntoView({ behavior: 'smooth' });
-        }
+        scrollToTarget('portfolio-youtube');
       } else if (type === 'REELS') {
-        const reelsEl = document.getElementById('portfolio-reels') || document.getElementById('portfolio');
-        if (reelsEl) {
-          reelsEl.scrollIntoView({ behavior: 'smooth' });
-        }
+        scrollToTarget('portfolio-reels');
       } else if (type === 'BRAND WORKS') {
-        const portfolioEl = document.getElementById('portfolio');
-        if (portfolioEl) {
-          portfolioEl.scrollIntoView({ behavior: 'smooth' });
-        }
+        scrollToTarget('portfolio');
       }
-    }, 100);
+    }, 150);
   };
 
   return (
