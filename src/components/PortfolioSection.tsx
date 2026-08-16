@@ -617,17 +617,17 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   return (
                     <div
                       key={proj.id}
+                      onClick={(e) => handleMobileCardTap(e, proj, section.title)}
+                      onTouchEnd={(e) => handleMobileCardTap(e, proj, section.title)}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
-                        scroll-snap-align-center transition-all duration-500
+                        scroll-snap-align-center transition-all duration-500 cursor-pointer
                         ${section.mobileCardWidth}
                         ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
                       `}
                       style={{ scrollSnapAlign: 'center' }}
                     >
                       <div
-                        onClick={(e) => handleMobileCardTap(e, proj, section.title)}
-                        onTouchEnd={(e) => handleMobileCardTap(e, proj, section.title)}
                         className={`
                           relative w-full rounded-[24px] overflow-hidden
                           border border-white/15 bg-gradient-to-br ${proj.gradientBg}
@@ -652,15 +652,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                               }}
                               className="w-full h-full object-cover rounded-[24px]"
                             />
-                            <div className="absolute top-3 left-3 z-20">
+                            <div className="absolute top-3 left-3 z-20 pointer-events-none">
                               <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-mono text-xs font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
                                 {proj.numberLabel}
                               </span>
                             </div>
-                            <div className="absolute top-3 right-3 z-20 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
+                            <div className="absolute top-3 right-3 z-20 pointer-events-none px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
                               AI
                             </div>
-                            <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                            <div className="absolute bottom-3 left-3 right-3 z-20 pointer-events-none p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
                               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                                 {proj.title}
                               </span>
@@ -670,7 +670,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         ) : (
                           <>
                             <div className="absolute inset-0 z-20 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
-                            <div className="relative w-full h-full flex flex-col justify-between p-4 z-10">
+                            <div className="relative w-full h-full flex flex-col justify-between p-4 z-10 pointer-events-none">
                               <div className="flex items-center justify-between text-xs font-mono">
                                 <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
                                   {proj.numberLabel}
@@ -687,7 +687,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                         )}
                       </div>
 
-                      <div className="space-y-1 px-1 text-left">
+                      <div className="space-y-1 px-1 text-left pointer-events-none">
                         <h4 className="font-display font-bold text-base text-[#FFF7FF] tracking-tight uppercase">
                           {proj.title}
                         </h4>
