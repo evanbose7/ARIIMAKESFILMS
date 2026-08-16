@@ -932,14 +932,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
-          {/* UPLOADED BACKGROUND IMAGE WITH DARK GRADIENT OVERLAY */}
+          {/* UPLOADED BACKGROUND IMAGE WITH BRIGHTER LIGHT OVERLAY */}
           <div className="absolute inset-0 z-0">
             <img
               src="/assets/food_bento_bg.jpg"
               alt="Food Category Background"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-65"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 brightness-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B] via-[#12071B]/55 to-black/40 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/90 via-[#12071B]/35 to-black/20 z-10" />
           </div>
 
           <div className="relative flex items-center justify-between z-30">
@@ -979,14 +979,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
-          {/* UPLOADED BACKGROUND IMAGE WITH DARK GRADIENT OVERLAY */}
+          {/* UPLOADED BACKGROUND IMAGE WITH BRIGHTER LIGHT OVERLAY */}
           <div className="absolute inset-0 z-0">
             <img
               src="/assets/architecture_bento_bg.jpg"
               alt="Architecture & Interior Design Category Background"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-65"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 brightness-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B] via-[#12071B]/55 to-black/40 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/90 via-[#12071B]/35 to-black/20 z-10" />
           </div>
 
           <div className="relative flex items-center justify-between z-30">
