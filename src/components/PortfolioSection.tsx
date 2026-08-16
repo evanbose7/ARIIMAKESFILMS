@@ -1105,8 +1105,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                 className="
-                  relative z-10 w-full max-w-6xl max-h-[92vh] rounded-[36px]
-                  border border-[#FF9BD2]/40 bg-[#140824] p-6 sm:p-8
+                  relative z-10 w-full max-w-6xl max-h-[96vh] rounded-[36px]
+                  border border-[#FF9BD2]/40 bg-[#140824] p-5 sm:p-7
                   shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
                   overflow-y-auto selection:bg-[#FF9BD2] selection:text-[#100719]
                 "
@@ -1115,28 +1115,28 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 <button
                   type="button"
                   onClick={() => setSelectedCard(null)}
-                  className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
+                  className="absolute top-5 right-5 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
                 {/* MODAL HEADER */}
-                <div className="space-y-2 border-b border-white/15 pb-6 pr-12">
+                <div className="space-y-1.5 border-b border-white/15 pb-4 pr-12">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
                     <selectedCard.icon className="w-4 h-4" />
                     <span>{selectedCard.subtitle}</span>
                   </div>
-                  <h3 className="font-display font-black text-2xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-[#FFF7FF] tracking-tight uppercase">
                     {selectedCard.title}
                   </h3>
-                  <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
+                  <p className="text-xs sm:text-sm text-[#FFF7FF]/75 max-w-2xl">
                     {selectedCard.description}
                   </p>
                 </div>
 
                 {/* MODAL PROJECTS CAROUSEL WITH END-SIDE NAVIGATION BUTTONS */}
-                <div className="relative w-full py-6">
+                <div className="relative w-full py-4">
                   
                   {/* LEFT ARROW BUTTON AT FAR LEFT END SIDE */}
                   <button
@@ -1145,11 +1145,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     aria-label="Scroll left"
                     className="
                       absolute left-0 top-1/2 -translate-y-1/2 z-30
-                      w-12 h-12 rounded-full bg-black/80 border border-white/30 text-white
+                      w-11 h-11 rounded-full bg-black/80 border border-white/30 text-white
                       hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
                       shadow-[0_0_35px_rgba(255,155,210,0.5)] backdrop-blur-xl
                       flex items-center justify-center transition-all duration-300 cursor-pointer active:scale-95
-                      -translate-x-3 sm:-translate-x-5
+                      -translate-x-2 sm:-translate-x-4
                     "
                   >
                     <ChevronLeft className="w-6 h-6" />
@@ -1158,15 +1158,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   {/* CAROUSEL CONTAINER */}
                   <div
                     ref={modalScrollContainerRef}
-                    className="flex flex-row overflow-x-auto gap-6 pb-2 no-scrollbar scroll-smooth snap-x items-stretch w-full px-2"
+                    className="flex flex-row overflow-x-auto gap-5 pb-1 no-scrollbar scroll-smooth snap-x items-stretch w-full px-1"
                   >
                   {selectedCard.projects.map((proj, idx) => (
                     <div
                       key={proj.id}
                       className="
-                        flex-none w-[280px] sm:w-[320px] md:w-[340px] rounded-[28px] border border-white/15
+                        flex-none w-[270px] sm:w-[300px] md:w-[320px] rounded-[24px] border border-white/15
                         bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
-                        p-4.5 flex flex-col justify-between space-y-4
+                        p-3.5 sm:p-4 flex flex-col justify-between space-y-3
                         hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
                         transition-all duration-300 group/card snap-start
                       "
@@ -1179,7 +1179,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             title: proj.title,
                           });
                         }}
-                        className="relative w-full aspect-[9/16] max-h-[340px] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/vid"
+                        className="relative w-full aspect-[9/16] max-h-[260px] sm:max-h-[280px] rounded-[18px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/vid"
                       >
                         {proj.videoUrl ? (
                           <video
@@ -1189,36 +1189,36 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             muted
                             playsInline
                             preload="auto"
-                            className="w-full h-full object-cover rounded-[22px]"
+                            className="w-full h-full object-cover rounded-[18px]"
                           />
                         ) : proj.thumbnail ? (
-                          <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[22px]" />
+                          <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[18px]" />
                         ) : (
                           <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`} />
                         )}
 
                         {/* CENTERED HOVER PLAY OVERLAY */}
                         <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] opacity-0 group-hover/vid:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
-                          <div className="w-14 h-14 rounded-full bg-[#FF9BD2] text-[#100719] shadow-[0_0_30px_rgba(255,155,210,0.8)] flex items-center justify-center transform scale-90 group-hover/vid:scale-100 transition-transform">
-                            <Play className="w-6 h-6 fill-current ml-0.5" />
+                          <div className="w-12 h-12 rounded-full bg-[#FF9BD2] text-[#100719] shadow-[0_0_30px_rgba(255,155,210,0.8)] flex items-center justify-center transform scale-90 group-hover/vid:scale-100 transition-transform">
+                            <Play className="w-5 h-5 fill-current ml-0.5" />
                           </div>
                         </div>
 
                         {/* NUMBER BADGE */}
-                        <div className="absolute top-3 left-3 z-20 pointer-events-none">
-                          <span className="px-3 py-1 rounded-full bg-black/65 border border-white/20 font-mono text-xs font-bold text-[#FF9BD2] backdrop-blur-md">
+                        <div className="absolute top-2.5 left-2.5 z-20 pointer-events-none">
+                          <span className="px-2.5 py-0.5 rounded-full bg-black/65 border border-white/20 font-mono text-[11px] font-bold text-[#FF9BD2] backdrop-blur-md">
                             0{idx + 1} / 0{selectedCard.projects.length}
                           </span>
                         </div>
                       </div>
 
                       {/* DETAILS & PLAY BUTTON (DESKTOP FULLSCREEN TRIGGER) */}
-                      <div className="space-y-2 flex-1 flex flex-col justify-between">
+                      <div className="space-y-1.5 flex-1 flex flex-col justify-between">
                         <div>
-                          <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover/card:text-[#FF9BD2] transition-colors line-clamp-2">
+                          <h4 className="font-display font-bold text-sm sm:text-base text-[#FFF7FF] leading-snug group-hover/card:text-[#FF9BD2] transition-colors line-clamp-1">
                             {proj.title}
                           </h4>
-                          <p className="text-xs text-[#FFF7FF]/70 line-clamp-3 mt-1 leading-relaxed">
+                          <p className="text-[11px] text-[#FFF7FF]/70 line-clamp-2 mt-0.5 leading-relaxed">
                             {proj.description}
                           </p>
                         </div>
@@ -1233,15 +1233,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             });
                           }}
                           className="
-                            w-full py-3 rounded-full bg-[#FF9BD2] text-[#100719] border border-[#FF9BD2]
+                            w-full py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] border border-[#FF9BD2]
                             font-mono font-bold text-xs uppercase tracking-widest
                             hover:bg-[#FFF7FF] hover:border-[#FFF7FF] hover:scale-[1.02]
                             shadow-[0_0_25px_rgba(255,155,210,0.5)] transition-all duration-300
-                            flex items-center justify-center gap-2 cursor-pointer mt-2 group/play
+                            flex items-center justify-center gap-2 cursor-pointer mt-1 group/play
                           "
                         >
-                          <div className="w-5 h-5 rounded-full bg-[#100719] text-[#FF9BD2] flex items-center justify-center group-hover/play:scale-110 transition-transform">
-                            <Play className="w-3 h-3 fill-current ml-0.5" />
+                          <div className="w-4 h-4 rounded-full bg-[#100719] text-[#FF9BD2] flex items-center justify-center group-hover/play:scale-110 transition-transform">
+                            <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
                           </div>
                           <span>PLAY FULLSCREEN</span>
                         </button>
