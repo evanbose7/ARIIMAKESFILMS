@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4 text-white' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -294,6 +294,20 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     category: string;
     videoUrl: string;
   } | null>(null);
+
+  // Handle phone hardware / browser back button to dismiss full-screen video
+  useEffect(() => {
+    if (activeMobileVideo) {
+      window.history.pushState({ modal: 'mobile-video-player' }, '');
+      const handlePopState = () => {
+        setActiveMobileVideo(null);
+      };
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [activeMobileVideo]);
 
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
@@ -1189,25 +1203,31 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             
             {/* Top header bar */}
             <div className="w-full max-w-lg flex items-center justify-between py-3 px-2 z-50">
-              <div className="flex flex-col">
-                <span className="text-[11px] font-mono font-bold text-[#FF9BD2] uppercase tracking-widest flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveMobileVideo(null);
+                  if (window.history.state?.modal === 'mobile-video-player') {
+                    window.history.back();
+                  }
+                }}
+                className="px-3.5 py-1.5 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] flex items-center gap-1.5 text-xs font-mono font-bold transition-all cursor-pointer shadow-lg shrink-0"
+                aria-label="Back to Portfolio"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>BACK</span>
+              </button>
+
+              <div className="flex flex-col text-right">
+                <span className="text-[11px] font-mono font-bold text-[#FF9BD2] uppercase tracking-widest flex items-center justify-end gap-1.5">
                   <span>{activeMobileVideo.category}</span>
                   <span className="text-white/40">•</span>
-                  <span className="text-[#FFB6E6]">FULL SCREEN WITH SOUND ✦</span>
+                  <span className="text-[#FFB6E6]">STEREO SOUND ✦</span>
                 </span>
-                <h3 className="font-display font-black text-base sm:text-lg text-[#FFF7FF] tracking-tight line-clamp-1">
+                <h3 className="font-display font-black text-sm sm:text-base text-[#FFF7FF] tracking-tight line-clamp-1">
                   {activeMobileVideo.title}
                 </h3>
               </div>
-
-              <button
-                type="button"
-                onClick={() => setActiveMobileVideo(null)}
-                className="w-10 h-10 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] flex items-center justify-center transition-all cursor-pointer shadow-lg shrink-0 ml-4"
-                aria-label="Close Full Screen Video"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
 
             {/* Video container */}
@@ -1219,11 +1239,17 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               className="relative w-full max-w-lg flex-1 flex items-center justify-center rounded-3xl overflow-hidden bg-black border border-white/15 shadow-2xl my-2"
             >
               <video
+                key={activeMobileVideo.videoUrl}
                 src={activeMobileVideo.videoUrl}
                 controls
                 autoPlay
                 playsInline
-                className="w-full h-full max-h-[80vh] object-contain rounded-3xl"
+                preload="auto"
+                onCanPlay={(e) => {
+                  e.currentTarget.muted = false;
+                  e.currentTarget.play().catch(() => {});
+                }}
+                className="w-full h-full max-h-[75vh] object-cover sm:object-contain rounded-3xl"
               />
             </motion.div>
 
@@ -1231,10 +1257,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             <div className="w-full max-w-lg text-center py-2 z-50">
               <button
                 type="button"
-                onClick={() => setActiveMobileVideo(null)}
+                onClick={() => {
+                  setActiveMobileVideo(null);
+                  if (window.history.state?.modal === 'mobile-video-player') {
+                    window.history.back();
+                  }
+                }}
                 className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs uppercase tracking-wider hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
               >
-                CLOSE VIDEO ✕
+                RETURN TO CARDS ✕
               </button>
             </div>
 
