@@ -22,13 +22,46 @@ export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClos
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        (window as any).lenis.stop();
+      }
+    } else {
+      document.body.style.overflow = '';
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        (window as any).lenis.start();
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      if (typeof window !== 'undefined' && (window as any).lenis) {
+        (window as any).lenis.start();
+      }
+    };
+  }, [isOpen]);
+
   if (!isOpen || !mounted) return null;
 
   const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
   const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
 
   const modalContent = (
-    <div className="fixed inset-0 z-[9999999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md select-none animate-fadeIn">
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 999999999,
+      }}
+      className="fixed inset-0 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md select-none animate-fadeIn"
+    >
       
       {/* Backdrop Click */}
       <div

@@ -36,6 +36,8 @@ export function App() {
       lerp: isMobile ? 0.09 : 0.06,
     });
 
+    (window as any).lenis = lenis;
+
     let animationFrameId: number;
 
     function raf(time: number) {
@@ -48,6 +50,7 @@ export function App() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 
