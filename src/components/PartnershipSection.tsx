@@ -14,25 +14,15 @@ export const PartnershipSection: React.FC = () => {
         }}
       />
 
-      {/* MAIN CONTAINER FLOATING LUXURY GLASS CAPSULE */}
-      <div className="w-full max-w-[680px] mx-auto relative z-20">
+      {/* MAIN CONTAINER (CLEAN TEXT, NO BOX WRAPPER) */}
+      <div className="w-full max-w-[720px] mx-auto text-center flex flex-col items-center space-y-6 relative z-20">
         <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="
-            w-full rounded-[36px] p-8 sm:p-12 text-center
-            bg-white/[0.03] border border-white/15 backdrop-blur-2xl
-            shadow-[0_20px_60px_rgba(0,0,0,0.6)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]
-            hover:border-[#FF9BD2]/40 hover:shadow-[0_0_40px_rgba(255,155,210,0.25)]
-            transition-all duration-500 flex flex-col items-center space-y-6 relative overflow-hidden group
-          "
+          className="flex flex-col items-center space-y-6"
         >
-          {/* Inner Corner Ambient Soft Light */}
-          <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#FF9BD2]/20 blur-3xl pointer-events-none rounded-full" />
-          <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-[#B388FF]/20 blur-3xl pointer-events-none rounded-full" />
-
           {/* EYEBROW BADGE: NEXT CHAPTER ✦ */}
           <div className="
             inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full
