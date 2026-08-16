@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Play, ArrowUpRight, ExternalLink, X, Film, Tv, Wand2, Video, Compass, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SignaturePhilosophySection } from './SignaturePhilosophySection';
@@ -285,10 +286,17 @@ interface PortfolioSectionProps {
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkModal }) => {
   const [selectedCard, setSelectedCard] = useState<PortfolioCategoryCard | null>(null);
+  const [modalScrollTop, setModalScrollTop] = useState<number>(0);
   const [activeCardIds, setActiveCardIds] = useState<{ [key: string]: number }>({});
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
+
+  const handleOpenCategoryCard = (card: PortfolioCategoryCard) => {
+    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    setModalScrollTop(currentY);
+    setSelectedCard(card);
+  };
 
   const desktopReelThumbnails = [
     '/assets/reel-thumb-1.jpg',
@@ -731,7 +739,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
           {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16) */}
           <div 
-            onClick={() => setSelectedCard(CATEGORY_CARDS[0])}
+            onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
             className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/20 bg-[#121212] shadow-xl cursor-pointer group/reel my-1.5 min-h-[280px]"
           >
             <AnimatePresence mode="wait">
@@ -884,7 +892,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          onClick={() => setSelectedCard(CATEGORY_CARDS[2])}
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[2])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -922,7 +930,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          onClick={() => setSelectedCard(CATEGORY_CARDS[3])}
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[3])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -960,7 +968,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          onClick={() => setSelectedCard(CATEGORY_CARDS[4])}
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[4])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -998,7 +1006,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
-          onClick={() => setSelectedCard(CATEGORY_CARDS[5])}
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[5])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -1037,149 +1045,170 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       <SignaturePhilosophySection />
 
       {/* ========================================================================= */}
-      {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL */}
-      {/* ========================================================================= */}
       {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL (HORIZONTALLY ARRANGED CARDS) */}
       {/* ========================================================================= */}
-      <AnimatePresence>
-        {selectedCard && (
-          <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-2xl animate-backdrop-fade">
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="
-                relative w-full max-w-5xl max-h-[92vh] rounded-[36px]
-                border border-[#FF9BD2]/40 bg-[#140824] p-6 sm:p-8
-                shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
-                overflow-y-auto z-50 selection:bg-[#FF9BD2] selection:text-[#100719]
-              "
+      {createPortal(
+        <AnimatePresence>
+          {selectedCard && (
+            <div
+              style={{
+                position: 'absolute',
+                top: `${modalScrollTop}px`,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                zIndex: 999999999,
+              }}
+              className="flex items-center justify-center p-4 sm:p-6 select-none overflow-hidden"
             >
-              {/* MODAL CLOSE BUTTON */}
-              <button
-                type="button"
+              {/* Fullscreen Blurred Backdrop Overlay covering current active viewport */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
                 onClick={() => setSelectedCard(null)}
-                className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
-                aria-label="Close modal"
+                className="absolute inset-0 bg-black/85 backdrop-blur-2xl z-0 cursor-pointer"
+              />
+
+              {/* Centered Glass Dialogue Box at active scroll position */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                className="
+                  relative z-10 w-full max-w-5xl max-h-[92vh] rounded-[36px]
+                  border border-[#FF9BD2]/40 bg-[#140824] p-6 sm:p-8
+                  shadow-[0_0_90px_rgba(255,155,210,0.45)] flex flex-col justify-between
+                  overflow-y-auto selection:bg-[#FF9BD2] selection:text-[#100719]
+                "
               >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* MODAL HEADER */}
-              <div className="space-y-2 border-b border-white/15 pb-6">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
-                  <selectedCard.icon className="w-4 h-4" />
-                  <span>{selectedCard.subtitle}</span>
-                </div>
-                <h3 className="font-display font-black text-3xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
-                  {selectedCard.title}
-                </h3>
-                <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
-                  {selectedCard.description}
-                </p>
-              </div>
-
-              {/* MODAL PROJECTS HORIZONTALLY ARRANGED CARDS */}
-              <div className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-snap-x items-stretch">
-                {selectedCard.projects.map((proj, idx) => (
-                  <div
-                    key={proj.id}
-                    className="
-                      flex-none w-[280px] sm:w-[320px] rounded-[28px] border border-white/15
-                      bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
-                      p-4.5 flex flex-col justify-between space-y-4
-                      hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
-                      transition-all duration-300 group scroll-snap-align-center
-                    "
-                  >
-                    {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER */}
-                    <div className="relative w-full aspect-[9/16] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg">
-                      {proj.videoUrl ? (
-                        <video
-                          src={proj.videoUrl}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          className="w-full h-full object-cover rounded-[22px]"
-                        />
-                      ) : proj.thumbnail ? (
-                        <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[22px]" />
-                      ) : (
-                        <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`}>
-                          <Play className="w-10 h-10 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
-                        </div>
-                      )}
-
-                      {/* NUMBER BADGE */}
-                      <div className="absolute top-3 left-3 z-20 pointer-events-none">
-                        <span className="px-3 py-1 rounded-full bg-black/65 border border-white/20 font-mono text-xs font-bold text-[#FF9BD2] backdrop-blur-md">
-                          0{idx + 1} / 0{selectedCard.projects.length}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* DETAILS & ACTION BUTTON */}
-                    <div className="space-y-2 flex-1 flex flex-col justify-between">
-                      <div>
-                        <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors line-clamp-2">
-                          {proj.title}
-                        </h4>
-                        <p className="text-xs text-[#FFF7FF]/70 line-clamp-3 mt-1 leading-relaxed">
-                          {proj.description}
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          if (proj.url) {
-                            window.open(proj.url, '_blank', 'noopener,noreferrer');
-                          } else if (onOpenWorkModal) {
-                            setSelectedCard(null);
-                            onOpenWorkModal();
-                          } else {
-                            window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
-                          }
-                        }}
-                        className="
-                          w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
-                          text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
-                          transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer mt-2
-                        "
-                      >
-                        <span>VIEW PROJECT</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* MODAL FOOTER */}
-              <div className="pt-4 border-t border-white/15 flex items-center justify-between">
-                <span className="text-xs font-mono text-white/50 uppercase">
-                  ARI CINEMATIC ARCHIVE ✦ 2026
-                </span>
-
-                <a
-                  href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* MODAL CLOSE BUTTON */}
+                <button
+                  type="button"
                   onClick={() => setSelectedCard(null)}
-                  className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
+                  className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-lg"
+                  aria-label="Close modal"
                 >
-                  START A PROJECT WITH ARI ✦
-                </a>
-              </div>
+                  <X className="w-5 h-5" />
+                </button>
 
-            </motion.div>
+                {/* MODAL HEADER */}
+                <div className="space-y-2 border-b border-white/15 pb-6">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF9BD2] uppercase tracking-widest">
+                    <selectedCard.icon className="w-4 h-4" />
+                    <span>{selectedCard.subtitle}</span>
+                  </div>
+                  <h3 className="font-display font-black text-3xl sm:text-4xl text-[#FFF7FF] tracking-tight uppercase">
+                    {selectedCard.title}
+                  </h3>
+                  <p className="text-sm text-[#FFF7FF]/75 max-w-2xl">
+                    {selectedCard.description}
+                  </p>
+                </div>
 
-          </div>
-        )}
-      </AnimatePresence>
+                {/* MODAL PROJECTS HORIZONTALLY ARRANGED CARDS */}
+                <div className="py-6 flex flex-row overflow-x-auto gap-6 pb-6 no-scrollbar scroll-snap-x items-stretch">
+                  {selectedCard.projects.map((proj, idx) => (
+                    <div
+                      key={proj.id}
+                      className="
+                        flex-none w-[280px] sm:w-[320px] rounded-[28px] border border-white/15
+                        bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-white/[0.01]
+                        p-4.5 flex flex-col justify-between space-y-4
+                        hover:border-[#FF9BD2]/60 hover:shadow-[0_15px_40px_rgba(255,155,210,0.25)]
+                        transition-all duration-300 group scroll-snap-align-center
+                      "
+                    >
+                      {/* VIDEO OR THUMBNAIL PREVIEW CONTAINER */}
+                      <div className="relative w-full aspect-[9/16] rounded-[22px] overflow-hidden border border-white/15 bg-black shadow-lg">
+                        {proj.videoUrl ? (
+                          <video
+                            src={proj.videoUrl}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="auto"
+                            className="w-full h-full object-cover rounded-[22px]"
+                          />
+                        ) : proj.thumbnail ? (
+                          <img src={proj.thumbnail} alt={proj.title} className="w-full h-full object-cover rounded-[22px]" />
+                        ) : (
+                          <div className={`w-full h-full bg-gradient-to-br ${proj.previewGradient} flex items-center justify-center`}>
+                            <Play className="w-10 h-10 text-[#FF9BD2] fill-current group-hover:scale-110 transition-transform" />
+                          </div>
+                        )}
+
+                        {/* NUMBER BADGE */}
+                        <div className="absolute top-3 left-3 z-20 pointer-events-none">
+                          <span className="px-3 py-1 rounded-full bg-black/65 border border-white/20 font-mono text-xs font-bold text-[#FF9BD2] backdrop-blur-md">
+                            0{idx + 1} / 0{selectedCard.projects.length}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* DETAILS & ACTION BUTTON */}
+                      <div className="space-y-2 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4 className="font-display font-bold text-base text-[#FFF7FF] leading-snug group-hover:text-[#FF9BD2] transition-colors line-clamp-2">
+                            {proj.title}
+                          </h4>
+                          <p className="text-xs text-[#FFF7FF]/70 line-clamp-3 mt-1 leading-relaxed">
+                            {proj.description}
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            if (proj.url) {
+                              window.open(proj.url, '_blank', 'noopener,noreferrer');
+                            } else if (onOpenWorkModal) {
+                              setSelectedCard(null);
+                              onOpenWorkModal();
+                            } else {
+                              window.open('https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr', '_blank', 'noopener,noreferrer');
+                            }
+                          }}
+                          className="
+                            w-full py-2.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold
+                            text-[#FFF7FF] hover:bg-[#FF9BD2] hover:text-[#100719] hover:border-[#FF9BD2]
+                            transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer mt-2
+                          "
+                        >
+                          <span>VIEW PROJECT</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* MODAL FOOTER */}
+                <div className="pt-4 border-t border-white/15 flex items-center justify-between">
+                  <span className="text-xs font-mono text-white/50 uppercase">
+                    ARI CINEMATIC ARCHIVE ✦ 2026
+                  </span>
+
+                  <a
+                    href="https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setSelectedCard(null)}
+                    className="px-6 py-2.5 rounded-full bg-[#FF9BD2] text-[#100719] font-mono font-bold text-xs hover:bg-[#FFF7FF] transition-all shadow-[0_0_20px_rgba(255,155,210,0.5)] cursor-pointer"
+                  >
+                    START A PROJECT WITH ARI ✦
+                  </a>
+                </div>
+
+              </motion.div>
+
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </section>
   );
