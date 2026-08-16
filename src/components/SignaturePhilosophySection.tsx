@@ -36,13 +36,13 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
   };
 
   return (
-    <section className="relative w-full min-h-screen py-24 sm:py-44 px-4 sm:px-8 overflow-hidden z-20 bg-[#0D0615] text-[#FFF7FF] flex flex-col items-center justify-center select-none">
+    <div className="relative w-full py-16 sm:py-28 px-4 sm:px-8 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-20 border-t border-white/10 mt-16 sm:mt-24">
       
       {/* 1. DARK CINEMATIC AMBIENT RADIAL LIGHTING */}
       <div 
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[1000px] opacity-20 blur-[200px] pointer-events-none rounded-full"
         style={{
-          background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #C084FC 40%, #1A0C27 75%, #0D0615 100%)',
+          background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #C084FC 40%, transparent 75%)',
         }}
       />
 
@@ -465,6 +465,6 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
         </div>
 
       </div>
-    </section>
+    </div>
   );
 };

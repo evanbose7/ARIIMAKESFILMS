@@ -7,7 +7,6 @@ import { Navbar } from './components/Navbar';
 import { NavigationDrawer } from './components/NavigationDrawer';
 import { HeroSection } from './components/HeroSection';
 import { EmotionalGapSection } from './components/EmotionalGapSection';
-import { SignaturePhilosophySection } from './components/SignaturePhilosophySection';
 import { PartnershipSection } from './components/PartnershipSection';
 import { PortfolioSection } from './components/PortfolioSection';
 import { AboutSection } from './components/AboutSection';
@@ -109,10 +108,6 @@ export function App() {
         <PartnershipSection />
 
         <AboutSection
-          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
-        />
-
-        <SignaturePhilosophySection
           onWorkWithMeClick={() => setIsWorkModalOpen(true)}
         />
       </main>
