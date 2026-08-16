@@ -125,21 +125,22 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'jwl-3', title: 'INTERNATIONAL BRAND FEATURE 03', description: 'Editorial global brand film designed for international luxury campaigns.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/jewellery-3.mp4' },
     ],
   },
-  // 6. VIDEO EDITING (CARD 06: WIDE STRIP - BOTTOM RIGHT)
+  // 6. WELL BEING (CARD 06: BOTTOM RIGHT WIDE STRIP)
   {
-    id: 'video-editing',
-    title: 'VIDEO EDITING',
-    subtitle: 'RETENTION & RHYTHM',
-    description: 'Transforming raw footage into engaging short-form, social, and long-form content.',
+    id: 'wellbeing',
+    title: 'WELL BEING',
+    subtitle: 'MIND & MOVEMENT',
+    description: 'Holistic wellness, movement & mindful living films.',
     gridClassDesktop: 'col-span-6 row-span-1 min-h-[220px]',
     gridClassMobile: 'col-span-2 h-[220px]',
     aspectRatio: 'landscape',
     previewGradient: 'from-[#B388FF]/35 via-[#1A0A2E] to-[#6D4AFF]/30',
-    icon: Compass,
+    icon: Sparkles,
     projects: [
-      { id: 've-1', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks, sound design, and color grading.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
-      { id: 've-2', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and editorial cuts.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '16/9' },
-      { id: 've-3', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16' },
+      { id: 'wb-1', title: 'ELANURA WELLNESS STORY 01', description: 'Ambient visual essay celebrating holistic health, natural beauty, and wellness.', previewGradient: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#B388FF]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-1.mp4' },
+      { id: 'wb-2', title: 'MINDFUL MOVEMENT REEL 02', description: 'Serene camera work and rhythmic pacing designed for wellness brand engagement.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-2.mp4' },
+      { id: 'wb-3', title: 'HOLISTIC LIFESTYLE FILM 03', description: 'Warm editorial lighting and natural imagery focusing on vitality and balance.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-3.mp4' },
+      { id: 'wb-4', title: 'ELANURA ESSENCE CAMPAIGN 04', description: 'Mindful visual narrative showcasing organic wellness experiences.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-4.mp4' },
     ],
   },
 ];
@@ -1059,7 +1060,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 06 — VIDEO EDITING (BOTTOM RIGHT WIDE STRIP) */}
+        {/* CARD 06 — WELL BEING (BOTTOM RIGHT WIDE STRIP WITH UPLOADED BACKGROUND) */}
         {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -1067,31 +1068,40 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
-            border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#1A0A2E] to-[#6D4AFF]/20
-            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            relative col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
-          <div className="flex items-center justify-between z-30">
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
-              <Compass className="w-3.5 h-3.5 text-[#B388FF]" />
+          {/* UPLOADED BACKGROUND IMAGE WITH BRIGHTER LIGHT OVERLAY */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/assets/wellbeing_bento_bg.jpg"
+              alt="Well Being Category Background"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 brightness-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/90 via-[#12071B]/35 to-black/20 z-10" />
+          </div>
+
+          <div className="relative flex items-center justify-between z-30">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-[#B388FF]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
-                RETENTION & RHYTHM
+                MIND & MOVEMENT
               </span>
             </div>
-            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#B388FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+            <div className="w-7 h-7 rounded-full bg-white/15 border border-white/25 text-[#FFF7FF] backdrop-blur-md group-hover:bg-[#B388FF] group-hover:text-[#100719] flex items-center justify-center transition-colors">
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </div>
 
-          <div className="space-y-0.5 z-30 pt-3">
-            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#B388FF] transition-colors">
-              VIDEO EDITING
+          <div className="relative space-y-0.5 z-30 pt-3">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#B388FF] transition-colors drop-shadow-md">
+              WELL BEING
             </h3>
-            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
-              Mastering rhythm, audio hooks, color grading, and retention cuts.
+            <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
+              Holistic wellness, movement & mindful living films.
             </p>
           </div>
         </motion.div>
