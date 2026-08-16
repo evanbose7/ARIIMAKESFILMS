@@ -178,7 +178,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Film,
     accentColor: '#FF9BD2',
     aspectRatio: '9/16',
-    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'sc-1', numberLabel: '01 / 04', title: 'POV: Found the best side hustle (Paid per reel) 💰', description: 'Pacing, hook design, and luxury audio integration designed for feed retention.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1D0A33] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/reel/DTS2wbWk2Nk/?igsh=bTNtN2xvZXh2cTRq' },
       { id: 'sc-2', numberLabel: '02 / 04', title: 'Earn Money Via Reels 💵', description: 'Creator-led video bringing aesthetic visual rhythm and audience engagement.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/reel/DTDD_1rDKQP/?igsh=MXYya3dvaTFydGtrZw==' },
@@ -194,7 +194,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Wand2,
     accentColor: '#FF9BD2',
     aspectRatio: '9/16',
-    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'food-1', numberLabel: '01 / 04', title: 'ARTISANAL DESSERT FILM 01', description: 'Cinematic food cinematography highlighting textures, flavor profiles, and artisanal passion.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/food-1.mp4' },
       { id: 'food-2', numberLabel: '02 / 04', title: 'CULINARY CREATION REEL 02', description: 'High-speed pacing and mouth-watering close-ups designed for food lovers.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-2.mp4' },
@@ -210,7 +210,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Compass,
     accentColor: '#FFB6E6',
     aspectRatio: '9/16',
-    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'arch-1', numberLabel: '01 / 04', title: 'ARTSIGNIA 5 YEARS ANNIVERSARY', description: 'Cinematic architectural documentary celebrating 5 years of spatial innovation.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/architecture-1.mp4' },
       { id: 'arch-2', numberLabel: '02 / 04', title: 'MODERN INTERIOR FEATURE 02', description: 'Elegant spatial camera movements showcasing light, luxury textures, and design.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/architecture-2.mp4' },
@@ -226,7 +226,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Heart,
     accentColor: '#FF9BD2',
     aspectRatio: '9/16',
-    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'jewel-1', numberLabel: '01 / 03', title: 'INTERNATIONAL JEWELLERY FILM 01', description: 'Macro lighting and sparkling reflections highlighting fine diamond artistry.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', videoUrl: '/assets/jewellery-1.mp4' },
       { id: 'jewel-2', numberLabel: '02 / 03', title: 'LUXURY BRAND CAMPAIGN 02', description: 'Aesthetic high-fashion cinematography crafted for prestigious international houses.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', videoUrl: '/assets/jewellery-2.mp4' },
@@ -241,7 +241,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Tv,
     accentColor: '#B388FF',
     aspectRatio: '16/9',
-    mobileCardWidth: 'w-[88vw] sm:w-[480px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'yt-1', numberLabel: '01 / 02', title: '10th BOARD RESULT | Tears, Celebration & Heartbreaks | Official Film', description: 'Complete YouTube channel production: strategy, hook design, retention structure, and narrative flow.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/45 via-[#140824] to-[#6D4AFF]/40', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://youtu.be/UN3Nqzh-nrQ?si=glKRxw3dFc2vYPqM', duration: '12:45', tag: 'SHORT FILM • STORYTELLING' },
       { id: 'yt-2', numberLabel: '02 / 02', title: 'Messi Aur Billu Ki Kahani (PART 1)', description: 'Documentary-style YouTube episode following an idea from first thought to final execution.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#140824] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/watch?v=A-OdwRbfPNA', duration: '08:30', tag: 'STORYTELLING • COMEDY' },
@@ -255,7 +255,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Video,
     accentColor: '#C4A1FF',
     aspectRatio: '16/9',
-    mobileCardWidth: 'w-[88vw] sm:w-[480px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'lf-1', numberLabel: '01 / 03', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '15:10', tag: 'DOCUMENTARY • BRAND' },
       { id: 'lf-2', numberLabel: '02 / 03', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '11:40', tag: 'CINEMATIC • ESSAY' },
@@ -270,7 +270,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     icon: Sparkles,
     accentColor: '#FF9BD2',
     aspectRatio: '9/16',
-    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    mobileCardWidth: 'w-full min-w-full',
     projects: [
       { id: 'wb-1', numberLabel: '01 / 04', title: 'ELANURA WELLNESS STORY 01', description: 'Ambient visual essay celebrating holistic health, natural beauty, and wellness.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#B388FF]/30', videoUrl: '/assets/wellbeing-1.mp4' },
       { id: 'wb-2', numberLabel: '02 / 04', title: 'MINDFUL MOVEMENT REEL 02', description: 'Serene camera work and rhythmic pacing designed for wellness brand engagement.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/wellbeing-2.mp4' },
@@ -425,12 +425,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               <div
                 data-lenis-prevent
                 onScroll={(e) => handleCarouselScroll(section.id, e)}
-                className={`
-                  w-full flex flex-row flex-nowrap items-stretch gap-4
-                  overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar
-                  py-3 gpu-layer
-                  ${section.aspectRatio === '16/9' ? 'px-[6vw]' : 'px-[12vw]'}
-                `}
+                className="w-full flex flex-row flex-nowrap items-stretch gap-0 overflow-x-auto scroll-snap-type-x-mandatory no-scrollbar py-3 px-0 gpu-layer"
                 style={{
                   scrollSnapType: 'x mandatory',
                   WebkitOverflowScrolling: 'touch',
