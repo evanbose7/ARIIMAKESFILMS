@@ -539,10 +539,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             </div>
                           </div>
 
-                          <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 shadow-lg">
-                            <Play className="w-4 h-4 fill-white ml-0.5" />
-                          </div>
-
                           <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between p-3 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10">
                             <h3 className="font-bold text-xs text-white leading-snug line-clamp-1">
                               {proj.title}
@@ -630,11 +626,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             </div>
                             <div className="absolute top-3 right-3 z-20 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
                               AI
-                            </div>
-                            <div className="absolute inset-0 flex items-center justify-center z-20">
-                              <div className="w-12 h-12 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
-                                <Play className="w-5 h-5 fill-white ml-0.5" />
-                              </div>
                             </div>
                             <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
                               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
