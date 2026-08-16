@@ -82,6 +82,7 @@ export function App() {
       {/* Top Left ARI Logo & Top Right Circular Glass Menu Trigger */}
       <Navbar
         onOpenMenuDrawer={() => setIsDrawerOpen(true)}
+        onWorkWithMeClick={() => setIsWorkModalOpen(true)}
       />
 
       {/* Luxury Right-Side Floating Navigation Drawer */}
@@ -89,6 +90,7 @@ export function App() {
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         onSelectPortfolioLink={handleSelectPortfolioLink}
+        onWorkWithMeClick={() => setIsWorkModalOpen(true)}
       />
 
       {/* Main Content: Hero, Emotional Gap (Think About It), Portfolio, Difference, Constellation, etc. */}

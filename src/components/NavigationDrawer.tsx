@@ -6,6 +6,7 @@ interface NavigationDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectPortfolioLink: (type: 'YOUTUBE' | 'REELS' | 'BRAND WORKS') => void;
+  onWorkWithMeClick?: () => void;
 }
 
 export const PORTFOLIO_CARDS = [
@@ -39,6 +40,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   isOpen,
   onClose,
   onSelectPortfolioLink,
+  onWorkWithMeClick,
 }) => {
   const cardContainerVariants = {
     hidden: {},
@@ -194,6 +196,27 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                 );
               })}
             </motion.div>
+
+            {/* WORK WITH ARI / CONNECT CTA BUTTON */}
+            {onWorkWithMeClick && (
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onWorkWithMeClick();
+                }}
+                className="
+                  w-full py-3.5 px-5 rounded-full
+                  bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF]
+                  text-[#100719] font-mono font-bold text-xs tracking-widest uppercase
+                  shadow-[0_0_25px_rgba(255,155,210,0.5)] hover:shadow-[0_0_35px_rgba(255,155,210,0.7)]
+                  transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer
+                "
+              >
+                <span>LET'S TALK</span>
+                <Sparkles className="w-4 h-4 text-[#100719] fill-current animate-pulse" />
+              </button>
+            )}
 
             {/* BOTTOM SOCIAL AREA */}
             <div className="pt-4 border-t border-white/10 shrink-0 z-10 flex flex-col space-y-3">
