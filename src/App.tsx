@@ -8,7 +8,6 @@ import { NavigationDrawer } from './components/NavigationDrawer';
 import { HeroSection } from './components/HeroSection';
 import { EmotionalGapSection } from './components/EmotionalGapSection';
 import { ConstellationSection } from './components/ConstellationSection';
-import { ResultsSection } from './components/ResultsSection';
 import { ToolkitSection } from './components/ToolkitSection';
 import { SignaturePhilosophySection } from './components/SignaturePhilosophySection';
 import { PartnershipSection } from './components/PartnershipSection';
@@ -110,8 +109,6 @@ export function App() {
         />
 
         <ConstellationSection />
-
-        <ResultsSection />
 
         <ToolkitSection />
 
