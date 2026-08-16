@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, MotionValue } from 'framer-motion';
 import { Sparkles, ArrowUpRight } from 'lucide-react';
 
@@ -12,93 +12,127 @@ export const TITLE_LINES = [
   "MANY DIFFERENT STORIES."
 ];
 
-// EXACTLY 7 EXPERIENCE CATEGORIES (NO CARDS, NO GRID, ARCHITECTURE & INTERIOR AS ONE NODE)
 export interface ConstellationNodeData {
   id: string;
   label: string;
-  posClass: string;
-  cx: string;
-  cy: string;
+  mobileClass: string;
+  desktopClass: string;
+  cxMobile: string;
+  cyMobile: string;
+  cxDesktop: string;
+  cyDesktop: string;
   delay: number;
   floatDuration: number;
   floatY: number;
 }
 
+// EXACTLY 7 CATEGORIES — ORGANIC ASYMMETRICAL DISTRIBUTION (NO GRID, NO CARDS)
 export const CONSTELLATION_NODES: ConstellationNodeData[] = [
   {
     id: 'arch-interior',
     label: 'ARCHITECTURE & INTERIOR',
-    posClass: 'top-[4%] left-1/2 -translate-x-1/2 text-center',
-    cx: '50%',
-    cy: '8%',
+    mobileClass: 'top-[3%] left-[46%] -translate-x-1/2 text-center',
+    desktopClass: 'md:top-[4%] md:left-1/2 md:-translate-x-1/2',
+    cxMobile: '46%',
+    cyMobile: '7%',
+    cxDesktop: '50%',
+    cyDesktop: '8%',
     delay: 0.1,
     floatDuration: 6.5,
-    floatY: -6,
+    floatY: -5,
   },
   {
     id: 'wellness',
     label: 'WELLNESS',
-    posClass: 'top-[24%] left-[2%] sm:left-[8%]',
-    cx: '16%',
-    cy: '26%',
-    delay: 0.2,
+    mobileClass: 'top-[22%] left-[2%]',
+    desktopClass: 'md:top-[24%] md:left-[8%]',
+    cxMobile: '18%',
+    cyMobile: '26%',
+    cxDesktop: '16%',
+    cyDesktop: '26%',
+    delay: 0.18,
     floatDuration: 7.2,
-    floatY: -5,
+    floatY: -4,
   },
   {
     id: 'food',
     label: 'FOOD',
-    posClass: 'top-[24%] right-[2%] sm:right-[8%]',
-    cx: '84%',
-    cy: '26%',
-    delay: 0.3,
-    floatDuration: 5.9,
-    floatY: -7,
+    mobileClass: 'top-[24%] right-[2%]',
+    desktopClass: 'md:top-[24%] md:right-[8%]',
+    cxMobile: '82%',
+    cyMobile: '27%',
+    cxDesktop: '84%',
+    cyDesktop: '26%',
+    delay: 0.26,
+    floatDuration: 5.8,
+    floatY: -6,
   },
   {
     id: 'jewellery',
     label: 'JEWELLERY',
-    posClass: 'top-[48%] left-[1%] sm:left-[12%]',
-    cx: '20%',
-    cy: '50%',
-    delay: 0.4,
+    mobileClass: 'top-[45%] left-[1%]',
+    desktopClass: 'md:top-[48%] md:left-[12%]',
+    cxMobile: '20%',
+    cyMobile: '48%',
+    cxDesktop: '20%',
+    cyDesktop: '50%',
+    delay: 0.34,
     floatDuration: 6.8,
-    floatY: -6,
+    floatY: -5,
   },
   {
     id: 'animation',
     label: 'ANIMATION',
-    posClass: 'top-[56%] right-[1%] sm:right-[10%]',
-    cx: '82%',
-    cy: '58%',
-    delay: 0.5,
-    floatDuration: 7.6,
-    floatY: -5,
+    mobileClass: 'top-[56%] right-[1%]',
+    desktopClass: 'md:top-[56%] md:right-[10%]',
+    cxMobile: '80%',
+    cyMobile: '59%',
+    cxDesktop: '82%',
+    cyDesktop: '58%',
+    delay: 0.42,
+    floatDuration: 7.8,
+    floatY: -4,
   },
   {
     id: 'youtube',
     label: 'YOUTUBE',
-    posClass: 'bottom-[8%] left-[6%] sm:left-[18%]',
-    cx: '25%',
-    cy: '88%',
-    delay: 0.6,
+    mobileClass: 'bottom-[9%] left-[4%]',
+    desktopClass: 'md:bottom-[8%] md:left-[18%]',
+    cxMobile: '24%',
+    cyMobile: '86%',
+    cxDesktop: '25%',
+    cyDesktop: '88%',
+    delay: 0.5,
     floatDuration: 6.2,
-    floatY: -6,
+    floatY: -5,
   },
   {
     id: 'long-form',
     label: 'LONG-FORM',
-    posClass: 'bottom-[8%] right-[6%] sm:right-[18%]',
-    cx: '75%',
-    cy: '88%',
-    delay: 0.7,
+    mobileClass: 'bottom-[7%] right-[4%]',
+    desktopClass: 'md:bottom-[8%] md:right-[18%]',
+    cxMobile: '76%',
+    cyMobile: '88%',
+    cxDesktop: '75%',
+    cyDesktop: '88%',
+    delay: 0.58,
     floatDuration: 7.0,
-    floatY: -7,
+    floatY: -6,
   },
 ];
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const titleContainerVariants = {
     hidden: {},
@@ -121,11 +155,11 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
   };
 
   return (
-    <div className="relative w-full py-16 sm:py-28 px-4 sm:px-6 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-16 border-t border-white/10 mt-16 sm:mt-24 overflow-x-hidden">
+    <div className="relative w-full py-16 sm:py-28 px-5 sm:px-8 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-16 border-t border-white/10 mt-16 sm:mt-24 overflow-x-hidden">
       
-      {/* 1. ATMOSPHERIC DEEP PLUM & PINK/LAVENDER RADIAL GLOW */}
+      {/* 1. ATMOSPHERIC PLUM & SOFT PINK AMBIENT GLOW */}
       <div 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[700px] opacity-25 blur-[170px] pointer-events-none rounded-full"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[700px] opacity-20 blur-[170px] pointer-events-none rounded-full"
         style={{
           background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #C084FC 40%, #3B1D55 70%, transparent 95%)',
         }}
@@ -167,7 +201,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
                     variants={lineVariants}
                     className="
                       block uppercase
-                      text-[clamp(32px,7.5vw,58px)] md:text-[clamp(44px,5vw,64px)]
+                      text-[clamp(34px,7.5vw,58px)] md:text-[clamp(44px,5vw,64px)]
                       leading-[0.94] tracking-[-0.03em] font-bold text-center
                       bg-gradient-to-b from-[#FFF7FF] to-[#FFC8EE] bg-clip-text text-transparent
                       drop-shadow-[0_0_25px_rgba(255,155,210,0.4)]
@@ -189,7 +223,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="
             text-center font-normal text-[#FFF7FF]/82
-            text-[16px] sm:text-[18px] leading-[1.8] max-w-[34ch] tracking-tight mx-auto
+            text-[15px] sm:text-[17px] leading-[1.8] max-w-[34ch] tracking-tight mx-auto
           "
         >
           Different businesses. Different audiences. Different stories.
@@ -198,52 +232,55 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
         {/* ========================================================================= */}
         {/* 5. DREAMY OPEN CONSTELLATION ORBIT (EXACTLY 7 NODES, NO CARDS, NO GRID) */}
         {/* ========================================================================= */}
-        <div className="relative w-full min-h-[520px] sm:min-h-[580px] md:min-h-[560px] flex items-center justify-center my-6 max-w-[1000px] mx-auto">
+        <div className="relative w-full min-h-[540px] sm:min-h-[580px] md:min-h-[560px] flex items-center justify-center my-4 sm:my-6 max-w-[1000px] mx-auto px-1 sm:px-4">
           
-          {/* FAINT CONSTELLATION CONNECTING LINES */}
+          {/* EXTREMELY FAINT CONSTELLATION CONNECTING LINES (OPACITY 0.14) */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
             <g>
               {CONSTELLATION_NODES.map((node) => {
                 const isHovered = hoveredNodeId === node.id;
+                const targetX = isMobile ? node.cxMobile : node.cxDesktop;
+                const targetY = isMobile ? node.cyMobile : node.cyDesktop;
 
                 return (
                   <motion.line
                     key={`line-${node.id}`}
                     x1="50%"
                     y1="50%"
-                    x2={node.cx}
-                    y2={node.cy}
+                    x2={targetX}
+                    y2={targetY}
                     stroke="#FF9BD2"
-                    strokeWidth={isHovered ? "1.8" : "1"}
+                    strokeWidth="1"
                     strokeDasharray="3 4"
-                    strokeOpacity={isHovered ? "0.75" : "0.22"}
+                    strokeOpacity={isHovered ? "0.65" : "0.14"}
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.3, delay: node.delay + 0.2, ease: 'easeOut' }}
+                    transition={{ duration: 1.2, delay: node.delay + 0.15, ease: 'easeOut' }}
                   />
                 );
               })}
             </g>
           </svg>
 
-          {/* CENTRAL ANCHOR: ✦ ARI ✦ (DARK PURPLE TRANSLUCENT CAPSULE WITH SOFT PINK GLOW) */}
+          {/* CENTRAL ANCHOR: ✦ ARI ✦ (DARK PURPLE TRANSLUCENT CAPSULE) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
           >
             <motion.div
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+              style={{ background: 'rgba(30, 8, 55, 0.75)' }}
               className="
-                px-6 py-3 rounded-full
-                bg-[#241038]/85 backdrop-blur-xl
-                border border-[#FF9BD2]/60 text-[#FFF7FF]
+                px-5 py-2.5 sm:px-6 sm:py-3 rounded-full
+                backdrop-blur-xl
+                border border-[#FF9BD2]/55 text-[#FFF7FF]
                 font-display font-black text-xs sm:text-sm tracking-[0.22em] uppercase
-                shadow-[0_0_35px_rgba(255,155,210,0.55)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]
+                shadow-[0_0_30px_rgba(255,155,210,0.18)]
                 flex items-center gap-2 cursor-pointer gpu-layer
               "
             >
@@ -256,15 +293,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           {/* 7 FLOATING EXPERIENCE GLASS PILLS */}
           {CONSTELLATION_NODES.map((node) => {
             const isHovered = hoveredNodeId === node.id;
+            const positionClass = isMobile ? node.mobileClass : `${node.mobileClass} ${node.desktopClass}`;
 
             return (
               <motion.div
                 key={node.id}
-                initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                initial={{ opacity: 0, scale: 0.94, y: 8 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: node.delay, ease: [0.22, 1, 0.36, 1] }}
-                className={`absolute ${node.posClass} z-20`}
+                transition={{ duration: 0.7, delay: node.delay, ease: [0.22, 1, 0.36, 1] }}
+                className={`absolute ${positionClass} z-20`}
                 onMouseEnter={() => setHoveredNodeId(node.id)}
                 onMouseLeave={() => setHoveredNodeId(null)}
               >
@@ -298,7 +336,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
         </div>
 
         {/* ========================================================================= */}
-        {/* 6. CONCLUDING STATEMENT (LARGE EDITORIAL TYPOGRAPHY, NO BOX, NO CARD) */}
+        {/* 6. CONCLUDING STATEMENT (FLOATING DIRECTLY ON PURPLE BACKGROUND, NO BOX) */}
         {/* ========================================================================= */}
         <div className="w-full flex flex-col items-center space-y-6 text-center pt-16 sm:pt-24 border-t border-white/10">
           
