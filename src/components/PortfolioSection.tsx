@@ -309,6 +309,35 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     }
   }, [activeMobileVideo]);
 
+  const handleMobileCardTap = (
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
+    proj: ProjectCardItem,
+    categoryTitle: string
+  ) => {
+    if (!proj.videoUrl) return;
+
+    setActiveMobileVideo({
+      title: proj.title,
+      category: categoryTitle,
+      videoUrl: proj.videoUrl,
+    });
+
+    const container = e.currentTarget;
+    const videoEl = container.querySelector('video') as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
+    if (videoEl) {
+      videoEl.muted = false;
+      try {
+        if (videoEl.webkitEnterFullscreen) {
+          videoEl.webkitEnterFullscreen();
+        } else if (videoEl.requestFullscreen) {
+          videoEl.requestFullscreen().catch(() => {});
+        }
+      } catch (err) {
+        // Fallback to custom full screen modal
+      }
+    }
+  };
+
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
@@ -597,15 +626,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                       style={{ scrollSnapAlign: 'center' }}
                     >
                       <div
-                        onClick={() => {
-                          if (proj.videoUrl) {
-                            setActiveMobileVideo({
-                              title: proj.title,
-                              category: section.title,
-                              videoUrl: proj.videoUrl,
-                            });
-                          }
-                        }}
+                        onClick={(e) => handleMobileCardTap(e, proj, section.title)}
+                        onTouchEnd={(e) => handleMobileCardTap(e, proj, section.title)}
                         className={`
                           relative w-full rounded-[24px] overflow-hidden
                           border border-white/15 bg-gradient-to-br ${proj.gradientBg}
