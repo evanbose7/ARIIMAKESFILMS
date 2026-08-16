@@ -617,6 +617,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                               muted
                               playsInline
                               preload="auto"
+                              onLoadedData={(e) => {
+                                e.currentTarget.muted = true;
+                                e.currentTarget.play().catch(() => {});
+                              }}
                               className="w-full h-full object-cover rounded-[24px]"
                             />
                             <div className="absolute top-3 left-3 z-20">
