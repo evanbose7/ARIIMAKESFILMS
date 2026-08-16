@@ -108,21 +108,21 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'arch-4', title: 'GURU GOBIND MUSEUM ARCHITECTURE', description: 'Monumental architectural storytelling preserving heritage through modern lens.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/architecture-4.mp4' },
     ],
   },
-  // 5. UGC (CARD 05: WIDE STRIP - BOTTOM LEFT)
+  // 5. JEWELRY (INTERNATIONAL BRANDS) (CARD 05: BOTTOM LEFT WIDE STRIP)
   {
-    id: 'ugc',
-    title: 'UGC',
-    subtitle: 'CREATOR-LED VISUAL STORIES',
-    description: 'Relatable, human-centric short-form story designed to feel organic on feed.',
+    id: 'jewelry',
+    title: 'JEWELRY (INTERNATIONAL BRANDS)',
+    subtitle: 'LUXURY & CRAFTSMANSHIP',
+    description: 'High-end jewelry films, international brand stories & luxury craftsmanship.',
     gridClassDesktop: 'col-span-6 row-span-1 min-h-[220px]',
     gridClassMobile: 'col-span-1 h-[220px]',
     aspectRatio: 'landscape',
     previewGradient: 'from-[#FF9BD2]/35 via-[#1D0A33] to-[#FFB6E6]/30',
-    icon: Heart,
+    icon: Sparkles,
     projects: [
-      { id: 'ugc-1', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16' },
-      { id: 'ugc-2', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16' },
-      { id: 'ugc-3', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16' },
+      { id: 'jwl-1', title: 'FINE JEWELRY REEL 01', description: 'Macro reflections and diamond brilliance captured in high-contrast luxury grade.', previewGradient: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-1.mp4' },
+      { id: 'jwl-2', title: 'LUXURY CRAFTSMANSHIP 02', description: 'Sensory storytelling highlighting gold textures, artisan details, and elegance.', previewGradient: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-2.mp4' },
+      { id: 'jwl-3', title: 'INTERNATIONAL BRAND FEATURE 03', description: 'Editorial global brand film designed for international luxury campaigns.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/jewelry-3.mp4' },
     ],
   },
   // 6. VIDEO EDITING (CARD 06: WIDE STRIP - BOTTOM RIGHT)
@@ -1012,7 +1012,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 05 — UGC (BOTTOM LEFT WIDE STRIP) */}
+        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT WIDE STRIP) */}
         {/* col-span-6, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
@@ -1029,9 +1029,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         >
           <div className="flex items-center justify-between z-30">
             <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
-              <Heart className="w-3.5 h-3.5 text-[#FF9BD2]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
-                CREATOR-LED STORIES
+                LUXURY & CRAFTSMANSHIP
               </span>
             </div>
             <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FF9BD2] group-hover:text-[#100719] flex items-center justify-center transition-colors">
@@ -1041,10 +1041,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
 
           <div className="space-y-0.5 z-30 pt-3">
             <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FF9BD2] transition-colors">
-              UGC
+              JEWELRY (INTERNATIONAL BRANDS)
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
-              Relatable, human-centric short-form stories designed for organic reach.
+              High-end jewelry films, international brand stories & luxury craftsmanship.
             </p>
           </div>
         </motion.div>
