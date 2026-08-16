@@ -544,10 +544,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                             className="w-full h-full object-cover object-center select-none brightness-[1.05] contrast-[1.05] saturate-[1.05] transition-transform duration-500 group-hover:scale-105"
                           />
 
-                          <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-                            <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] text-[#100719] font-mono text-[10px] font-black tracking-widest shadow-lg">
-                              AI
-                            </span>
+                          <div className="absolute top-4 right-4 z-20">
                             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
                               <InstagramIcon className="w-4 h-4 text-white" />
                             </div>
