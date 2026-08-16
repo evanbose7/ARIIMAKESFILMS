@@ -151,6 +151,7 @@ export interface ProjectCardItem {
   aspectRatio: '9/16' | '16/9';
   gradientBg: string;
   thumbnail?: string;
+  videoUrl?: string;
   url?: string;
   duration?: string;
   tag?: string;
@@ -171,7 +172,7 @@ export interface PortfolioCategoryData {
 export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   {
     id: 'social-content',
-    eyebrowLabel: '01 / 06 ✦ INSTAGRAM & REELS',
+    eyebrowLabel: '01 / 07 ✦ INSTAGRAM & REELS',
     title: 'SOCIAL CONTENT',
     subhead: 'Short-form content made to stop the scroll.',
     icon: Film,
@@ -186,53 +187,55 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
     ],
   },
   {
-    id: 'ai-video',
-    eyebrowLabel: '02 / 06 ✦ SYNTHETIC MOTION',
-    title: 'AI VIDEO',
-    subhead: 'Surreal visual poetry & synthetic motion concepts.',
+    id: 'food',
+    eyebrowLabel: '02 / 07 ✦ GOURMET & CULINARY',
+    title: 'FOOD',
+    subhead: 'Artisanal food, luxury desserts & culinary stories.',
     icon: Wand2,
-    accentColor: '#C084FC',
+    accentColor: '#FF9BD2',
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 'ai-1', numberLabel: '01 / 03', title: 'SURREAL VISUAL STORY 01', description: 'AI-assisted concept edit transforming static photographs into visual poetry.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 'ai-2', numberLabel: '02 / 03', title: 'CONCEPTUAL PRODUCT REEL 02', description: 'Combining synthetic visual layers with real footage for luxury product storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 'ai-3', numberLabel: '03 / 03', title: 'SYNTHETIC MOTION EDIT 03', description: 'AI motion generation expanding creative ideas into digital landscapes.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'food-1', numberLabel: '01 / 04', title: 'ARTISANAL DESSERT FILM 01', description: 'Cinematic food cinematography highlighting textures, flavor profiles, and artisanal passion.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/food-1.mp4' },
+      { id: 'food-2', numberLabel: '02 / 04', title: 'CULINARY CREATION REEL 02', description: 'High-speed pacing and mouth-watering close-ups designed for food lovers.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-2.mp4' },
+      { id: 'food-3', numberLabel: '03 / 04', title: 'VOICEOVER FOOD STORY 03', description: 'Narrative-driven culinary reel with rich audio score and voiceover storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/food-3.mp4' },
+      { id: 'food-4', numberLabel: '04 / 04', title: 'SEASONAL MENU SPECIAL 04', description: 'Visual feast capturing vibrant colors and sensory culinary experiences.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/food-4.mp4' },
     ],
   },
   {
-    id: 'video-editing',
-    eyebrowLabel: '03 / 06 ✦ RETENTION & RHYTHM',
-    title: 'VIDEO EDITING',
-    subhead: 'Mastering rhythm, audio hooks & retention cuts.',
+    id: 'architecture',
+    eyebrowLabel: '03 / 07 ✦ SPATIAL & EDITORIAL',
+    title: 'ARCHITECTURE AND INTERIOR DESIGN',
+    subhead: 'Spatial storytelling, architectural tours & luxury interiors.',
     icon: Compass,
     accentColor: '#FFB6E6',
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 've-1', numberLabel: '01 / 03', title: 'CINEMATIC RHYTHM EDIT 01', description: 'Fast-paced social edit with custom audio hooks and editorial color grading.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', thumbnail: '/assets/reel-thumb-2.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 've-2', numberLabel: '02 / 03', title: 'BRAND DOCUMENTARY CUT 02', description: 'Refined narrative pacing, voiceover synchronization, and clean cuts.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 've-3', numberLabel: '03 / 03', title: 'PACING & AUDIO HOOK EDIT 03', description: 'Mastering micro-transitions and audio timing to maximize audience retention.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'arch-1', numberLabel: '01 / 04', title: 'ARTSIGNIA 5 YEARS ANNIVERSARY', description: 'Cinematic architectural documentary celebrating 5 years of spatial innovation.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/architecture-1.mp4' },
+      { id: 'arch-2', numberLabel: '02 / 04', title: 'MODERN INTERIOR FEATURE 02', description: 'Elegant spatial camera movements showcasing light, luxury textures, and design.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/architecture-2.mp4' },
+      { id: 'arch-3', numberLabel: '03 / 04', title: 'CREATIVE DESIGN TOUR 03', description: 'Editorial tour exploring architectural rhythm, material harmony, and atmosphere.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/architecture-3.mp4' },
+      { id: 'arch-4', numberLabel: '04 / 04', title: 'GURU GOBIND MUSEUM ARCHITECTURE', description: 'Monumental architectural storytelling preserving heritage through modern lens.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/architecture-4.mp4' },
     ],
   },
   {
-    id: 'ugc',
-    eyebrowLabel: '04 / 06 ✦ CREATOR-LED',
-    title: 'UGC',
-    subhead: 'Authentic, creator-led visual stories.',
+    id: 'jewellery',
+    eyebrowLabel: '04 / 07 ✦ LUXURY & ELEGANCE',
+    title: 'JEWELLERY (INTERNATIONAL BRANDS)',
+    subhead: 'High jewelry visual storytelling & international campaigns.',
     icon: Heart,
     accentColor: '#FF9BD2',
     aspectRatio: '9/16',
     mobileCardWidth: 'w-[76vw] sm:w-[320px]',
     projects: [
-      { id: 'ugc-1', numberLabel: '01 / 03', title: 'CREATOR UGC CAMPAIGN 01', description: 'Relatable, human-centric short-form story designed to feel organic on feed.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', thumbnail: '/assets/reel-thumb-3.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 'ugc-2', numberLabel: '02 / 03', title: 'LIFESTYLE BEAUTY UGC 02', description: 'Natural lighting, authentic product experience, and high-converting hook pacing.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', thumbnail: '/assets/reel-thumb-4.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
-      { id: 'ugc-3', numberLabel: '03 / 03', title: 'AUTHENTIC PRODUCT STORY 03', description: 'Creator-led video bringing genuine emotion and audience trust to visual storytelling.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', thumbnail: '/assets/reel-thumb-1.jpg', url: 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy' },
+      { id: 'jewel-1', numberLabel: '01 / 03', title: 'INTERNATIONAL JEWELLERY FILM 01', description: 'Macro lighting and sparkling reflections highlighting fine diamond artistry.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1F0A33] to-[#B388FF]/30', videoUrl: '/assets/jewellery-1.mp4' },
+      { id: 'jewel-2', numberLabel: '02 / 03', title: 'LUXURY BRAND CAMPAIGN 02', description: 'Aesthetic high-fashion cinematography crafted for prestigious international houses.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1F0A33] to-[#FFB6E6]/30', videoUrl: '/assets/jewellery-2.mp4' },
+      { id: 'jewel-3', numberLabel: '03 / 03', title: 'FINE CRAFTSMANSHIP FEATURE 03', description: 'Sensory storytelling capturing gold curves, gemstones, and timeless elegance.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', videoUrl: '/assets/jewellery-3.mp4' },
     ],
   },
   {
     id: 'youtube',
-    eyebrowLabel: '05 / 06 ✦ CINEMATIC WIDESCREEN',
+    eyebrowLabel: '05 / 07 ✦ CINEMATIC WIDESCREEN',
     title: 'YOUTUBE',
     subhead: 'Longer stories. More room to tell them.',
     icon: Tv,
@@ -246,7 +249,7 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
   },
   {
     id: 'long-form',
-    eyebrowLabel: '06 / 06 ✦ DOCUMENTARY FILMS',
+    eyebrowLabel: '06 / 07 ✦ DOCUMENTARY FILMS',
     title: 'LONG-FORM',
     subhead: 'Documentary brand films & cinematic narrative essays.',
     icon: Video,
@@ -257,6 +260,22 @@ export const PORTFOLIO_SECTIONS: PortfolioCategoryData[] = [
       { id: 'lf-1', numberLabel: '01 / 03', title: 'DOCUMENTARY BRAND FILM 01', description: 'Widescreen cinematic narrative exploring human depth behind brand origins.', aspectRatio: '16/9', gradientBg: 'from-[#FF9BD2]/40 via-[#120822] to-[#B388FF]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '15:10', tag: 'DOCUMENTARY • BRAND' },
       { id: 'lf-2', numberLabel: '02 / 03', title: 'CINEMATIC ESSAY 02', description: 'Editorial long-form production featuring ambient visual storytelling and score.', aspectRatio: '16/9', gradientBg: 'from-[#B388FF]/40 via-[#120822] to-[#FFB6E6]/30', thumbnail: '/assets/yt-thumb-2.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '11:40', tag: 'CINEMATIC • ESSAY' },
       { id: 'lf-3', numberLabel: '03 / 03', title: 'EPISODIC BRAND STORY 03', description: 'Multi-part video series built for deep engagement and long-term brand equity.', aspectRatio: '16/9', gradientBg: 'from-[#6D4AFF]/40 via-[#120822] to-[#FF9BD2]/30', thumbnail: '/assets/yt-thumb-1.jpg', url: 'https://www.youtube.com/@Kidwithcrayons', duration: '22:15', tag: 'EPISODIC • SERIES' },
+    ],
+  },
+  {
+    id: 'wellbeing',
+    eyebrowLabel: '07 / 07 ✦ MIND & MOVEMENT',
+    title: 'WELL BEING',
+    subhead: 'Holistic wellness, movement & mindful living films.',
+    icon: Sparkles,
+    accentColor: '#FF9BD2',
+    aspectRatio: '9/16',
+    mobileCardWidth: 'w-[76vw] sm:w-[320px]',
+    projects: [
+      { id: 'wb-1', numberLabel: '01 / 04', title: 'ELANURA WELLNESS STORY 01', description: 'Ambient visual essay celebrating holistic health, natural beauty, and wellness.', aspectRatio: '9/16', gradientBg: 'from-[#FF9BD2]/40 via-[#1A0A2E] to-[#B388FF]/30', videoUrl: '/assets/wellbeing-1.mp4' },
+      { id: 'wb-2', numberLabel: '02 / 04', title: 'MINDFUL MOVEMENT REEL 02', description: 'Serene camera work and rhythmic pacing designed for wellness brand engagement.', aspectRatio: '9/16', gradientBg: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FFB6E6]/30', videoUrl: '/assets/wellbeing-2.mp4' },
+      { id: 'wb-3', numberLabel: '03 / 04', title: 'HOLISTIC LIFESTYLE FILM 03', description: 'Warm editorial lighting and natural imagery focusing on vitality and balance.', aspectRatio: '9/16', gradientBg: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', videoUrl: '/assets/wellbeing-3.mp4' },
+      { id: 'wb-4', numberLabel: '04 / 04', title: 'ELANURA ESSENCE CAMPAIGN 04', description: 'Mindful visual narrative showcasing organic wellness experiences.', aspectRatio: '9/16', gradientBg: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', videoUrl: '/assets/wellbeing-4.mp4' },
     ],
   },
 ];
@@ -548,7 +567,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     );
                   }
 
-                  // OTHER SECTIONS (AI-VIDEO, VIDEO-EDITING, UGC, LONG-FORM): CLEAN BLANK/MINIMAL PLACEHOLDER CARDS
+                  // OTHER SECTIONS (FOOD, ARCHITECTURE, JEWELLERY, LONG-FORM, WELLBEING)
                   return (
                     <div
                       key={proj.id}
@@ -570,20 +589,41 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                           ${isActive ? 'shadow-[0_0_25px_rgba(255,155,210,0.3)] border-[#FF9BD2]/40' : ''}
                         `}
                       >
-                        <div className="absolute inset-0 z-20 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
-                        <div className="relative w-full h-full flex flex-col justify-between p-4 z-10">
-                          <div className="flex items-center justify-between text-xs font-mono">
-                            <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
-                              {proj.numberLabel}
-                            </span>
-                          </div>
+                        {proj.videoUrl ? (
+                          <>
+                            <video
+                              src={proj.videoUrl}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-full h-full object-cover rounded-[24px]"
+                            />
+                            <div className="absolute top-3 left-3 z-20">
+                              <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-mono text-xs font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
+                                {proj.numberLabel}
+                              </span>
+                            </div>
+                            <div className="absolute inset-0 z-10 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
+                          </>
+                        ) : (
+                          <>
+                            <div className="absolute inset-0 z-20 pointer-events-none rounded-[24px] shadow-[inset_0_0_25px_rgba(16,7,25,0.75)]" />
+                            <div className="relative w-full h-full flex flex-col justify-between p-4 z-10">
+                              <div className="flex items-center justify-between text-xs font-mono">
+                                <span className={`px-2.5 py-0.5 rounded-full bg-black/60 border border-white/20 font-bold ${isActive ? 'text-[#FF9BD2]' : 'text-white/70'}`}>
+                                  {proj.numberLabel}
+                                </span>
+                              </div>
 
-                          <div className="my-auto flex flex-col items-center justify-center text-center space-y-2">
-                            <span className="text-[11px] font-mono font-bold text-[#FFF7FF]/90 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
-                              {proj.title}
-                            </span>
-                          </div>
-                        </div>
+                              <div className="my-auto flex flex-col items-center justify-center text-center space-y-2">
+                                <span className="text-[11px] font-mono font-bold text-[#FFF7FF]/90 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/10">
+                                  {proj.title}
+                                </span>
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <div className="space-y-1 px-1 text-left">
