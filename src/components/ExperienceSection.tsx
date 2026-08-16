@@ -1,60 +1,82 @@
 import React from 'react';
 import { motion, MotionValue } from 'framer-motion';
-import { Sparkles, Building2, Heart, Utensils, Gem, Wand2, Video } from 'lucide-react';
+import { Sparkles, ArrowUpRight } from 'lucide-react';
 
 interface ExperienceSectionProps {
   scrollYProgress?: MotionValue<number>;
   onSeeMyWorkClick?: () => void;
 }
 
-export const EXPERIENCE_CARDS = [
-  {
-    id: 'architecture',
-    title: 'ARCHITECTURE',
-    caption: 'Turning spaces into visual stories.',
-    icon: Building2,
-    glowColor: '#FF9BD2',
-  },
-  {
-    id: 'wellness',
-    title: 'WELLNESS',
-    caption: 'Calm, emotional and human content.',
-    icon: Heart,
-    glowColor: '#B388FF',
-  },
-  {
-    id: 'food',
-    title: 'FOOD',
-    caption: 'Content that looks as good as it tastes.',
-    icon: Utensils,
-    glowColor: '#FFB6E6',
-  },
-  {
-    id: 'jewellery',
-    title: 'JEWELLERY',
-    caption: 'Luxury details, light and elegance.',
-    icon: Gem,
-    glowColor: '#FFD6F5',
-  },
-  {
-    id: 'animation',
-    title: 'ANIMATION',
-    caption: 'Ideas that move beyond reality.',
-    icon: Wand2,
-    glowColor: '#B388FF',
-  },
-  {
-    id: 'ugc-social',
-    title: 'UGC & SOCIAL',
-    caption: 'Content that feels natural and relatable.',
-    icon: Video,
-    glowColor: '#FF9BD2',
-  },
-];
-
 export const TITLE_LINES = [
   "10+ BRANDS.",
   "MANY DIFFERENT STORIES."
+];
+
+// EXACTLY 7 EXPERIENCE CATEGORIES (NO REPETITION, ARCHITECTURE & INTERIOR AS ONE NODE)
+export const CONSTELLATION_NODES = [
+  {
+    id: 'arch-interior',
+    label: 'ARCHITECTURE & INTERIOR',
+    posClass: 'top-[4%] left-1/2 -translate-x-1/2 text-center',
+    cx: '50%',
+    cy: '12%',
+    delay: 0.1,
+    floatDuration: 6.2,
+  },
+  {
+    id: 'wellness',
+    label: 'WELLNESS',
+    posClass: 'top-[22%] left-[2%] sm:left-[10%]',
+    cx: '16%',
+    cy: '28%',
+    delay: 0.2,
+    floatDuration: 7.1,
+  },
+  {
+    id: 'food',
+    label: 'FOOD',
+    posClass: 'top-[22%] right-[2%] sm:right-[10%]',
+    cx: '84%',
+    cy: '28%',
+    delay: 0.3,
+    floatDuration: 5.8,
+  },
+  {
+    id: 'jewellery',
+    label: 'JEWELLERY',
+    posClass: 'top-[50%] left-[1%] sm:left-[6%]',
+    cx: '12%',
+    cy: '54%',
+    delay: 0.4,
+    floatDuration: 6.8,
+  },
+  {
+    id: 'animation',
+    label: 'ANIMATION',
+    posClass: 'top-[50%] right-[1%] sm:right-[6%]',
+    cx: '88%',
+    cy: '54%',
+    delay: 0.5,
+    floatDuration: 7.4,
+  },
+  {
+    id: 'youtube',
+    label: 'YOUTUBE',
+    posClass: 'bottom-[10%] left-[10%] sm:left-[22%]',
+    cx: '26%',
+    cy: '84%',
+    delay: 0.6,
+    floatDuration: 6.0,
+  },
+  {
+    id: 'long-form',
+    label: 'LONG-FORM',
+    posClass: 'bottom-[10%] right-[10%] sm:right-[22%]',
+    cx: '74%',
+    cy: '84%',
+    delay: 0.7,
+    floatDuration: 7.0,
+  },
 ];
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
@@ -78,51 +100,21 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
     },
   };
 
-  const cardsContainerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.14,
-        delayChildren: 0.35,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 28, scale: 0.96 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-    },
-  };
-
   return (
-    <div className="relative w-full py-16 sm:py-24 px-4 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-16 border-t border-white/10 mt-16 sm:mt-24">
+    <div className="relative w-full py-16 sm:py-28 px-4 sm:px-6 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-16 border-t border-white/10 mt-16 sm:mt-24 overflow-x-hidden">
       
-      {/* 1. BACKGROUND LAYERS */}
-      {/* Soft Lavender Fog & Large Pink Center Glow */}
+      {/* 1. BACKGROUND ATMOSPHERIC GLOW */}
       <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[650px] opacity-30 blur-[150px] pointer-events-none rounded-full"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[650px] opacity-25 blur-[160px] pointer-events-none rounded-full"
         style={{
           background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #FFB6E6 35%, #B388FF 65%, transparent 90%)',
         }}
       />
-      <div 
-        className="absolute bottom-10 inset-x-0 h-[300px] opacity-30 blur-[120px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at bottom, #2A1247 0%, transparent 100%)',
-        }}
-      />
 
-      {/* Faint Star-Dust Texture & Film Grain */}
-      <div className="absolute inset-0 film-grain opacity-[0.025] mix-blend-overlay pointer-events-none" />
+      {/* MAIN CONTAINER */}
+      <div className="w-full max-w-[900px] mx-auto flex flex-col items-center text-center space-y-12 sm:space-y-16 relative z-10">
 
-      {/* MAIN CONTAINER (MAX WIDTH 640PX) */}
-      <div className="w-full max-w-[640px] mx-auto flex flex-col items-center text-center space-y-14 relative z-10">
-
-        {/* 2. EYEBROW LABEL */}
+        {/* 2. EYEBROW BADGE */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +131,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           <Sparkles className="w-3.5 h-3.5 text-[#FF9BD2] animate-pulse" />
         </motion.div>
 
-        {/* 3. TITLE */}
+        {/* 3. HEADLINE */}
         <div className="w-full flex flex-col items-center">
           <motion.div
             variants={titleContainerVariants}
@@ -155,7 +147,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
                     variants={lineVariants}
                     className="
                       block uppercase
-                      text-[clamp(32px,8.5vw,54px)] md:text-[clamp(44px,6vw,60px)]
+                      text-[clamp(32px,7.5vw,56px)] md:text-[clamp(44px,5vw,62px)]
                       leading-[0.94] tracking-[-0.03em] font-bold text-center
                       bg-gradient-to-b from-[#FFF7FF] to-[#FFC8EE] bg-clip-text text-transparent
                       drop-shadow-[0_0_25px_rgba(255,155,210,0.4)]
@@ -169,7 +161,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           </motion.div>
         </div>
 
-        {/* 4. INTRO TEXT */}
+        {/* 4. SUPPORTING COPY */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,93 +169,144 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="
             text-center font-normal text-[#FFF7FF]/82
-            text-[16.5px] sm:text-[17px] leading-[1.9] max-w-[30ch] tracking-tight
+            text-[16px] sm:text-[18px] leading-[1.8] max-w-[34ch] tracking-tight mx-auto
           "
         >
           Different businesses. Different audiences. Different stories. But every project starts with the same question: What makes this brand worth remembering?
         </motion.p>
 
-        {/* 5. 6 FLOATING EXPERIENCE CARDS (STACKED VERTICALLY WITH 18PX GAP) */}
-        <motion.div
-          variants={cardsContainerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="w-full flex flex-col gap-[18px]"
-        >
-          {EXPERIENCE_CARDS.map((card, idx) => {
-            const Icon = card.icon;
+        {/* ========================================================================= */}
+        {/* 5. ORGANIC CONSTELLATION ORBIT (EXACTLY 7 NODES, NO CARDS, NO LIST) */}
+        {/* ========================================================================= */}
+        <div className="relative w-full min-h-[460px] sm:min-h-[520px] flex items-center justify-center my-6">
+          
+          {/* SUBTLE THIN DASHED CONNECTING LINES FROM ARI TOWARD EACH NODE */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
+            <g>
+              {CONSTELLATION_NODES.map((node) => (
+                <motion.line
+                  key={`line-${node.id}`}
+                  x1="50%"
+                  y1="50%"
+                  x2={node.cx}
+                  y2={node.cy}
+                  stroke="#FF9BD2"
+                  strokeWidth="1.2"
+                  strokeDasharray="4 4"
+                  strokeOpacity="0.28"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: node.delay + 0.3, ease: 'easeOut' }}
+                />
+              ))}
+            </g>
+          </svg>
 
-            return (
+          {/* CENTRAL ELEMENT: ARI ✦ (BRIGHTER SLIGHTLY DOMINANT NODE) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
+          >
+            <motion.div
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="
+                px-6 py-3 rounded-full
+                bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF]
+                text-[#100719] font-display font-black text-sm tracking-[0.2em] uppercase
+                shadow-[0_0_35px_rgba(255,155,210,0.65)] border border-white/40
+                flex items-center gap-2 cursor-pointer gpu-layer
+              "
+            >
+              <span>ARI</span>
+              <Sparkles className="w-4 h-4 text-[#100719] fill-current animate-pulse" />
+            </motion.div>
+          </motion.div>
+
+          {/* 7 ORGANIC EXPERIENCE NODES */}
+          {CONSTELLATION_NODES.map((node) => (
+            <motion.div
+              key={node.id}
+              initial={{ opacity: 0, scale: 0.8, y: 15 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: node.delay, ease: [0.22, 1, 0.36, 1] }}
+              className={`absolute ${node.posClass} z-20`}
+            >
               <motion.div
-                key={card.id}
-                variants={cardVariants}
-                animate={{ y: [0, -3, 0] }}
+                animate={{ y: [0, -6, 0] }}
                 transition={{
-                  y: { duration: 3.5 + (idx % 3) * 0.6, repeat: Infinity, ease: 'easeInOut' }
+                  duration: node.floatDuration,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
                 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05, y: -4 }}
                 className="
-                  group relative w-full rounded-[30px] p-6
-                  bg-white/[0.07] border border-white/[0.14]
-                  backdrop-blur-[20px] shadow-[0_8px_32px_rgba(179,136,255,0.18)]
-                  hover:border-[#FFB6E6] hover:bg-white/[0.10]
-                  hover:shadow-[0_0_30px_rgba(255,155,210,0.4)]
-                  transition-all duration-300 cursor-pointer overflow-hidden
-                  flex flex-col items-start text-left space-y-2.5 gpu-layer will-change-transform
+                  inline-flex items-center gap-1.5 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full
+                  bg-white/[0.07] border border-white/[0.16] backdrop-blur-xl
+                  text-[11px] sm:text-xs font-mono font-bold tracking-wider text-[#FFF7FF] uppercase
+                  shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:border-[#FF9BD2]/70 hover:bg-white/[0.12]
+                  hover:shadow-[0_0_25px_rgba(255,155,210,0.4)]
+                  transition-all duration-300 cursor-pointer whitespace-nowrap gpu-layer
                 "
               >
-                {/* Shimmer Effect overlay on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(110deg, transparent 20%, rgba(255, 155, 210, 0.4) 50%, transparent 80%)',
-                  }}
-                />
-
-                {/* Top: Category Icon with Pink-Lavender Glow */}
-                <div className="p-2.5 rounded-full bg-[#FF9BD2]/15 border border-[#FF9BD2]/40 text-[#FF9BD2] shadow-[0_0_12px_rgba(255,155,210,0.4)] group-hover:scale-110 transition-transform">
-                  <Icon className="w-5 h-5" />
-                </div>
-
-                {/* Middle: Category Title */}
-                <h3 className="font-display font-bold text-[20px] text-[#FFF7FF] tracking-wide group-hover:text-[#FF9BD2] transition-colors">
-                  {card.title}
-                </h3>
-
-                {/* Bottom: One-Line Cinematic Caption */}
-                <p className="text-[14px] text-[#FFF7FF]/70 font-normal leading-relaxed">
-                  {card.caption}
-                </p>
+                <span className="leading-tight">{node.label}</span>
+                <ArrowUpRight className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#FF9BD2] flex-shrink-0" />
               </motion.div>
-            );
-          })}
-        </motion.div>
+            </motion.div>
+          ))}
 
-        {/* 6. CENTERPIECE QUOTE CARD */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="
-            w-full p-[2px] rounded-[32px]
-            bg-gradient-to-r from-[#FF9BD2] via-[#FFB6E6] to-[#B388FF]
-            shadow-[0_0_40px_rgba(255,155,210,0.5)]
-            my-6 gpu-layer
-          "
-        >
-          <div className="
-            w-full rounded-[30px] bg-[#140A22]/90 backdrop-blur-2xl p-7 md:p-9 text-center
-            flex flex-col items-center justify-center space-y-3
-          ">
-            <Sparkles className="w-5 h-5 text-[#FF9BD2] animate-pulse" />
-            <blockquote className="font-display font-bold text-xl sm:text-2xl text-[#FFF7FF] leading-snug tracking-tight">
-              "I don't create the same content for every brand. I look for the story that only that brand can tell."
-            </blockquote>
-          </div>
-        </motion.div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* 6. CONCLUSION (NO CATEGORY REPETITION) */}
+        {/* ========================================================================= */}
+        <div className="w-full flex flex-col items-center space-y-6 text-center pt-10 sm:pt-16 border-t border-white/10">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full max-w-[850px] space-y-4"
+          >
+            {/* FIRST STATEMENT */}
+            <p className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-[#FFF7FF]/85 tracking-tight uppercase leading-snug">
+              DIFFERENT BUSINESSES. <br />
+              DIFFERENT AUDIENCES. <br />
+              DIFFERENT STORIES.
+            </p>
+
+            {/* TRANSITION STATEMENT */}
+            <p className="text-xs sm:text-sm font-mono text-[#FF9BD2] tracking-widest uppercase pt-2 font-semibold">
+              But every project taught me the same thing:
+            </p>
+
+            {/* MAIN HEADLINE */}
+            <motion.h3
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="
+                font-display font-black
+                text-[26px] sm:text-[42px] md:text-[56px]
+                leading-[1.04] tracking-[-0.02em] uppercase pt-2
+                bg-gradient-to-r from-[#FF9BD2] via-[#FFD6F5] to-[#B388FF] bg-clip-text text-transparent
+                drop-shadow-[0_0_35px_rgba(255,155,210,0.5)]
+              "
+            >
+              GOOD CONTENT STARTS WITH <br />
+              UNDERSTANDING WHAT MAKES A BRAND <br />
+              <span className="text-[#FFF7FF] font-black">WORTH LISTENING TO.</span>
+            </motion.h3>
+          </motion.div>
+
+        </div>
 
       </div>
     </div>
