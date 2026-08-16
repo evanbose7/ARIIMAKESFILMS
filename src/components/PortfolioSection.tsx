@@ -322,6 +322,34 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
     });
   };
 
+  const touchStartPos = React.useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleMobileTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length > 0) {
+      touchStartPos.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }
+  };
+
+  const handleMobileTouchEnd = (
+    e: React.TouchEvent,
+    proj: ProjectCardItem,
+    categoryTitle: string
+  ) => {
+    if (e.changedTouches.length > 0) {
+      const touchEnd = e.changedTouches[0];
+      const diffX = Math.abs(touchEnd.clientX - touchStartPos.current.x);
+      const diffY = Math.abs(touchEnd.clientY - touchStartPos.current.y);
+
+      // Distinguish tap from swipe scroll (< 12px movement is a TAP)
+      if (diffX < 12 && diffY < 12) {
+        handleMobileCardTap(proj, categoryTitle);
+      }
+    }
+  };
+
   // Desktop Internal Carousel States
   const [desktopReelIndex, setDesktopReelIndex] = useState(0);
   const [desktopYtIndex, setDesktopYtIndex] = useState(0);
@@ -602,6 +630,8 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     <div
                       key={proj.id}
                       onClick={() => handleMobileCardTap(proj, section.title)}
+                      onTouchStart={handleMobileTouchStart}
+                      onTouchEnd={(e) => handleMobileTouchEnd(e, proj, section.title)}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
                         scroll-snap-align-center transition-all duration-500 cursor-pointer
