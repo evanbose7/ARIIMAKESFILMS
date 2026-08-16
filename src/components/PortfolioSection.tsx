@@ -733,6 +733,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-4, row-span-2 (~4:7 ratio, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
+          id="portfolio-reels"
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -740,7 +741,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#190930] to-[#B388FF]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
-            flex flex-col justify-between relative group gpu-layer
+            flex flex-col justify-between relative group gpu-layer scroll-mt-28
           "
         >
           {/* TOP CARD HEADER */}
@@ -834,6 +835,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         {/* col-span-8, row-span-1 (Aspect ~16:7, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
+          id="portfolio-youtube"
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
@@ -841,7 +843,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#120822] to-[#FFB6E6]/20
             backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
-            flex flex-col justify-between relative group gpu-layer
+            flex flex-col justify-between relative group gpu-layer scroll-mt-28
           "
         >
           {/* TOP CARD HEADER */}

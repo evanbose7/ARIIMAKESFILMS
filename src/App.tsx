@@ -12,13 +12,9 @@ import { PortfolioSection } from './components/PortfolioSection';
 import { AboutSection } from './components/AboutSection';
 import { FinalManifestoSection } from './components/SignaturePhilosophySection';
 import { WorkWithMeModal } from './components/WorkWithMeModal';
-import { ShowreelModal } from './components/ShowreelModal';
-
 export function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
-  const [isShowreelModalOpen, setIsShowreelModalOpen] = useState(false);
-  const [activeReelTitle, setActiveReelTitle] = useState('ARI CINEMATIC REEL 2026');
 
   // Framer Motion scroll hook
   const { scrollYProgress } = useScroll();
@@ -51,11 +47,6 @@ export function App() {
     };
   }, []);
 
-  const handleOpenShowreel = (title: string) => {
-    setActiveReelTitle(title);
-    setIsShowreelModalOpen(true);
-  };
-
   const handleScrollToPortfolio = () => {
     const portfolioEl = document.getElementById('portfolio');
     if (portfolioEl) {
@@ -64,13 +55,26 @@ export function App() {
   };
 
   const handleSelectPortfolioLink = (type: 'YOUTUBE' | 'REELS' | 'BRAND WORKS') => {
-    if (type === 'YOUTUBE') {
-      handleOpenShowreel('ARI YOUTUBE CINEMATIC CHANNEL');
-    } else if (type === 'REELS') {
-      handleOpenShowreel('ARI SHORT-FORM VIRAL REELS');
-    } else if (type === 'BRAND WORKS') {
-      handleOpenShowreel('ARI BRAND CAMPAIGNS & UGC');
-    }
+    setIsDrawerOpen(false);
+
+    setTimeout(() => {
+      if (type === 'YOUTUBE') {
+        const ytEl = document.getElementById('portfolio-youtube') || document.getElementById('portfolio');
+        if (ytEl) {
+          ytEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (type === 'REELS') {
+        const reelsEl = document.getElementById('portfolio-reels') || document.getElementById('portfolio');
+        if (reelsEl) {
+          reelsEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (type === 'BRAND WORKS') {
+        const portfolioEl = document.getElementById('portfolio');
+        if (portfolioEl) {
+          portfolioEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, 100);
   };
 
   return (
@@ -124,13 +128,6 @@ export function App() {
       <WorkWithMeModal
         isOpen={isWorkModalOpen}
         onClose={() => setIsWorkModalOpen(false)}
-      />
-
-      {/* Interactive Portfolio Showcase Modal */}
-      <ShowreelModal
-        isOpen={isShowreelModalOpen}
-        onClose={() => setIsShowreelModalOpen(false)}
-        activeTitle={activeReelTitle}
       />
     </div>
   );
