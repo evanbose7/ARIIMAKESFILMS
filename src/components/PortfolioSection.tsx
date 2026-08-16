@@ -783,7 +783,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
           </div>
 
-          {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16 - IMAGE TAKES ENTIRE BOX SIZE) */}
+          {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16) */}
           <div 
             onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
             className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/20 bg-[#121212] shadow-xl cursor-pointer group/reel my-1.5 min-h-[280px]"
@@ -797,7 +797,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full object-cover select-none brightness-[1.05] contrast-[1.05]"
+                className="w-full h-full object-cover select-none brightness-[1.05] contrast-[1.05]"
               />
             </AnimatePresence>
 
@@ -895,7 +895,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
           </div>
 
-          {/* ACTIVE YOUTUBE SHOWCASE (IMAGE TAKES ENTIRE BOX SIZE) */}
+          {/* ACTIVE YOUTUBE SHOWCASE (WIDESCREEN 16:9) */}
           <a 
             href={desktopYtUrls[desktopYtIndex]}
             target="_blank"
@@ -911,7 +911,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full object-cover select-none"
+                className="w-full h-full object-cover select-none"
               />
             </AnimatePresence>
 
