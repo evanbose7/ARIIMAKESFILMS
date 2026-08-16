@@ -729,23 +729,40 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       <div className="hidden lg:grid w-full max-w-[1200px] mx-auto grid-cols-12 gap-5 relative z-20">
         
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 01 — SOCIAL CONTENT (DOMINANT TALL VERTICAL - LEFT SIDE) */}
+        {/* CARD 01 — SOCIAL CONTENT (FULL BOX IMAGE WITH 0 MARGINS) */}
         {/* col-span-4, row-span-2 (~4:7 ratio, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden p-5 sm:p-6
-            border border-white/15 bg-gradient-to-br from-[#FF9BD2]/20 via-[#190930] to-[#B388FF]/20
-            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            relative col-span-4 row-span-2 min-h-[460px] rounded-[28px] overflow-hidden p-5 sm:p-6
+            border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
-            flex flex-col justify-between relative group gpu-layer
+            flex flex-col justify-between cursor-pointer group gpu-layer
           "
         >
+          {/* FULL-BOX BACKGROUND IMAGE (0 MARGINS) */}
+          <div className="absolute inset-0 z-0">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={desktopReelIndex}
+                src={desktopReelThumbnails[desktopReelIndex]}
+                alt="Social Reel Preview"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 brightness-[1.05]"
+              />
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/95 via-[#12071B]/40 to-black/30 z-10" />
+          </div>
+
           {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-2">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
+          <div className="relative flex items-center justify-between z-30 mb-2">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md">
               <Film className="w-3.5 h-3.5 text-[#FF9BD2]" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 SOCIAL CONTENT
@@ -753,7 +770,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
+              <span className="text-[11px] font-mono font-bold text-[#FF9BD2] bg-black/60 px-2.5 py-0.5 rounded-full border border-white/20 backdrop-blur-md">
                 0{desktopReelIndex + 1} / 04
               </span>
               <div className="flex items-center gap-1">
@@ -764,9 +781,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopReelIndex((prev) => (prev === 0 ? 3 : prev - 1));
                   }}
                   aria-label="Previous Reel"
-                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-7 h-7 rounded-full bg-black/70 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer backdrop-blur-md"
                 >
-                  <ChevronLeft className="w-3 h-3" />
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   type="button"
@@ -775,78 +792,92 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopReelIndex((prev) => (prev === 3 ? 0 : prev + 1));
                   }}
                   aria-label="Next Reel"
-                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-7 h-7 rounded-full bg-black/70 border border-white/20 hover:border-[#FF9BD2] hover:bg-[#FF9BD2] hover:text-[#100719] text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer backdrop-blur-md"
                 >
-                  <ChevronRight className="w-3 h-3" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* ACTIVE REEL SHOWCASE (VERTICAL 9:16) */}
-          <div 
-            onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[0])}
-            className="relative w-full flex-1 rounded-[20px] overflow-hidden border border-white/20 bg-[#121212] shadow-xl cursor-pointer group/reel my-1.5 min-h-[280px]"
-          >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={desktopReelIndex}
-                src={desktopReelThumbnails[desktopReelIndex]}
-                alt="Social Reel Preview"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full object-cover select-none brightness-[1.05] contrast-[1.05]"
-              />
-            </AnimatePresence>
+          {/* CENTERED PLAY ICON & INSTAGRAM BADGE */}
+          <div className="relative flex-1 flex items-center justify-center z-20 pointer-events-none">
+            <div className="w-14 h-14 rounded-full bg-[#FF9BD2] text-[#100719] shadow-[0_0_35px_rgba(255,155,210,0.8)] flex items-center justify-center transform group-hover:scale-110 transition-transform">
+              <Play className="w-6 h-6 fill-current ml-0.5" />
+            </div>
 
-            <div className="absolute top-3 right-3 z-20">
+            <div className="absolute top-2 right-0 z-20">
               <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#FFB3CB] to-[#E91E8C] flex items-center justify-center shadow-lg">
                 <InstagramIcon className="w-3.5 h-3.5 text-white" />
               </div>
             </div>
+          </div>
 
-            <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 border border-white/30 backdrop-blur-md flex items-center justify-center text-white z-20 group-hover/reel:scale-110 transition-transform">
-              <Play className="w-4 h-4 fill-white ml-0.5" />
-            </div>
-
-            <div className="absolute bottom-3 left-3 right-3 z-20 p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between">
+          {/* FOOTER & TITLE */}
+          <div className="relative space-y-1 z-30 pt-2">
+            <div className="p-3 rounded-xl bg-black/65 backdrop-blur-md border border-white/15 flex items-center justify-between">
               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                 {desktopReelTitles[desktopReelIndex]}
               </span>
               <ExternalLink className="w-3.5 h-3.5 text-[#FFB3CB] shrink-0 ml-1.5" />
             </div>
-          </div>
 
-          {/* FOOTER LABEL */}
-          <div className="flex items-center justify-between pt-1.5">
-            <span className="text-[11px] font-mono font-bold text-[#FF9BD2]">
-              SHORT-FORM VIRAL REELS
-            </span>
-            <span className="text-[11px] font-mono text-white/50">4 REELS SHOWCASE</span>
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-[11px] font-mono font-bold text-[#FF9BD2] drop-shadow-md">
+                SHORT-FORM VIRAL REELS
+              </span>
+              <span className="text-[11px] font-mono text-white/70 drop-shadow-md">4 REELS SHOWCASE</span>
+            </div>
           </div>
 
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 02 — YOUTUBE VIDEOS (LARGE WIDE HORIZONTAL - TOP RIGHT) */}
+        {/* CARD 02 — YOUTUBE VIDEOS (FULL BOX IMAGE WITH 0 MARGINS) */}
         {/* col-span-8, row-span-1 (Aspect ~16:7, compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden p-5 sm:p-6
-            border border-white/15 bg-gradient-to-br from-[#B388FF]/20 via-[#120822] to-[#FFB6E6]/20
-            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            relative col-span-8 row-span-1 min-h-[220px] rounded-[28px] overflow-hidden p-5 sm:p-6
+            border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
-            flex flex-col justify-between relative group gpu-layer
+            flex flex-col justify-between group gpu-layer
           "
         >
+          {/* FULL-BOX BACKGROUND IMAGE (0 MARGINS) */}
+          <a
+            href={desktopYtUrls[desktopYtIndex]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-0 cursor-pointer group/yt"
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={desktopYtIndex}
+                src={desktopYtThumbnails[desktopYtIndex]}
+                alt="YouTube Video Preview"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full object-cover select-none group-hover/yt:scale-105 transition-transform duration-700 opacity-85 group-hover/yt:opacity-100 brightness-[1.05]"
+              />
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#12071B]/95 via-[#12071B]/40 to-black/30 z-10" />
+
+            {/* CENTER PLAY OVERLAY */}
+            <div className="absolute inset-0 flex items-center justify-center z-20">
+              <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.8)] group-hover/yt:scale-110 transition-transform">
+                <Play className="w-5 h-5 fill-white ml-0.5" />
+              </div>
+            </div>
+          </a>
+
           {/* TOP CARD HEADER */}
-          <div className="flex items-center justify-between z-30 mb-2">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
+          <div className="relative flex items-center justify-between z-30 mb-2 pointer-events-auto">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md">
               <Tv className="w-3.5 h-3.5 text-red-500" />
               <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
                 YOUTUBE VIDEOS
@@ -854,7 +885,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
             </div>
 
             <div className="flex items-center gap-2.5">
-              <span className="text-[11px] font-mono font-bold text-red-400">
+              <span className="text-[11px] font-mono font-bold text-red-400 bg-black/60 px-2.5 py-0.5 rounded-full border border-white/20 backdrop-blur-md">
                 0{desktopYtIndex + 1} / 04
               </span>
               <div className="flex items-center gap-1.5">
@@ -863,7 +894,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     key={dotIdx}
                     onClick={() => setDesktopYtIndex(dotIdx)}
                     className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                      desktopYtIndex === dotIdx ? 'w-4 bg-red-500 shadow-[0_0_6px_#EF4444]' : 'w-1.5 bg-white/20'
+                      desktopYtIndex === dotIdx ? 'w-4 bg-red-500 shadow-[0_0_6px_#EF4444]' : 'w-1.5 bg-white/40'
                     }`}
                   />
                 ))}
@@ -876,9 +907,9 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopYtIndex((prev) => (prev === 0 ? 3 : prev - 1));
                   }}
                   aria-label="Previous YouTube Video"
-                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-7 h-7 rounded-full bg-black/70 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer backdrop-blur-md"
                 >
-                  <ChevronLeft className="w-3 h-3" />
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   type="button"
@@ -887,50 +918,30 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                     setDesktopYtIndex((prev) => (prev === 3 ? 0 : prev + 1));
                   }}
                   aria-label="Next YouTube Video"
-                  className="w-6.5 h-6.5 rounded-full bg-black/60 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer"
+                  className="w-7 h-7 rounded-full bg-black/70 border border-white/20 hover:border-red-500 hover:bg-red-600 hover:text-white text-[#FFF7FF] flex items-center justify-center transition-all cursor-pointer backdrop-blur-md"
                 >
-                  <ChevronRight className="w-3 h-3" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* ACTIVE YOUTUBE SHOWCASE (WIDESCREEN 16:9) */}
-          <a 
-            href={desktopYtUrls[desktopYtIndex]}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-full flex-1 rounded-[16px] overflow-hidden border border-white/15 bg-black shadow-lg cursor-pointer group/yt flex items-center justify-center my-1.5 min-h-[130px]"
-          >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={desktopYtIndex}
-                src={desktopYtThumbnails[desktopYtIndex]}
-                alt="YouTube Video Preview"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full object-cover select-none"
-              />
-            </AnimatePresence>
-
-            <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/25">
-              <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl group-hover/yt:scale-110 transition-transform">
-                <Play className="w-4 h-4 fill-white ml-0.5" />
-              </div>
-            </div>
-
-            <div className="absolute bottom-2.5 left-2.5 right-2.5 z-20 p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
+          {/* BOTTOM TITLE BAR */}
+          <div className="relative z-30 pt-2 pointer-events-auto">
+            <a 
+              href={desktopYtUrls[desktopYtIndex]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-xl bg-black/65 backdrop-blur-md border border-white/15 flex items-center justify-between block hover:border-red-500/60 transition-colors"
+            >
               <span className="font-bold text-xs text-white leading-snug line-clamp-1">
                 {desktopYtTitles[desktopYtIndex]}
               </span>
               <span className="flex items-center gap-1 text-[11px] font-bold text-red-400 shrink-0 ml-2.5">
                 Watch ↗
               </span>
-            </div>
-          </a>
-
+            </a>
+          </div>
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
