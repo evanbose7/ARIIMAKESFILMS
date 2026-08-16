@@ -4,14 +4,11 @@ import { ArrowUpRight } from 'lucide-react';
 
 interface SignaturePhilosophySectionProps {
   heroImageSrc?: string;
-  onWorkWithMeClick?: () => void;
 }
 
 export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProps> = ({
   heroImageSrc = '/dice_hero.jpg',
-  onWorkWithMeClick,
 }) => {
-  const [isBtnHovered, setIsBtnHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   // Fast GPU-accelerated entrance animation
@@ -114,9 +111,9 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
             <span className="text-[#FF9BD2]">DICEY</span>
             <span className="text-[#C084FC]">GAME.</span>
             <motion.span
-              animate={{ rotate: isBtnHovered ? [0, 30, 0] : 0 }}
+              whileHover={{ rotate: [0, 25, 0] }}
               transition={{ duration: 0.5 }}
-              className="inline-block text-[#FFF7FF]"
+              className="inline-block text-[#FFF7FF] cursor-pointer"
             >
               🎲
             </motion.span>
@@ -396,75 +393,83 @@ export const SignaturePhilosophySection: React.FC<SignaturePhilosophySectionProp
           <span className="text-xs font-sans text-[#FF9BD2] animate-pulse">✦</span>
         </motion.p>
 
-        {/* ========================================================================= */}
-        {/* LEVEL 01 — FINAL CINEMATIC MANIFESTO CLIMAX */}
-        {/* ========================================================================= */}
-        <div className="w-full flex flex-col items-center space-y-16 text-center pt-24 border-t border-white/10">
-          
-          <motion.div
-            initial={{ opacity: 0, y: 45, scale: 0.94 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-4 max-w-[1000px] relative"
-          >
-            {/* Ambient Radial Soft Glow behind ONE IDEA */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#FF9BD2]/20 blur-[100px] rounded-full pointer-events-none" />
-
-            <span className="text-[16px] sm:text-[18px] md:text-[20px] font-mono tracking-[0.12em] text-[#FFF7FF]/70 uppercase block font-bold">
-              Because sometimes…
-            </span>
-            <h2 className="
-              font-display font-black relative z-10
-              text-[42px] sm:text-[80px] md:text-[110px]
-              leading-[0.92] tracking-[-0.03em] uppercase
-              bg-gradient-to-r from-[#FFF7FF] via-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent
-              drop-shadow-[0_0_50px_rgba(255,155,210,0.65)]
-            ">
-              all it takes is <span className="text-[#FFF7FF] font-black">ONE IDEA</span> <br />
-              to change everything.
-            </h2>
-          </motion.div>
-
-          {/* ========================================================================= */}
-          {/* LEVEL 02 — FINAL EDITORIAL CTA & TRANSLUCENT GLASS PILL */}
-          {/* ========================================================================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col items-center space-y-8 pt-8"
-          >
-            <h3 className="font-display font-black text-[32px] sm:text-[42px] md:text-[64px] bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent uppercase tracking-tight flex items-center gap-3">
-              <span className="font-serif italic font-normal text-[#FFF7FF]">SO, SHALL WE ROLL?</span>
-              <span>🎲</span>
-            </h3>
-
-            {/* Translucent Purple Glass Pill CTA Button */}
-            <motion.button
-              onMouseEnter={() => setIsBtnHovered(true)}
-              onMouseLeave={() => setIsBtnHovered(false)}
-              whileHover={{ y: -2, scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onWorkWithMeClick}
-              className="
-                relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
-                bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
-                border border-[#FF9BD2]/50 backdrop-blur-xl
-                text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
-                shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
-                transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
-              "
-            >
-              <span>LET'S MAKE SOMETHING</span>
-              <ArrowUpRight className="w-4 h-4 text-[#FF9BD2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </motion.button>
-          </motion.div>
-
-        </div>
-
       </div>
     </div>
+  );
+};
+
+interface FinalManifestoSectionProps {
+  onWorkWithMeClick?: () => void;
+}
+
+export const FinalManifestoSection: React.FC<FinalManifestoSectionProps> = ({ onWorkWithMeClick }) => {
+  const [, setIsBtnHovered] = useState(false);
+
+  return (
+    <section className="relative w-full py-20 sm:py-32 px-4 sm:px-8 overflow-hidden z-20 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none">
+      
+      {/* Ambient Radial Soft Glow behind ONE IDEA */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#FF9BD2]/15 blur-[140px] rounded-full pointer-events-none" />
+
+      <div className="w-full max-w-[1000px] mx-auto text-center flex flex-col items-center space-y-16 relative z-20">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 45, scale: 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-4 max-w-[1000px] relative"
+        >
+          <span className="text-[16px] sm:text-[18px] md:text-[20px] font-mono tracking-[0.12em] text-[#FFF7FF]/70 uppercase block font-bold">
+            Because sometimes…
+          </span>
+          <h2 className="
+            font-display font-black relative z-10
+            text-[42px] sm:text-[80px] md:text-[110px]
+            leading-[0.92] tracking-[-0.03em] uppercase
+            bg-gradient-to-r from-[#FFF7FF] via-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent
+            drop-shadow-[0_0_50px_rgba(255,155,210,0.65)]
+          ">
+            all it takes is <span className="text-[#FFF7FF] font-black">ONE IDEA</span> <br />
+            to change everything.
+          </h2>
+        </motion.div>
+
+        {/* FINAL EDITORIAL CTA & TRANSLUCENT GLASS PILL */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-col items-center space-y-8 pt-4"
+        >
+          <h3 className="font-display font-black text-[32px] sm:text-[42px] md:text-[64px] bg-gradient-to-r from-[#FF9BD2] to-[#B388FF] bg-clip-text text-transparent uppercase tracking-tight flex items-center gap-3">
+            <span className="font-serif italic font-normal text-[#FFF7FF]">SO, SHALL WE ROLL?</span>
+            <span>🎲</span>
+          </h3>
+
+          {/* Translucent Purple Glass Pill CTA Button */}
+          <motion.button
+            onMouseEnter={() => setIsBtnHovered(true)}
+            onMouseLeave={() => setIsBtnHovered(false)}
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onWorkWithMeClick}
+            className="
+              relative px-8 py-4 sm:px-10 sm:py-5 rounded-full
+              bg-gradient-to-r from-[#2A1047]/90 via-[#3B1560]/90 to-[#2A1047]/90
+              border border-[#FF9BD2]/50 backdrop-blur-xl
+              text-xs sm:text-sm font-mono font-bold tracking-widest text-[#FFF7FF] uppercase
+              shadow-[0_0_35px_rgba(255,155,210,0.45)] hover:shadow-[0_0_50px_rgba(255,155,210,0.65)]
+              transition-all duration-300 flex items-center gap-3 cursor-pointer gpu-layer
+            "
+          >
+            <span>LET'S MAKE SOMETHING</span>
+            <ArrowUpRight className="w-4 h-4 text-[#FF9BD2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </motion.button>
+        </motion.div>
+
+      </div>
+    </section>
   );
 };

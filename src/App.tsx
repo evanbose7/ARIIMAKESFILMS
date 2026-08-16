@@ -10,6 +10,7 @@ import { EmotionalGapSection } from './components/EmotionalGapSection';
 import { PartnershipSection } from './components/PartnershipSection';
 import { PortfolioSection } from './components/PortfolioSection';
 import { AboutSection } from './components/AboutSection';
+import { FinalManifestoSection } from './components/SignaturePhilosophySection';
 import { WorkWithMeModal } from './components/WorkWithMeModal';
 import { ShowreelModal } from './components/ShowreelModal';
 
@@ -108,6 +109,10 @@ export function App() {
         <PartnershipSection />
 
         <AboutSection
+          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
+        />
+
+        <FinalManifestoSection
           onWorkWithMeClick={() => setIsWorkModalOpen(true)}
         />
       </main>

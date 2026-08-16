@@ -1033,7 +1033,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
       </div>
 
       {/* SIGNATURE PHILOSOPHY / DICE CREATIVE MANIFESTO (INSIDE PORTFOLIO SECTION) */}
-      <SignaturePhilosophySection onWorkWithMeClick={onOpenWorkModal} />
+      <SignaturePhilosophySection />
 
       {/* ========================================================================= */}
       {/* C. DESKTOP INTERACTIVE ARCHIVE SHOWCASE MODAL */}
