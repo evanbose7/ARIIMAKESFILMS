@@ -566,9 +566,20 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
                   return (
                     <div
                       key={proj.id}
+                      onClick={(e) => {
+                        const video = e.currentTarget.querySelector('video');
+                        if (video) {
+                          video.muted = false;
+                          if (video.requestFullscreen) {
+                            video.requestFullscreen().catch(() => {});
+                          } else if ((video as any).webkitEnterFullscreen) {
+                            (video as any).webkitEnterFullscreen();
+                          }
+                        }
+                      }}
                       className={`
                         shrink-0 flex flex-col justify-between space-y-3
-                        scroll-snap-align-center transition-all duration-500
+                        scroll-snap-align-center transition-all duration-500 cursor-pointer
                         ${section.mobileCardWidth}
                         ${isActive ? 'scale-100 opacity-100' : 'scale-[0.94] opacity-70'}
                       `}
