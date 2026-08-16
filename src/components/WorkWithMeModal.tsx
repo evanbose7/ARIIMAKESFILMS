@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
 
@@ -16,8 +17,11 @@ interface WorkWithMeModalProps {
 }
 
 export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClose }) => {
-  const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
-  const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,29 +33,35 @@ export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClos
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  const instagramUrl = 'https://www.instagram.com/ariimakesfilms?igsh=a3JmMWJsM3duczEy&utm_source=qr';
+  const whatsappUrl = 'https://wa.me/917666837735?text=Hi%20Arnav!%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect.';
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 select-none">
-          {/* Backdrop Click */}
+        <div className="fixed inset-0 z-[99999999] flex items-center justify-center p-4 sm:p-6 select-none">
+          {/* Blurred Fullscreen Backdrop Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
             className="fixed inset-0 bg-black/80 backdrop-blur-md z-0 cursor-pointer"
           />
 
-          {/* Dialogue Box (Centered directly in current screen viewport) */}
+          {/* Centered Focus Dialogue Box */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            initial={{ opacity: 0, scale: 0.92, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            exit={{ opacity: 0, scale: 0.92, y: 15 }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
             className="
               relative z-10 w-full max-w-lg rounded-3xl
-              border border-white/15 bg-[#12071B] p-6 sm:p-8
-              shadow-[0_25px_80px_rgba(255,155,210,0.4)] overflow-hidden text-left
+              border border-white/20 bg-[#12071B] p-6 sm:p-8
+              shadow-[0_25px_80px_rgba(255,155,210,0.45)] overflow-hidden text-left
             "
           >
             {/* Ambient Halo Glows */}
@@ -151,6 +161,7 @@ export const WorkWithMeModal: React.FC<WorkWithMeModalProps> = ({ isOpen, onClos
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };

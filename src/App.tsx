@@ -11,10 +11,12 @@ import { PartnershipSection } from './components/PartnershipSection';
 import { PortfolioSection } from './components/PortfolioSection';
 import { AboutSection } from './components/AboutSection';
 import { FinalManifestoSection } from './components/SignaturePhilosophySection';
+import { WorkWithMeModal } from './components/WorkWithMeModal';
 import { ShowreelModal } from './components/ShowreelModal';
 
 export function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
   const [isShowreelModalOpen, setIsShowreelModalOpen] = useState(false);
   const [activeReelTitle, setActiveReelTitle] = useState('ARI CINEMATIC REEL 2026');
 
@@ -80,6 +82,7 @@ export function App() {
       {/* Top Left ARI Logo & Top Right Circular Glass Menu Trigger */}
       <Navbar
         onOpenMenuDrawer={() => setIsDrawerOpen(true)}
+        onWorkWithMeClick={() => setIsWorkModalOpen(true)}
       />
 
       {/* Luxury Right-Side Floating Navigation Drawer */}
@@ -87,6 +90,7 @@ export function App() {
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         onSelectPortfolioLink={handleSelectPortfolioLink}
+        onWorkWithMeClick={() => setIsWorkModalOpen(true)}
       />
 
       {/* Main Content: Hero, Emotional Gap (Think About It), Portfolio, Difference, Constellation, etc. */}
@@ -94,20 +98,33 @@ export function App() {
         <HeroSection
           scrollYProgress={scrollYProgress}
           onSeeMyWorkClick={handleScrollToPortfolio}
+          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
         />
 
         <EmotionalGapSection
           scrollYProgress={scrollYProgress}
         />
 
-        <PortfolioSection />
+        <PortfolioSection
+          onOpenWorkModal={() => setIsWorkModalOpen(true)}
+        />
 
         <PartnershipSection />
 
-        <AboutSection />
+        <AboutSection
+          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
+        />
 
-        <FinalManifestoSection />
+        <FinalManifestoSection
+          onWorkWithMeClick={() => setIsWorkModalOpen(true)}
+        />
       </main>
+
+      {/* Interactive Contact Options Dialogue Box */}
+      <WorkWithMeModal
+        isOpen={isWorkModalOpen}
+        onClose={() => setIsWorkModalOpen(false)}
+      />
 
       {/* Interactive Portfolio Showcase Modal */}
       <ShowreelModal

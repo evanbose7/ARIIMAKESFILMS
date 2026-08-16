@@ -6,6 +6,7 @@ interface NavigationDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectPortfolioLink: (type: 'YOUTUBE' | 'REELS' | 'BRAND WORKS') => void;
+  onWorkWithMeClick?: () => void;
 }
 
 export const PORTFOLIO_CARDS = [

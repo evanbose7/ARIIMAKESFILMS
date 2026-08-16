@@ -9,6 +9,7 @@ import { BottomLine } from './BottomLine';
 interface HeroSectionProps {
   scrollYProgress?: MotionValue<number>;
   onSeeMyWorkClick: () => void;
+  onWorkWithMeClick?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({

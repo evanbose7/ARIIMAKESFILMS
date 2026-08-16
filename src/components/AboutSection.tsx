@@ -5,6 +5,7 @@ import { ExperienceSection } from './ExperienceSection';
 
 interface AboutSectionProps {
   portraitSrc?: string;
+  onWorkWithMeClick?: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({

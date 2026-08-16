@@ -4,6 +4,7 @@ import { Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   onOpenMenuDrawer: () => void;
+  onWorkWithMeClick?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenMenuDrawer }) => {
