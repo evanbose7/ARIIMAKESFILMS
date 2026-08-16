@@ -60,6 +60,13 @@ export function App() {
     setIsShowreelModalOpen(true);
   };
 
+  const handleScrollToPortfolio = () => {
+    const portfolioEl = document.getElementById('portfolio');
+    if (portfolioEl) {
+      portfolioEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSelectPortfolioLink = (type: 'YOUTUBE' | 'REELS' | 'BRAND WORKS') => {
     if (type === 'YOUTUBE') {
       handleOpenShowreel('ARI YOUTUBE CINEMATIC CHANNEL');
@@ -88,16 +95,19 @@ export function App() {
         onSelectPortfolioLink={handleSelectPortfolioLink}
       />
 
-      {/* Main Content: Hero, Emotional Gap, Constellation, Results, Toolkit, Philosophy, Partnership & Portfolio */}
+      {/* Main Content: Hero, Emotional Gap (Think About It), Portfolio, Difference, Constellation, etc. */}
       <main className="relative w-full z-10">
         <HeroSection
           scrollYProgress={scrollYProgress}
-          onSeeMyWorkClick={() => handleOpenShowreel('ARI CINEMATIC REEL 2026')}
+          onSeeMyWorkClick={handleScrollToPortfolio}
         />
 
         <EmotionalGapSection
           scrollYProgress={scrollYProgress}
-          onSeeMyWorkClick={() => handleOpenShowreel('ARI CINEMATIC REEL 2026')}
+        />
+
+        <PortfolioSection
+          onOpenWorkModal={() => setIsWorkModalOpen(true)}
         />
 
         <DifferenceSection />
@@ -109,10 +119,6 @@ export function App() {
         <ToolkitSection />
 
         <PartnershipSection />
-
-        <PortfolioSection
-          onOpenWorkModal={() => setIsWorkModalOpen(true)}
-        />
 
         <AboutSection
           onWorkWithMeClick={() => setIsWorkModalOpen(true)}

@@ -1,11 +1,9 @@
 import React, { useMemo } from 'react';
 import { motion, MotionValue } from 'framer-motion';
-import { Sparkles, HelpCircle, Play } from 'lucide-react';
-import { MagneticButton } from './MagneticButton';
+import { Sparkles, HelpCircle } from 'lucide-react';
 
 interface EmotionalGapSectionProps {
   scrollYProgress?: MotionValue<number>;
-  onSeeMyWorkClick?: () => void;
 }
 
 export const QUESTION_CARDS = [
@@ -20,9 +18,7 @@ export const TITLE_LINES = [
   "SOUND LIKE YOU?"
 ];
 
-export const EmotionalGapSection: React.FC<EmotionalGapSectionProps> = ({
-  onSeeMyWorkClick,
-}) => {
+export const EmotionalGapSection: React.FC<EmotionalGapSectionProps> = () => {
   // 8 subtle particles randomly distributed across the top transition boundary
   const boundaryParticles = useMemo(() => {
     return [
@@ -272,18 +268,6 @@ export const EmotionalGapSection: React.FC<EmotionalGapSectionProps> = ({
             </p>
           </div>
         </motion.div>
-
-        {/* 7. SINGLE CTA BUTTON: SEE MY WORK */}
-        <div className="w-full flex justify-center pt-2">
-          <MagneticButton
-            onClick={onSeeMyWorkClick}
-            ariaLabel="See My Work"
-            className="!w-[220px] !h-[54px]"
-          >
-            <Play className="w-4 h-4 fill-current text-[#1A1026]" />
-            <span>SEE MY WORK</span>
-          </MagneticButton>
-        </div>
 
       </div>
     </section>
