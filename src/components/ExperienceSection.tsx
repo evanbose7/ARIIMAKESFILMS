@@ -99,12 +99,12 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen py-24 px-4 overflow-hidden z-20 bg-[#140A22] text-[#FFF7FF] flex flex-col items-center justify-center select-none">
+    <div className="relative w-full py-16 sm:py-24 px-4 bg-transparent text-[#FFF7FF] flex flex-col items-center justify-center select-none pt-16 border-t border-white/10 mt-16 sm:mt-24">
       
       {/* 1. BACKGROUND LAYERS */}
       {/* Soft Lavender Fog & Large Pink Center Glow */}
       <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[650px] opacity-40 blur-[150px] pointer-events-none rounded-full"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[650px] opacity-30 blur-[150px] pointer-events-none rounded-full"
         style={{
           background: 'radial-gradient(ellipse at center, #FF9BD2 0%, #FFB6E6 35%, #B388FF 65%, transparent 90%)',
         }}
@@ -288,6 +288,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
         </motion.div>
 
       </div>
-    </section>
+    </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
+import { ExperienceSection } from './ExperienceSection';
 
 interface AboutSectionProps {
   portraitSrc?: string;
@@ -230,6 +231,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </div>
 
         </div>
+
+        {/* EXPERIENCE SECTION (10+ BRANDS. MANY DIFFERENT STORIES.) */}
+        <ExperienceSection />
 
         {/* ========================================================================= */}
         {/* THE EMOTIONAL MANIFESTO CONCLUSION */}
