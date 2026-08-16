@@ -7,8 +7,6 @@ import { Navbar } from './components/Navbar';
 import { NavigationDrawer } from './components/NavigationDrawer';
 import { HeroSection } from './components/HeroSection';
 import { EmotionalGapSection } from './components/EmotionalGapSection';
-import { ConstellationSection } from './components/ConstellationSection';
-import { ToolkitSection } from './components/ToolkitSection';
 import { SignaturePhilosophySection } from './components/SignaturePhilosophySection';
 import { PartnershipSection } from './components/PartnershipSection';
 import { PortfolioSection } from './components/PortfolioSection';
@@ -107,10 +105,6 @@ export function App() {
         <PortfolioSection
           onOpenWorkModal={() => setIsWorkModalOpen(true)}
         />
-
-        <ConstellationSection />
-
-        <ToolkitSection />
 
         <PartnershipSection />
 
