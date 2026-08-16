@@ -125,13 +125,13 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'jwl-3', title: 'INTERNATIONAL BRAND FEATURE 03', description: 'Editorial global brand film designed for international luxury campaigns.', previewGradient: 'from-[#FFB6E6]/40 via-[#1F0A33] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/jewellery-3.mp4' },
     ],
   },
-  // 6. WELL BEING (CARD 06: BOTTOM RIGHT WIDE STRIP)
+  // 6. WELL BEING (CARD 06: BOTTOM MIDDLE WIDE STRIP)
   {
     id: 'wellbeing',
     title: 'WELL BEING',
     subtitle: 'MIND & MOVEMENT',
     description: 'Holistic wellness, movement & mindful living films.',
-    gridClassDesktop: 'col-span-6 row-span-1 min-h-[220px]',
+    gridClassDesktop: 'col-span-4 row-span-1 min-h-[220px]',
     gridClassMobile: 'col-span-2 h-[220px]',
     aspectRatio: 'landscape',
     previewGradient: 'from-[#B388FF]/35 via-[#1A0A2E] to-[#6D4AFF]/30',
@@ -141,6 +141,21 @@ export const CATEGORY_CARDS: PortfolioCategoryCard[] = [
       { id: 'wb-2', title: 'MINDFUL MOVEMENT REEL 02', description: 'Serene camera work and rhythmic pacing designed for wellness brand engagement.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FFB6E6]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-2.mp4' },
       { id: 'wb-3', title: 'HOLISTIC LIFESTYLE FILM 03', description: 'Warm editorial lighting and natural imagery focusing on vitality and balance.', previewGradient: 'from-[#FFB6E6]/40 via-[#1A0A2E] to-[#6D4AFF]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-3.mp4' },
       { id: 'wb-4', title: 'ELANURA ESSENCE CAMPAIGN 04', description: 'Mindful visual narrative showcasing organic wellness experiences.', previewGradient: 'from-[#6D4AFF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/wellbeing-4.mp4' },
+    ],
+  },
+  // 7. ANIMATION (CARD 07: BOTTOM RIGHT IN EQUAL 3-CARD ROW)
+  {
+    id: 'animation',
+    title: 'ANIMATION',
+    subtitle: '3D MOTION & VFX',
+    description: '3D motion design, visual effects & animated storytelling.',
+    gridClassDesktop: 'col-span-4 row-span-1 min-h-[220px]',
+    gridClassMobile: 'col-span-1 h-[220px]',
+    aspectRatio: 'landscape',
+    previewGradient: 'from-[#FFB6E6]/35 via-[#1A0A2E] to-[#6D4AFF]/30',
+    icon: Wand2,
+    projects: [
+      { id: 'anim-1', title: 'CREATIVE ANIMATION REEL 01', description: 'Dynamic 3D animation, fluid visual effects, and high-speed motion design.', previewGradient: 'from-[#B388FF]/40 via-[#1A0A2E] to-[#FF9BD2]/30', aspectRatio: '9/16', videoUrl: '/assets/food-2.mp4' },
     ],
   },
 ];
@@ -1013,15 +1028,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT WIDE STRIP WITH UPLOADED BACKGROUND) */}
-        {/* col-span-6, row-span-1 (compact height) */}
+        {/* CARD 05 — JEWELRY (INTERNATIONAL BRANDS) (BOTTOM LEFT EQUAL 3-CARD ROW) */}
+        {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[4])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#FF9BD2]/70 hover:shadow-[0_0_35px_rgba(255,155,210,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1054,21 +1069,21 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               JEWELRY (INTERNATIONAL BRANDS)
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
-              High-end jewelry films, international brand stories & luxury craftsmanship.
+              High-end jewelry films & brand stories.
             </p>
           </div>
         </motion.div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* CARD 06 — WELL BEING (BOTTOM RIGHT WIDE STRIP WITH UPLOADED BACKGROUND) */}
-        {/* col-span-6, row-span-1 (compact height) */}
+        {/* CARD 06 — WELL BEING (BOTTOM MIDDLE EQUAL 3-CARD ROW WITH UPLOADED BACKGROUND) */}
+        {/* col-span-4, row-span-1 (compact height) */}
         {/* ----------------------------------------------------------------------- */}
         <motion.div
           onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[5])}
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="
-            relative col-span-6 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            relative col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
             border border-white/15 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
             hover:border-[#B388FF]/70 hover:shadow-[0_0_35px_rgba(179,136,255,0.35)]
             flex flex-col justify-between cursor-pointer group gpu-layer
@@ -1101,7 +1116,45 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ onOpenWorkMo
               WELL BEING
             </h3>
             <p className="text-[11px] text-[#FFF7FF]/90 line-clamp-2 drop-shadow-md">
-              Holistic wellness, movement & mindful living films.
+              Holistic wellness & mindful living films.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* ----------------------------------------------------------------------- */}
+        {/* CARD 07 — ANIMATION (BOTTOM RIGHT EQUAL 3-CARD ROW) */}
+        {/* col-span-4, row-span-1 (compact height) */}
+        {/* ----------------------------------------------------------------------- */}
+        <motion.div
+          onClick={() => handleOpenCategoryCard(CATEGORY_CARDS[6])}
+          whileHover={{ y: -4, scale: 1.01 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="
+            col-span-4 row-span-1 min-h-[170px] rounded-[28px] overflow-hidden p-5
+            border border-white/15 bg-gradient-to-br from-[#FFB6E6]/25 via-[#1A0A2E] to-[#6D4AFF]/20
+            backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.65)]
+            hover:border-[#FFB6E6]/70 hover:shadow-[0_0_35px_rgba(255,182,230,0.35)]
+            flex flex-col justify-between cursor-pointer group gpu-layer
+          "
+        >
+          <div className="flex items-center justify-between z-30">
+            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/15">
+              <Wand2 className="w-3.5 h-3.5 text-[#FFB6E6]" />
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#FFF7FF] uppercase">
+                3D MOTION & VFX
+              </span>
+            </div>
+            <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-[#FFF7FF] group-hover:bg-[#FFB6E6] group-hover:text-[#100719] flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </div>
+
+          <div className="space-y-0.5 z-30 pt-3">
+            <h3 className="font-display font-black text-xl text-[#FFF7FF] tracking-tight uppercase group-hover:text-[#FFB6E6] transition-colors">
+              ANIMATION
+            </h3>
+            <p className="text-[11px] text-[#FFF7FF]/75 line-clamp-2">
+              3D motion design, visual effects & animation.
             </p>
           </div>
         </motion.div>
